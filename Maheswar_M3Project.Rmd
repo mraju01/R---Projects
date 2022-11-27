@@ -64,7 +64,7 @@ library(kableExtra)
 # Datasets used in Project"
 
 ## Sample data
-SData <- read_excel("/Users/maheswar/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/M3ProjectData.xlsx")
+SData <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/M3ProjectData.xlsx")
 
 ##Removing NA Values from each column using na.omit() function
 S1 = na.omit(SData$`Sample 1`)

@@ -42,7 +42,7 @@ Date:`r format(Sys.time(), '%d %B, %Y')`
 
 Most professionals shape their behavior through an iterative learning process that includes mental rehearsal, action, and feedback. For those starting a new career or occupation, this process entails attempting to meet certain standards, observing the results, and making the necessary adjustments. These observations may result in increased effort ("I need to improve"), establishing a routine ("I'm doing okay"), or quitting ("I don't fit here") (Hader, 2004). These observations may be supported by feedback in a variety of forms, including measuring performance and mentoring by managers, self-comparisons with colleagues, and formal performance evaluations and rewards.
 
-**Benefits of a Compensation Survey **
+**Benefits of a Compensation Survey**
 <P>
 A compensation survey can reveal how your salary levels and other employment benefits stack up against your industry, competitors, and region. This data can assist you in making better choices about the mix of pay and benefits you offer to attract and retain top personnel. A survey can also detail how employees are compensated, such as:
 
@@ -81,12 +81,12 @@ After the analysis, he will present his finding with his team members to find th
 In this section, we will perform analysis on various types of variables to gain insight and address our problems
 ```{r message=FALSE, warning=FALSE}
 
-#"Library Used for Analysis of Car Sales
+# "Library Used for Analysis of Car Sales
 library(magrittr)
 library(knitr)
 library(plotrix)
-library(plyr)    
-library(dplyr) 
+library(plyr)
+library(dplyr)
 library(readxl)
 library(gridExtra)
 library(CGPfunctions)
@@ -102,22 +102,24 @@ library(kableExtra)
 
 ## Salary data
 
-Salary <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx", 
-    sheet = "salary_survey")
+Salary <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx",
+     sheet = "salary_survey"
+)
 
 ## Pets Data
-Pets <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx", 
-    sheet = "pets")
+Pets <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx",
+     sheet = "pets"
+)
 
-#Salary List
-SalaryList <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx", 
-    sheet = "salary_list")
+# Salary List
+SalaryList <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx",
+     sheet = "salary_list"
+)
 
-#Pets List
-Pets_List <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx", 
-    sheet = "pets_list")
-
-
+# Pets List
+Pets_List <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6010 - Project/Data Sets/M2Data-1.xlsx",
+     sheet = "pets_list"
+)
 ```
 
 
@@ -146,127 +148,124 @@ We have masked the store name as we want to keep this information confidential.
 
 ```{r message=FALSE, warning=FALSE}
 
-#Removing NA Values from each column using na.omit() function
-Store1 = na.omit(Salary$Store1)
-Store2 = na.omit(Salary$Store2)
-Store3 = na.omit(Salary$Store3)
-Store4 = na.omit(Salary$Store4)
-Store5 = na.omit(Salary$Store5)
-Store6 = na.omit(Salary$Store6)
-Store7 = na.omit(Salary$Store7)
-Store8 = na.omit(Salary$Store8)
-Store9 = na.omit(Salary$Store9)
-Store10 = na.omit(Salary$Store10)
-Store11 = na.omit(Salary$Store11)
-Store12 = na.omit(Salary$Store12)
-Store13 = na.omit(Salary$Store13)
-Store14 = na.omit(Salary$Store14)
-Store15 = na.omit(Salary$Store15)
-Store16 = na.omit(Salary$Store16)
-Store17 = na.omit(Salary$Store17)
-Store18 = na.omit(Salary$Store18)
-Store19 = na.omit(Salary$Store19)
-Store20 = na.omit(Salary$Store20)
+# Removing NA Values from each column using na.omit() function
+Store1 <- na.omit(Salary$Store1)
+Store2 <- na.omit(Salary$Store2)
+Store3 <- na.omit(Salary$Store3)
+Store4 <- na.omit(Salary$Store4)
+Store5 <- na.omit(Salary$Store5)
+Store6 <- na.omit(Salary$Store6)
+Store7 <- na.omit(Salary$Store7)
+Store8 <- na.omit(Salary$Store8)
+Store9 <- na.omit(Salary$Store9)
+Store10 <- na.omit(Salary$Store10)
+Store11 <- na.omit(Salary$Store11)
+Store12 <- na.omit(Salary$Store12)
+Store13 <- na.omit(Salary$Store13)
+Store14 <- na.omit(Salary$Store14)
+Store15 <- na.omit(Salary$Store15)
+Store16 <- na.omit(Salary$Store16)
+Store17 <- na.omit(Salary$Store17)
+Store18 <- na.omit(Salary$Store18)
+Store19 <- na.omit(Salary$Store19)
+Store20 <- na.omit(Salary$Store20)
 
-#Creating for basic statistics for task 1.1
-meanSalary = (sum(Store1)+sum(Store2)+sum(Store3)+sum(Store4) +sum(Store5) +sum(Store6)+ sum(Store7) +sum(Store8)+ sum(Store9)
-+sum(Store10) +sum(Store11) +sum(Store12) +sum(Store13) +sum(Store14)
-+sum(Store15)+ sum(Store16) +sum(Store17) +sum(Store18) +sum(Store19) +sum(Store20))/247
-
-
-sdSalary = sd(SalaryList$Store)
-
-n = 247
+# Creating for basic statistics for task 1.1
+meanSalary <- (sum(Store1) + sum(Store2) + sum(Store3) + sum(Store4) + sum(Store5) + sum(Store6) + sum(Store7) + sum(Store8) + sum(Store9)
+     + sum(Store10) + sum(Store11) + sum(Store12) + sum(Store13) + sum(Store14)
+     + sum(Store15) + sum(Store16) + sum(Store17) + sum(Store18) + sum(Store19) + sum(Store20)) / 247
 
 
-#Creating Object for 90% Confidence Interval 
-CL90= 0.90
+sdSalary <- sd(SalaryList$Store)
 
-#Calculating Alpha Value
-alp90= (1-CL90)
-
-# Calculating Z value for Margin of Error
-Z90L= qnorm(alp90/2)
-
-#Calculating Margin of Error
-MarErr90 = Z90L*(sdSalary/ sqrt(n))
-
-#Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL90= meanSalary + MarErr90
-CLU90 = meanSalary - MarErr90
-
-#Calculation of C.I. Width for 90
-wd90 = CLU90 - CLL90
-
-#Vector Creation for 90% C.I.
-vectorCI90 = c(Z90L, MarErr90, CLU90, CLL90, wd90 )
+n <- 247
 
 
+# Creating Object for 90% Confidence Interval
+CL90 <- 0.90
 
-#Creating Object for 92% Confidence Interval 
-CL92= 0.92
-
-#Calculating Alpha Value
-alp92= (1-CL92)
+# Calculating Alpha Value
+alp90 <- (1 - CL90)
 
 # Calculating Z value for Margin of Error
-Z92L= qnorm(alp92/2)
+Z90L <- qnorm(alp90 / 2)
 
-#Calculating Margin of Error
-MarErr92 = Z92L*(sdSalary/ sqrt(n))
+# Calculating Margin of Error
+MarErr90 <- Z90L * (sdSalary / sqrt(n))
 
-#Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL92= meanSalary + MarErr92
-CLU92 = meanSalary - MarErr92
+# Creating Objects for Confidence Interval: Upper and Lower Limit
+CLL90 <- meanSalary + MarErr90
+CLU90 <- meanSalary - MarErr90
 
-#Calculation of C.I. Width for 92
-wd92 = CLU92 - CLL92
+# Calculation of C.I. Width for 90
+wd90 <- CLU90 - CLL90
+
+# Vector Creation for 90% C.I.
+vectorCI90 <- c(Z90L, MarErr90, CLU90, CLL90, wd90)
 
 
-#Vector Creation for 92% C.I.
-vectorCI92 = c(Z92L, MarErr92, CLU92, CLL92, wd92 )
 
-#Creating Object for 96% Confidence Interval 
-CL96= 0.96
+# Creating Object for 92% Confidence Interval
+CL92 <- 0.92
 
-#Calculating Alpha Value
-alp96= (1-CL96)
+# Calculating Alpha Value
+alp92 <- (1 - CL92)
 
 # Calculating Z value for Margin of Error
-Z96L= qnorm(alp96/2)
+Z92L <- qnorm(alp92 / 2)
 
-#Calculating Margin of Error
-MarErr96 = Z96L*(sdSalary/ sqrt(n))
+# Calculating Margin of Error
+MarErr92 <- Z92L * (sdSalary / sqrt(n))
 
-#Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL96= meanSalary + MarErr96
-CLU96 = meanSalary - MarErr96
+# Creating Objects for Confidence Interval: Upper and Lower Limit
+CLL92 <- meanSalary + MarErr92
+CLU92 <- meanSalary - MarErr92
 
-#Calculation of C.I. Width for 96
-wd96 = CLU96 - CLL96
-
-#Vector Creation for 96% C.I.
-vectorCI96 = c(Z96L, MarErr96, CLU96, CLL96, wd96 )
-
-#Matrix Creation for compiling all the Confidence Interval Vectors
-Salary_Table = matrix(c(vectorCI90,vectorCI92, vectorCI96 ), nrow = 3, byrow = TRUE)
+# Calculation of C.I. Width for 92
+wd92 <- CLU92 - CLL92
 
 
-##Rounding Digits in Matrix
-Salary_Table_Rounded = round(Salary_Table, digits = 3)
+# Vector Creation for 92% C.I.
+vectorCI92 <- c(Z92L, MarErr92, CLU92, CLL92, wd92)
 
-##Naming Columns and Row Names in Table
-colnames (Salary_Table_Rounded) = c("Z Value",  "Marg of Error", "Upper C.L.","Lower C.L.", "Width of C.I.")
+# Creating Object for 96% Confidence Interval
+CL96 <- 0.96
 
-rownames (Salary_Table_Rounded) = c("Confidence Interval 90%","Confidence Interval 92%", "Confidence Interval 96%")
+# Calculating Alpha Value
+alp96 <- (1 - CL96)
 
-#Table Creation of of Matrix Using Knitr Package
-Salary_Table_Rounded %>% 
-  knitr::kable(caption = "Table 1: Z Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Salaries with Different Confidence Intervals") %>%
-  kable_styling(bootstrap_options = c("striped","hover"))
+# Calculating Z value for Margin of Error
+Z96L <- qnorm(alp96 / 2)
+
+# Calculating Margin of Error
+MarErr96 <- Z96L * (sdSalary / sqrt(n))
+
+# Creating Objects for Confidence Interval: Upper and Lower Limit
+CLL96 <- meanSalary + MarErr96
+CLU96 <- meanSalary - MarErr96
+
+# Calculation of C.I. Width for 96
+wd96 <- CLU96 - CLL96
+
+# Vector Creation for 96% C.I.
+vectorCI96 <- c(Z96L, MarErr96, CLU96, CLL96, wd96)
+
+# Matrix Creation for compiling all the Confidence Interval Vectors
+Salary_Table <- matrix(c(vectorCI90, vectorCI92, vectorCI96), nrow = 3, byrow = TRUE)
 
 
+## Rounding Digits in Matrix
+Salary_Table_Rounded <- round(Salary_Table, digits = 3)
 
+## Naming Columns and Row Names in Table
+colnames(Salary_Table_Rounded) <- c("Z Value", "Marg of Error", "Upper C.L.", "Lower C.L.", "Width of C.I.")
+
+rownames(Salary_Table_Rounded) <- c("Confidence Interval 90%", "Confidence Interval 92%", "Confidence Interval 96%")
+
+# Table Creation of of Matrix Using Knitr Package
+Salary_Table_Rounded %>%
+     knitr::kable(caption = "Table 1: Z Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Salaries with Different Confidence Intervals") %>%
+     kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 
@@ -283,111 +282,108 @@ Salary_Table_Rounded %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-#Creating for basic statistics for task 1.2
-meanSalary = (mean(Store1)+mean(Store2)+mean(Store3)+mean(Store4) +mean(Store5) +mean(Store6)+ mean(Store7) +mean(Store8)+ mean(Store9)
-+mean(Store10) +mean(Store11) +mean(Store12) +mean(Store13) +mean(Store14)
-+mean(Store15)+ mean(Store16) +mean(Store17) +mean(Store18) +mean(Store19) +mean(Store20))/20
+# Creating for basic statistics for task 1.2
+meanSalary <- (mean(Store1) + mean(Store2) + mean(Store3) + mean(Store4) + mean(Store5) + mean(Store6) + mean(Store7) + mean(Store8) + mean(Store9)
+     + mean(Store10) + mean(Store11) + mean(Store12) + mean(Store13) + mean(Store14)
+     + mean(Store15) + mean(Store16) + mean(Store17) + mean(Store18) + mean(Store19) + mean(Store20)) / 20
 
 
-sdSalary = (sd(Store1)+sd(Store2)+sd(Store3)+sd(Store4) +sd(Store5) +sd(Store6)+ sd(Store7) +sd(Store8)+ sd(Store9)
-+sd(Store10) +sd(Store11) +sd(Store12) +sd(Store13) +sd(Store14)
-+sd(Store15)+ sd(Store16) +sd(Store17) +sd(Store18) +sd(Store19) +sd(Store20))/20
+sdSalary <- (sd(Store1) + sd(Store2) + sd(Store3) + sd(Store4) + sd(Store5) + sd(Store6) + sd(Store7) + sd(Store8) + sd(Store9)
+     + sd(Store10) + sd(Store11) + sd(Store12) + sd(Store13) + sd(Store14)
+     + sd(Store15) + sd(Store16) + sd(Store17) + sd(Store18) + sd(Store19) + sd(Store20)) / 20
 
-#Sample Size
-n = 20
+# Sample Size
+n <- 20
 
-#Degree of Freedom
-df = n-1
+# Degree of Freedom
+df <- n - 1
 
 
-#Calculating Confidence for 90 %
-CL90= 0.90
+# Calculating Confidence for 90 %
+CL90 <- 0.90
 
-#Calculating p Value
-p90= (1+CL90)/2
-
-# Calculating t value for Margin of Error using qt()
-T90L= qt(p90, df)
-
-#Calculating Margin of Error
-MarErr90 = T90L*(sdSalary/ sqrt(n))
-
-#Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL90= meanSalary - MarErr90
-CLU90 = meanSalary + MarErr90
-
-#Calculation of C.I. Width for 90%
-wd90 = CLU90 - CLL90
-
-#Vector Creation for 90% C.I.
-vectorCI90 = c(T90L, MarErr90, CLU90, CLL90, wd90 )
-
- 
-#Calculating Confidence for 92 %
-CL92= 0.92
-
-#Calculating p Value
-p92= (1+CL92)/2
+# Calculating p Value
+p90 <- (1 + CL90) / 2
 
 # Calculating t value for Margin of Error using qt()
-T92L= qt(p92, df)
+T90L <- qt(p90, df)
 
-#Calculating Margin of Error
-MarErr92 = T92L*(sdSalary/ sqrt(n))
+# Calculating Margin of Error
+MarErr90 <- T90L * (sdSalary / sqrt(n))
 
-#Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL92= meanSalary - MarErr92
-CLU92 = meanSalary + MarErr92
+# Creating Objects for Confidence Interval: Upper and Lower Limit
+CLL90 <- meanSalary - MarErr90
+CLU90 <- meanSalary + MarErr90
 
-#Calculation of C.I. Width for 92%
-wd92 = CLU92 - CLL92
+# Calculation of C.I. Width for 90%
+wd90 <- CLU90 - CLL90
 
-#Vector Creation for 92% C.I.
-vectorCI92 = c(T92L, MarErr92, CLU92, CLL92, wd92 )
+# Vector Creation for 90% C.I.
+vectorCI90 <- c(T90L, MarErr90, CLU90, CLL90, wd90)
 
 
-#Calculating Confidence for 96 %
-CL96= 0.96
+# Calculating Confidence for 92 %
+CL92 <- 0.92
 
-#Calculating p Value
-p96= (1+CL96)/2
+# Calculating p Value
+p92 <- (1 + CL92) / 2
 
 # Calculating t value for Margin of Error using qt()
-T96L= qt(p96, df)
+T92L <- qt(p92, df)
 
-#Calculating Margin of Error
-MarErr96 = T96L*(sdSalary/ sqrt(n))
+# Calculating Margin of Error
+MarErr92 <- T92L * (sdSalary / sqrt(n))
 
-#Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL96= meanSalary - MarErr96
-CLU96 = meanSalary + MarErr96
+# Creating Objects for Confidence Interval: Upper and Lower Limit
+CLL92 <- meanSalary - MarErr92
+CLU92 <- meanSalary + MarErr92
 
-#Calculation of C.I. Width for 96%
-wd96 = CLU96 - CLL96
+# Calculation of C.I. Width for 92%
+wd92 <- CLU92 - CLL92
 
-#Vector Creation for 96% C.I.
-vectorCI96 = c(T96L, MarErr96, CLU96, CLL96, wd96 )
-
-
-#Matrix Creation for compiling all the Confidence Interval Vectors
-Salary_Table = matrix(c(vectorCI90,vectorCI92, vectorCI96 ), nrow = 3, byrow = TRUE)
+# Vector Creation for 92% C.I.
+vectorCI92 <- c(T92L, MarErr92, CLU92, CLL92, wd92)
 
 
-##Rounding Digits in Matrix
-Salary_Table_Rounded2 = round(Salary_Table, digits = 3)
+# Calculating Confidence for 96 %
+CL96 <- 0.96
 
-##Naming Columns and Row Names in Table
-colnames (Salary_Table_Rounded2) = c("T Value",  "Marg of Error", "Upper C.L.","Lower C.L.", "Width of C.I.")
+# Calculating p Value
+p96 <- (1 + CL96) / 2
 
-rownames (Salary_Table_Rounded2) = c("Confidence Interval 90%","Confidence Interval 92%", "Confidence Interval 96%")
+# Calculating t value for Margin of Error using qt()
+T96L <- qt(p96, df)
 
-#Table Creation of of Matrix Using Knitr Package
-Salary_Table_Rounded2 %>% 
-  knitr::kable(caption = "Table 2: T Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Salaries with Different Confidence Intervals") %>%
-  kable_styling(bootstrap_options = c("striped","hover"))
+# Calculating Margin of Error
+MarErr96 <- T96L * (sdSalary / sqrt(n))
+
+# Creating Objects for Confidence Interval: Upper and Lower Limit
+CLL96 <- meanSalary - MarErr96
+CLU96 <- meanSalary + MarErr96
+
+# Calculation of C.I. Width for 96%
+wd96 <- CLU96 - CLL96
+
+# Vector Creation for 96% C.I.
+vectorCI96 <- c(T96L, MarErr96, CLU96, CLL96, wd96)
 
 
+# Matrix Creation for compiling all the Confidence Interval Vectors
+Salary_Table <- matrix(c(vectorCI90, vectorCI92, vectorCI96), nrow = 3, byrow = TRUE)
 
+
+## Rounding Digits in Matrix
+Salary_Table_Rounded2 <- round(Salary_Table, digits = 3)
+
+## Naming Columns and Row Names in Table
+colnames(Salary_Table_Rounded2) <- c("T Value", "Marg of Error", "Upper C.L.", "Lower C.L.", "Width of C.I.")
+
+rownames(Salary_Table_Rounded2) <- c("Confidence Interval 90%", "Confidence Interval 92%", "Confidence Interval 96%")
+
+# Table Creation of of Matrix Using Knitr Package
+Salary_Table_Rounded2 %>%
+     knitr::kable(caption = "Table 2: T Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Salaries with Different Confidence Intervals") %>%
+     kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 <P>
@@ -412,40 +408,44 @@ Salary_Table_Rounded2 %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-#Plotting the Density Plot
+# Plotting the Density Plot
 
-densityStore = density(SalaryList$Store)
-plot(densityStore, adjust = 2,main = "Fig 1. Density Plot Of Salaries With 92% Confidence Interval")
+densityStore <- density(SalaryList$Store)
+plot(densityStore, adjust = 2, main = "Fig 1. Density Plot Of Salaries With 92% Confidence Interval")
 
 # Fill area
 polygon(densityStore, col = rgb(0.5, 0.8, 0.157, alpha = 0.6))
 
-#Plotting the Confidence Interval: Upper and Lower Limit on density plot
-abline(v= CLL92, col = "Red")
-abline(v= CLU92, col = "Red")
-abline(v= meanSalary, col = "Red")
+# Plotting the Confidence Interval: Upper and Lower Limit on density plot
+abline(v = CLL92, col = "Red")
+abline(v = CLU92, col = "Red")
+abline(v = meanSalary, col = "Red")
 
-#Getting the Z Score for Confidence Upper and Lower Limit
-ZscoreL = (CLL92 - meanSalary)/sdSalary
-ZscoreU = (CLU92 - meanSalary)/sdSalary
+# Getting the Z Score for Confidence Upper and Lower Limit
+ZscoreL <- (CLL92 - meanSalary) / sdSalary
+ZscoreU <- (CLU92 - meanSalary) / sdSalary
 
-#Adding text for vertical lines"
-text(x=CLL92 - 0.5, y=0.06,
-     paste("Value =",round(CLL92,2),",  Zscore = ",round(ZscoreL,2)),
-     srt=90, cex=0.7)
+# Adding text for vertical lines"
+text(
+     x = CLL92 - 0.5, y = 0.06,
+     paste("Value =", round(CLL92, 2), ",  Zscore = ", round(ZscoreL, 2)),
+     srt = 90, cex = 0.7
+)
 
-#Adding text for vertical lines"
-text(x=CLU92 + 0.5, y=0.04,
-     paste("Value =",round(CLU92,3),",  Zscore = ",round(ZscoreU,2)),
-     srt=90, cex=0.7)
-
-
-#Adding text for vertical lines"
-text(x=meanSalary + 0.25, y=0.06,
-     paste("Mean =",round(meanSalary,3)),
-     srt=90, cex=0.6)
+# Adding text for vertical lines"
+text(
+     x = CLU92 + 0.5, y = 0.04,
+     paste("Value =", round(CLU92, 3), ",  Zscore = ", round(ZscoreU, 2)),
+     srt = 90, cex = 0.7
+)
 
 
+# Adding text for vertical lines"
+text(
+     x = meanSalary + 0.25, y = 0.06,
+     paste("Mean =", round(meanSalary, 3)),
+     srt = 90, cex = 0.6
+)
 ```
 
 
@@ -459,166 +459,202 @@ text(x=meanSalary + 0.25, y=0.06,
 ```{r message=FALSE, warning=FALSE, fig.width=10, fig.height=8}
 
 
-box1 = boxplot.stats(Store1)$stats
-box2 = boxplot.stats(Store2)$stats
-box3 = boxplot.stats(Store3)$stats
-box4 = boxplot.stats(Store4)$stats
-box5 = boxplot.stats(Store5)$stats
-box6 = boxplot.stats(Store6)$stats
-box7 = boxplot.stats(Store7)$stats
-box8 = boxplot.stats(Store8)$stats
-box9 = boxplot.stats(Store9)$stats
-box10 = boxplot.stats(Store10)$stats
-box11 = boxplot.stats(Store11)$stats
-box12 = boxplot.stats(Store12)$stats
-box13 = boxplot.stats(Store13)$stats
-box14 = boxplot.stats(Store14)$stats
-box15 = boxplot.stats(Store15)$stats
-box16 = boxplot.stats(Store16)$stats
-box17 = boxplot.stats(Store17)$stats
-box18 = boxplot.stats(Store18)$stats
-box19 = boxplot.stats(Store19)$stats
-box20 = boxplot.stats(Store20)$stats
+box1 <- boxplot.stats(Store1)$stats
+box2 <- boxplot.stats(Store2)$stats
+box3 <- boxplot.stats(Store3)$stats
+box4 <- boxplot.stats(Store4)$stats
+box5 <- boxplot.stats(Store5)$stats
+box6 <- boxplot.stats(Store6)$stats
+box7 <- boxplot.stats(Store7)$stats
+box8 <- boxplot.stats(Store8)$stats
+box9 <- boxplot.stats(Store9)$stats
+box10 <- boxplot.stats(Store10)$stats
+box11 <- boxplot.stats(Store11)$stats
+box12 <- boxplot.stats(Store12)$stats
+box13 <- boxplot.stats(Store13)$stats
+box14 <- boxplot.stats(Store14)$stats
+box15 <- boxplot.stats(Store15)$stats
+box16 <- boxplot.stats(Store16)$stats
+box17 <- boxplot.stats(Store17)$stats
+box18 <- boxplot.stats(Store18)$stats
+box19 <- boxplot.stats(Store19)$stats
+box20 <- boxplot.stats(Store20)$stats
 
-store_stats = matrix(c(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13, box14, box15, box16, box17, box18, box19, box20), nrow = 20, byrow = TRUE)
+store_stats <- matrix(c(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13, box14, box15, box16, box17, box18, box19, box20), nrow = 20, byrow = TRUE)
 
-##Rounding Digits in Matrix
-store_stats_Rounded = round(store_stats, digits = 1)
+## Rounding Digits in Matrix
+store_stats_Rounded <- round(store_stats, digits = 1)
 
 boxplot(Salary, xaxt = "n", col = brewer.pal(12, "Set3"), main = " Fig 2. Box Plot with Quantiles and Mean of each store")
 
-text(y = store_stats_Rounded[1,],
-     labels = store_stats_Rounded[1,],
-     x=0.5,
+text(
+     y = store_stats_Rounded[1, ],
+     labels = store_stats_Rounded[1, ],
+     x = 0.5,
      cex = 0.6,
-     col = "#A11515")
+     col = "#A11515"
+)
 
-text(y = store_stats_Rounded[2,],
-     labels = store_stats_Rounded[2,],
-     x=1.5,
+text(
+     y = store_stats_Rounded[2, ],
+     labels = store_stats_Rounded[2, ],
+     x = 1.5,
      cex = 0.6,
-     col = "#A11515")
+     col = "#A11515"
+)
 
-text(y = store_stats_Rounded[3,],
-     labels = store_stats_Rounded[3,],
-     x=2.5,
+text(
+     y = store_stats_Rounded[3, ],
+     labels = store_stats_Rounded[3, ],
+     x = 2.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[4,],
-     labels = store_stats_Rounded[4,],
-     x=3.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[4, ],
+     labels = store_stats_Rounded[4, ],
+     x = 3.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[5,],
-     labels = store_stats_Rounded[5,],
-     x=4.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[5, ],
+     labels = store_stats_Rounded[5, ],
+     x = 4.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[6,],
-     labels = store_stats_Rounded[6,],
-     x=5.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[6, ],
+     labels = store_stats_Rounded[6, ],
+     x = 5.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[7,],
-     labels = store_stats_Rounded[7,],
-     x=6.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[7, ],
+     labels = store_stats_Rounded[7, ],
+     x = 6.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[8,],
-     labels = store_stats_Rounded[8,],
-     x=7.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[8, ],
+     labels = store_stats_Rounded[8, ],
+     x = 7.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[9,],
-     labels = store_stats_Rounded[9,],
-     x=8.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[9, ],
+     labels = store_stats_Rounded[9, ],
+     x = 8.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[10,],
-     labels = store_stats_Rounded[10,],
-     x=9.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[10, ],
+     labels = store_stats_Rounded[10, ],
+     x = 9.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[11,],
-     labels = store_stats_Rounded[11,],
-     x=10.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[11, ],
+     labels = store_stats_Rounded[11, ],
+     x = 10.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[12,],
-     labels = store_stats_Rounded[12,],
-     x=11.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[12, ],
+     labels = store_stats_Rounded[12, ],
+     x = 11.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[13,],
-     labels = store_stats_Rounded[13,],
-     x=12.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[13, ],
+     labels = store_stats_Rounded[13, ],
+     x = 12.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[14,],
-     labels = store_stats_Rounded[14,],
-     x=13.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[14, ],
+     labels = store_stats_Rounded[14, ],
+     x = 13.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[15,],
-     labels = store_stats_Rounded[15,],
-     x=14.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[15, ],
+     labels = store_stats_Rounded[15, ],
+     x = 14.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[16,],
-     labels = store_stats_Rounded[16,],
-     x=15.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[16, ],
+     labels = store_stats_Rounded[16, ],
+     x = 15.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[17,],
-     labels = store_stats_Rounded[17,],
-     x=16.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[17, ],
+     labels = store_stats_Rounded[17, ],
+     x = 16.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[18,],
-     labels = store_stats_Rounded[18,],
-     x=17.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[18, ],
+     labels = store_stats_Rounded[18, ],
+     x = 17.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[19,],
-     labels = store_stats_Rounded[19,],
-     x=18.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[19, ],
+     labels = store_stats_Rounded[19, ],
+     x = 18.5,
      cex = 0.6,
-     col = "#A11515")
-text(y = store_stats_Rounded[20,],
-     labels = store_stats_Rounded[20,],
-     x=19.5,
+     col = "#A11515"
+)
+text(
+     y = store_stats_Rounded[20, ],
+     labels = store_stats_Rounded[20, ],
+     x = 19.5,
      cex = 0.6,
-     col = "#A11515")
+     col = "#A11515"
+)
 
 
-mbox1 = mean(Store1)
-mbox2 = mean(Store2)
-mbox3 = mean(Store3)
-mbox4 = mean(Store4)
-mbox5 = mean(Store5)
-mbox6 = mean(Store6)
-mbox7 = mean(Store7)
-mbox8 = mean(Store8)
-mbox9 = mean(Store9)
-mbox10 = mean(Store10)
-mbox11 = mean(Store11)
-mbox12 = mean(Store12)
-mbox13 = mean(Store13)
-mbox14 = mean(Store14)
-mbox15 = mean(Store15)
-mbox16 = mean(Store16)
-mbox17 = mean(Store17)
-mbox18 = mean(Store18)
-mbox19 = mean(Store19)
-mbox20 = mean(Store20)
+mbox1 <- mean(Store1)
+mbox2 <- mean(Store2)
+mbox3 <- mean(Store3)
+mbox4 <- mean(Store4)
+mbox5 <- mean(Store5)
+mbox6 <- mean(Store6)
+mbox7 <- mean(Store7)
+mbox8 <- mean(Store8)
+mbox9 <- mean(Store9)
+mbox10 <- mean(Store10)
+mbox11 <- mean(Store11)
+mbox12 <- mean(Store12)
+mbox13 <- mean(Store13)
+mbox14 <- mean(Store14)
+mbox15 <- mean(Store15)
+mbox16 <- mean(Store16)
+mbox17 <- mean(Store17)
+mbox18 <- mean(Store18)
+mbox19 <- mean(Store19)
+mbox20 <- mean(Store20)
 
-store_mean = matrix(c(mbox1, mbox2, mbox3, mbox4, mbox5, mbox6, mbox7, mbox8, mbox9, mbox10, mbox11, mbox12, mbox13, mbox14, mbox15, mbox16, mbox17, mbox18, mbox19, mbox20), nrow = 20, byrow = TRUE)
+store_mean <- matrix(c(mbox1, mbox2, mbox3, mbox4, mbox5, mbox6, mbox7, mbox8, mbox9, mbox10, mbox11, mbox12, mbox13, mbox14, mbox15, mbox16, mbox17, mbox18, mbox19, mbox20), nrow = 20, byrow = TRUE)
 
-points(store_mean, col="Red",pch=18)
-
-
-  
-
+points(store_mean, col = "Red", pch = 18)
 ```
 <P>
 <BR> <B>
@@ -654,103 +690,100 @@ In this section, I have taken survey among 204 people and ask them if they have 
 
 ```{r message=FALSE, warning=FALSE}
 
-n = 204
+n <- 204
 
-Yes = sum(Pets == 'Yes')
-No = (n - sum(Pets == 'No'))
+Yes <- sum(Pets == "Yes")
+No <- (n - sum(Pets == "No"))
 
-pYes = Yes/n
-pNo = No/n
+pYes <- Yes / n
+pNo <- No / n
 
-#Creating Object for 92% Confidence Interval 
-CL90= 0.90
+# Creating Object for 92% Confidence Interval
+CL90 <- 0.90
 
-#Calculating Alpha Value
-alp90= (1-CL90)
-
-# Calculating Z value for Margin of Error
-Z90L= qnorm(alp90/2)
-
-#Margin of Error
-M90L = Z90L*sqrt((pYes*pNo/n))
-
-#Confidence Levels
-CIL90 = pYes - M90L 
-CIU90 =  pYes + M90L 
-
-#Width
-wd90 = CIL90 - CIU90
-
-#vector Creation
-vectorCI90 = c(Z90L, M90L, CIL90, CIU90, wd90 )
-
-
-#Creating Object for 92% Confidence Interval 
-CL92= 0.92
-
-#Calculating Alpha Value
-alp92= (1-CL92)
+# Calculating Alpha Value
+alp90 <- (1 - CL90)
 
 # Calculating Z value for Margin of Error
-Z92L= qnorm(alp92/2)
+Z90L <- qnorm(alp90 / 2)
 
-#Margin of Error
-M92L =Z92L*(sqrt((pYes*pNo/n)))
+# Margin of Error
+M90L <- Z90L * sqrt((pYes * pNo / n))
 
-#Confidence Levels
-CIL92 = pYes - M92L 
-CIU92 =  pYes + M92L 
+# Confidence Levels
+CIL90 <- pYes - M90L
+CIU90 <- pYes + M90L
 
-#Width
-wd92 = CIL92 - CIU92
+# Width
+wd90 <- CIL90 - CIU90
 
-#vector Creation
-vectorCI92 = c(Z92L, M92L, CIL92, CIU92, wd92 )
+# vector Creation
+vectorCI90 <- c(Z90L, M90L, CIL90, CIU90, wd90)
 
 
-#Creating Object for 96% Confidence Interval 
-CL96= 0.96
+# Creating Object for 92% Confidence Interval
+CL92 <- 0.92
 
-#Calculating Alpha Value
-alp96= (1-CL96)
+# Calculating Alpha Value
+alp92 <- (1 - CL92)
 
 # Calculating Z value for Margin of Error
-Z96L= qnorm(alp96/2)
+Z92L <- qnorm(alp92 / 2)
 
-#Margin of Error
-M96L =Z96L*sqrt((pYes*pNo/n))
+# Margin of Error
+M92L <- Z92L * (sqrt((pYes * pNo / n)))
 
-#Confidence Levels
-CIL96 = pYes - M96L 
-CIU96 =  pYes + M96L 
+# Confidence Levels
+CIL92 <- pYes - M92L
+CIU92 <- pYes + M92L
+
+# Width
+wd92 <- CIL92 - CIU92
+
+# vector Creation
+vectorCI92 <- c(Z92L, M92L, CIL92, CIU92, wd92)
+
+
+# Creating Object for 96% Confidence Interval
+CL96 <- 0.96
+
+# Calculating Alpha Value
+alp96 <- (1 - CL96)
+
+# Calculating Z value for Margin of Error
+Z96L <- qnorm(alp96 / 2)
+
+# Margin of Error
+M96L <- Z96L * sqrt((pYes * pNo / n))
+
+# Confidence Levels
+CIL96 <- pYes - M96L
+CIU96 <- pYes + M96L
 
 # Width
 
-wd96 = CIL96 - CIU96
+wd96 <- CIL96 - CIU96
 
-#vector Creation
-vectorCI96 = c(Z96L, M96L, CIL96, CIU96, wd96 )
-
-
-#Matrix Creation for compiling all the Confidence Interval Vectors
-Pets_Table = matrix(c(vectorCI90,vectorCI92, vectorCI96 ), nrow = 3, byrow = TRUE)
+# vector Creation
+vectorCI96 <- c(Z96L, M96L, CIL96, CIU96, wd96)
 
 
-##Rounding Digits in Matrix
-Pets_Table_Rounded = round(Pets_Table, digits = 2)
-
-##Naming Columns and Row Names in Table
-colnames (Pets_Table_Rounded) = c("Z Value",  "Marg of Error", "Upper C.L.","Lower C.L.", "Width of C.I.")
-
-rownames (Pets_Table_Rounded) = c("Confidence Interval 90%","Confidence Interval 92%", "Confidence Interval 96%")
-
-#Table Creation of of Matrix Using Knitr Package
-Pets_Table_Rounded %>% 
-  knitr::kable(caption = "Table 1: Z Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Salaries with Different Confidence Intervals") %>%
-  kable_styling(bootstrap_options = c("striped","hover"))
+# Matrix Creation for compiling all the Confidence Interval Vectors
+Pets_Table <- matrix(c(vectorCI90, vectorCI92, vectorCI96), nrow = 3, byrow = TRUE)
 
 
+## Rounding Digits in Matrix
+Pets_Table_Rounded <- round(Pets_Table, digits = 2)
 
+## Naming Columns and Row Names in Table
+colnames(Pets_Table_Rounded) <- c("Z Value", "Marg of Error", "Upper C.L.", "Lower C.L.", "Width of C.I.")
+
+rownames(Pets_Table_Rounded) <- c("Confidence Interval 90%", "Confidence Interval 92%", "Confidence Interval 96%")
+
+# Table Creation of of Matrix Using Knitr Package
+Pets_Table_Rounded %>%
+     knitr::kable(caption = "Table 1: Z Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Salaries with Different Confidence Intervals") %>%
+     kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 <P>
@@ -763,58 +796,61 @@ Pets_Table_Rounded %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-# "Used code mfcol() to organize charts in a matrix of 1 rows and 2 column 
-par(mfcol=c(1,2))
+# "Used code mfcol() to organize charts in a matrix of 1 rows and 2 column
+par(mfcol = c(1, 2))
 
-# Used code mai=c() to control margins inside charts 
-par(cex=0.7, mai=c(0.6,0.55,0.2,0.1))
+# Used code mai=c() to control margins inside charts
+par(cex = 0.7, mai = c(0.6, 0.55, 0.2, 0.1))
 
-#Creating Table
-tbar = table(Pets_List$Response)
+# Creating Table
+tbar <- table(Pets_List$Response)
 
-#Bar Plot
-plotResponse = barplot(tbar, main="Bar Plot for Response",
-                 xlab = ,
-                 ylab = "Frequency",
-                col = brewer.pal(15, "Set1"),
-                border = "black",
-                ylim = c(0,150),
-                 las = 1.5,
-                cex.lab = 1, 
-                cex.axis = 1,
-                 cex.names = 0.8,
-                 space = 0.3)
+# Bar Plot
+plotResponse <- barplot(tbar,
+     main = "Bar Plot for Response",
+     xlab = ,
+     ylab = "Frequency",
+     col = brewer.pal(15, "Set1"),
+     border = "black",
+     ylim = c(0, 150),
+     las = 1.5,
+     cex.lab = 1,
+     cex.axis = 1,
+     cex.names = 0.8,
+     space = 0.3
+)
 
-#Adding Lables
-text(x=tbar, 
-     plotResponse, 
-     tbar, 
-     cex=0.8, 
-     pos = 1)
+# Adding Lables
+text(
+     x = tbar,
+     plotResponse,
+     tbar,
+     cex = 0.8,
+     pos = 1
+)
 
-#Labels Creation for Pie Chart
-pieLabel4 = paste( unique(sort(Pets_List$Response)),"(",round(100 * tbar /sum(tbar ), 2),"%",")")
+# Labels Creation for Pie Chart
+pieLabel4 <- paste(unique(sort(Pets_List$Response)), "(", round(100 * tbar / sum(tbar), 2), "%", ")")
 
 
 # Plot the pie chart for Fuel Type.
-pie1 = pie(tbar , labels = pieLabel4,
-           radius = 0.6,
-           col =  brewer.pal(7, "Dark2"),
-    border = "white",
-    lty = 1,
-    cex=0.8,
-    font = 2,
-    clockwise = T)
+pie1 <- pie(tbar,
+     labels = pieLabel4,
+     radius = 0.6,
+     col = brewer.pal(7, "Dark2"),
+     border = "white",
+     lty = 1,
+     cex = 0.8,
+     font = 2,
+     clockwise = T
+)
 
 # Legends Display"
 legend("topleft",
-       legend = paste(unique(sort(Pets_List$Response))),
-       fill = brewer.pal(7, "Dark2"),
-       border = "white")
-
-
-
-
+     legend = paste(unique(sort(Pets_List$Response))),
+     fill = brewer.pal(7, "Dark2"),
+     border = "white"
+)
 ```
 
 <P>

@@ -26,7 +26,7 @@
 <FONT size=5, color="Black"> 
 Prof: Dr. Dee Chiluiza 
 
-Date: `r format(Sys.time(), '%d %B, %Y')`
+Date:  `r format(Sys.time(), '%d %B, %Y')`
 
 </CENTER>
 
@@ -56,7 +56,7 @@ In this section, we will perform analysis on various types of variables to gain 
 
 ```{r message=FALSE, warning=FALSE}
 
-#"Library Used for Analysis of Car Sales
+#Library Used for Analysis of Car Sales
 library(magrittr)
 library(knitr)
 library(plotrix)
@@ -107,12 +107,11 @@ hSData <- head(SData,15)
 
 #Present the table using kableExta Package
 knitr::kable(hSData,
-             caption = "Presenting the First 15 Observation of Data Set",
+            caption = "Presenting the First 15 Observation of Data Set",
              format = "html",
-             table.attr="style=width: 40%", align = "lccrr") %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% # nolint
-  kable_classic(full_width = F, html_font = "Times New Roman")
-  
+             table.attr="style=width: 40%",
+             align = "lccrr") %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
 hSData %>%
   kbl(caption = "Table 2 : First 15 Observation of Data Set",
@@ -156,7 +155,9 @@ vectorS1 = c(MeanS1, MedianS1, StdS1 )
 
 
 #Matrix Creation for basic descriptive statistics
-SData_Table = matrix(c(vectorPop,vectorS1),nrow = 2, byrow = TRUE)
+SData_Table <- matrix(c(vectorPop, vectorS1), 
+                        nrow = 2, 
+                        byrow = TRUE)
 
 
 ##Rounding Digits in Matrix
@@ -170,8 +171,10 @@ rownames (SData_Table_Rounded) = c("Population","Sample 1")
 
 #Table Creation of of Matrix Using Knitr Package
 SData_Table_Rounded %>% 
-  knitr::kable(caption = "Table 2 : Descriptive Statistics of Populations and Sample 1", format = "html") %>% # nolint
-  kable_material_dark(full_width = F, html_font = "Times New Roman") 
+  knitr::kable
+  (caption = "Table 2 : Descriptive Statistics of Populations and Sample 1", format = "html") %>% 
+    kable_material_dark(full_width = F, 
+    html_font = "Times New Roman") 
 
 
 
@@ -275,9 +278,7 @@ vectorCI99S1 = c(Z99LS1,Z99RS1, MarErr99S1, CLU99S1, CLL99S1, wd99S1 )
 
 
 #Matrix Creation for compiling all the Confidence Interval Vectors
-S1_Table = matrix(c(vectorCI90S1,vectorCI96S1, vectorCI99S1 ),
-                    nrow = 3,
-                    byrow = TRUE)
+S1_Table <- matrix(c(vectorCI90S1, vectorCI96S1, vectorCI99S1), nrow = 3, byrow = TRUE)
 
 
 ##Rounding Digits in Matrix
@@ -452,10 +453,9 @@ vectorCI99S2 = c(T99LS2, T99RS2 , MarErr99S2, CLU99S2, CLL99S2, wd99S2 )
 
 #Matrix Creation for compiling all the Confidence Interval Vectors
 #########################
-S2_Table = matrix(c(vectorCI90S2,vectorCI96S2, vectorCI99S2 ),
-                    nrow = 3, 
-                    byrow = TRUE
-                  )
+S2_Table <- matrix(c(vectorCI90S2, vectorCI96S2, vectorCI99S2), 
+                    nrow = 3,
+                    byrow = TRUE)
 
 
 ##Rounding Digits in Matrix
@@ -534,8 +534,12 @@ rownames (Prop_Table_Rounded) = c("Sample 3","Population")
 
 #Table Creation of of Matrix Using Knitr Package
 Prop_Table_Rounded %>% 
-  knitr::kable(caption = "Table 6: Proportion of Success and Failure for Sample 3 and Population", format = "html") %>%
-   kable_material_dark(full_width = F, html_font = "Times New Roman") 
+  knitr::kable(
+                caption = "Table 6: Proportion of Success and Failure for Sample 3 and Population",
+                format = "html"
+              ) %>%
+    kable_material_dark(full_width = F,
+       html_font = "Times New Roman") 
 
 
 

@@ -140,7 +140,6 @@ In this below section, we will perform various statistical analysis on our Data 
 #####################################
 library(magrittr)
 library(knitr)
-library(plotrix)
 library(plyr)
 library(dplyr)
 library(readxl)
@@ -170,6 +169,7 @@ S6 <- na.omit(SData$`Sample 6`)
 ```
 
 ***About the Data Set***
+<P>
 The data contains population and sample taken from population and placed into different columns
 
 
@@ -208,6 +208,9 @@ hSData %>%
 
 ***Observations***
 
+- After looking at first 15 rows, we clearly can say that the data type of all our variables are continuous variable, so we can quantitative data in front of us for our analysis.
+- After doing the some basic analysis on excel, the frequency of data is mostly concentrated between 0.63 to 2.00, with some outliers
+
 </FONT>
 
 <P>
@@ -216,6 +219,8 @@ hSData %>%
 2.2. Basic Descriptive Statistics : Population and Sample 1
 </FONT>
 </BR></B>
+
+In this section, we will get basic desciptive statistics of population and sample 1 and present in well-organized table.
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -273,6 +278,10 @@ SData_Table_Rounded %>%
 <FONT SIZE = 4.5>
 
 ***Observations***
+
+- After looking at table, we can say that there is difference between population and sample 1.
+- We can see that mean of sample 1 is 1.03, which is lower than population Mean, but we can't conclude because we have to perform some more analysis to check if difference is significant.
+
 
 </FONT>
 
@@ -385,7 +394,9 @@ colnames(S1_Table_Rounded) <- c(
   "Marg of Error", "Upper C.L.", "Lower C.L.", "Width of C.I."
 )
 
-rownames(S1_Table_Rounded) <- c("CI 90%", "CI 96%", "CI 99%")
+rownames(S1_Table_Rounded) <- c(
+  "CI 90%", "CI 96%", "CI 99%"
+)
 
 # Table Creation of of Matrix Using Knitr Package
 S1_Table_Rounded %>%
@@ -404,6 +415,12 @@ S1_Table_Rounded %>%
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+- After performing Z-test, We clearly see that population mean presented in Table 2 is within the 90% , 96%, and 99% confidence intervals for sample 1 mean.
+  
+- As, we can see as the alpha value is decreasing, our margin of error is increasing, so we can conclude that they are inversely proportional to each other.
+  
+- Also, when the confidence level increases, the width of between the upper and lower confidence increase, so a trade off occurs.
 
 </FONT>
 
@@ -454,8 +471,11 @@ rownames(samplesizematrix_Rounded) <- c("Sample 1", "Population")
 
 # Table Creation of of Matrix Using Knitr Package
 samplesizematrix_Rounded %>%
-  knitr::kable(caption = "Table 4: Sample Size based on Known Std of Sample 1
-  and Population") %>%
+  knitr::kable(
+    caption = "Table 4: Sample Size based on Known Std of Sample 1
+  and Population",
+    format = "html"
+  ) %>%
   kable_classic(
     full_width = F,
     html_font = "Times New Roman"
@@ -466,6 +486,13 @@ samplesizematrix_Rounded %>%
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+
+- To determine the how many observation, meaning how much sample size is required to make most accurate estimate about the population parameter, depends on three factors: the critical value, margin of error and standard deviation of population when it is known.
+
+- As, we can clearly see from the table that sample size of all the confidence interval are same because it is the formula for sample size is dervied from the margin of error formula, which we have used and presented our results in Table 3.
+
+- Suppose, when standard deviation of population is not known, then we have to to use standard deviation of sample in place of popluation deviation.
 
 </FONT>
 
@@ -589,13 +616,24 @@ rownames(S2_Table_Rounded) <- c("CI 90%", "CI 96%", "CI 99%")
 S2_Table_Rounded %>%
   knitr::kable(caption = "Table 5: Results of Sample 2 with
   Different Confidence Intervals", format = "html") %>%
-  kable_classic(full_width = F, html_font = "Times New Roman")
+  kable_classic(
+    full_width = F,
+    html_font = "Times New Roman"
+  )
 ```
 
 <BR>
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+
+
+- After performing t-test as sample size was less than 30, We clearly see that population mean also lies within the 90% , 96%, and 99% confidence intervals presented in Table 5 for sample 3 mean.
+- When comparing our results from Table 5 to Table 3, we can notice that margin of error and width of confidence interval for t-distribution is definitely is greater than when we compare to Z-test.
+- And, the reason for this difference is because according to central limit theorm, the distribution of a sample variable approximates a normal distribution (i.e., a “bell curve”) as the sample size becomes larger, assuming that all samples are identical in size, and regardless of the population's actual distribution shape.
+
+  
 
 </FONT>
 

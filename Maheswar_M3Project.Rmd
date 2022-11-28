@@ -4,10 +4,10 @@
 
 <CENTER>
 
-<FONT size=6, color="Blue">
+<FONT size=6, color="Red">
 **M3 Project Report** </FONT>
 
-<FONT size=6, color="Red">
+<FONT size=6, color="Blue">
 <BR>**Probability Theory and Introductory Statistics** </FONT>
 
 
@@ -26,9 +26,17 @@
 <FONT size=5, color="Black"> 
 Prof: Dr. Dee Chiluiza 
 
-Date:`r format(Sys.time(), '%d %B, %Y')`
+Date: `r format(Sys.time(), '%d %B, %Y')`
 
 </CENTER>
+
+<P>
+<BR> <B>
+<FONT SIZE = 5, COLOR ="#2770e6">
+1. INTRODUCTION
+</FONT>
+</BR></B>
+
 
 
 <P>
@@ -82,20 +90,20 @@ S6 = na.omit(SData$`Sample 6`)
 ```{r message=FALSE, warning=FALSE}
 
 #Creating a new vector for fething first 15  records
-hSampleData <- head(SData,15)
+hSData <- head(SData,15)
 
 
 
 #Present the table using kableExta Package
-knitr::kable(hSampleData,
+knitr::kable(hSData,
              caption = "Presenting the First 15 Observation of Data Set",
              format = "html",
              table.attr="style=width: 40%", align = "lccrr") %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% # nolint
   kable_classic(full_width = F, html_font = "Times New Roman")
   
 
-hSampleData %>%
+hSData %>%
   kbl(caption = "Table 2 : Presenting the First 15 Observation of Data Set",
       format = "html") %>%
   kable_material_dark(full_width = F, html_font = "Times New Roman") 
@@ -248,13 +256,16 @@ S1_Table_Rounded = round(S1_Table, digits = 2)
 
 
 ##Naming Columns and Row Names in Table
-colnames (S1_Table_Rounded) = c("Z Left Value","Z Right Value",  "Marg of Error", "Upper C.L.","Lower C.L.", "Width of C.I.")
+colnames (S1_Table_Rounded) = c("Z Left Value","Z Right Value",  
+"Marg of Error", "Upper C.L.","Lower C.L.", "Width of C.I.")
 
 rownames (S1_Table_Rounded) = c("CI 90%","CI 96%", "CI 99%")
 
 #Table Creation of of Matrix Using Knitr Package
 S1_Table_Rounded %>% 
-  knitr::kable(caption = "Table 3: Z Values, Margin of Error, Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Sample 1 with Different Confidence Intervals", format = "html") %>%
+  knitr::kable(caption = "Table 3: Z Values, Margin of Error, 
+  Upper Confidence limit, Lower Confidence Limit and Width of C.I. of Sample 1 with Different Confidence Intervals",
+   format = "html") %>%
      kable_classic(full_width = F, html_font = "Times New Roman")
 
 
@@ -595,28 +606,34 @@ paste("The variance of Population is", round (VarPop, 2))
 #Creating Object for 90% Confidence Interval for Sample 4 Variance 
 ########################################
 CL90S4= 0.90
+dfS4 = nS4 - 1
+
 
 #Calculating Alpha Value
 alp90S4= (1-CL90S4)
 
-# Calculating Z value for Margin of Error
-Z90LS4= qnorm(alp90S4/2)
-Z90RS4= qnorm((alp90S4/2)+CL90S4)
+# Calculating Z value for Variance
 
-#Calculating Margin of Error
-MarErr90S4 = Z90RS4*(StdS4/ sqrt(nS4))
+Z90LS4 = qchisq(p = alp90S4, df = dfS4, lower.tail = TRUE)
+
+Z90RS4 = qchisq(p = alp90S4, df = dfS4, lower.tail = FALSE)
+
+
+
 
 #Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL90S4= VarS4 - MarErr90S4
-CLU90S4 = VarS4 + MarErr90S4
+
+CLL90S4= ((dfS4)*(StdS4^2))/Z90LS4
+
+CLU90S4= ((dfS4)*(StdS4^2))/Z90RS4
 
 #Calculation of C.I. Width for 90
-wd90S4 = CLU90S4 - CLL90S4
+wd90S4 = CLL90S4 - CLU90S4
 
 #Inline R Code to present all the value calculated for 90% CI
 paste("The -ve Z Value of Sample 4 with 90% Confidence Interval is", round (Z90LS4, 2)) 
+
 paste("The +ve Z Value of Sample 4 With 90% Confidence Interval is", round (Z90RS4, 2)) 
-paste("The Margin of Error for Sample 4 with 90% Confidence Interval is", round (MarErr90S4, 2)) 
 
 paste("The Confidence Upper Limit for Sample 4 with 90% Confidence Interval is", round (CLU90S4, 2)) 
 
@@ -628,28 +645,34 @@ paste("The Confidence Interval Width for Sample 4 with 90% Confidence Interval i
 #Creating Object for 96% Confidence Interval for Sample 4 Variance 
 ########################################
 CL96S4= 0.96
+dfS4 = nS4 - 1
+
 
 #Calculating Alpha Value
 alp96S4= (1-CL96S4)
 
-# Calculating Z value for Margin of Error
-Z96LS4= qnorm(alp96S4/2)
-Z96RS4= qnorm((alp96S4/2)+CL96S4)
+# Calculating Z value for Variance
 
-#Calculating Margin of Error
-MarErr96S4 = Z96RS4*(StdS4/ sqrt(nS4))
+Z96LS4 = qchisq(p = alp96S4, df = dfS4, lower.tail = TRUE)
+
+Z96RS4 = qchisq(p = alp96S4, df = dfS4, lower.tail = FALSE)
+
+
+
 
 #Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL96S4= VarS4 - MarErr96S4
-CLU96S4 = VarS4 + MarErr96S4
+
+CLL96S4= ((dfS4)*(StdS4^2))/Z96LS4
+
+CLU96S4= ((dfS4)*(StdS4^2))/Z96RS4
 
 #Calculation of C.I. Width for 96
-wd96S4 = CLU96S4 - CLL96S4
+wd96S4 = CLL96S4 - CLU96S4
 
 #Inline R Code to present all the value calculated for 96% CI
 paste("The -ve Z Value of Sample 4 with 96% Confidence Interval is", round (Z96LS4, 2)) 
+
 paste("The +ve Z Value of Sample 4 With 96% Confidence Interval is", round (Z96RS4, 2)) 
-paste("The Margin of Error for Sample 4 with 96% Confidence Interval is", round (MarErr96S4, 2)) 
 
 paste("The Confidence Upper Limit for Sample 4 with 96% Confidence Interval is", round (CLU96S4, 2)) 
 
@@ -657,39 +680,44 @@ paste("The Confidence Lower Limit for Sample 4 with 96% Confidence Interval is",
 
 paste("The Confidence Interval Width for Sample 4 with 96% Confidence Interval is", round (wd96S4, 2)) 
 
-
-
 #Creating Object for 99% Confidence Interval for Sample 4 Variance 
 ########################################
 CL99S4= 0.99
+dfS4 = nS4 - 1
+
 
 #Calculating Alpha Value
 alp99S4= (1-CL99S4)
 
-# Calculating Z value for Margin of Error
-Z99LS4= qnorm(alp99S4/2)
-Z99RS4= qnorm((alp99S4/2)+CL99S4)
+# Calculating Z value for Variance
 
-#Calculating Margin of Error
-MarErr99S4 = Z99RS4*(StdS4/ sqrt(nS4))
+Z99LS4 = qchisq(p = alp99S4, df = dfS4, lower.tail = TRUE)
+
+Z99RS4 = qchisq(p = alp99S4, df = dfS4, lower.tail = FALSE)
+
+
+
 
 #Creating Objects for Confidence Interval: Upper and Lower Limit
-CLL99S4= VarS4 - MarErr99S4
-CLU99S4 = VarS4 + MarErr99S4
+
+CLL99S4= ((dfS4)*(StdS4^2))/Z99LS4
+
+CLU99S4= ((dfS4)*(StdS4^2))/Z99RS4
 
 #Calculation of C.I. Width for 99
-wd99S4 = CLU99S4 - CLL99S4
+wd99S4 = CLL99S4 - CLU99S4
 
 #Inline R Code to present all the value calculated for 99% CI
 paste("The -ve Z Value of Sample 4 with 99% Confidence Interval is", round (Z99LS4, 2)) 
+
 paste("The +ve Z Value of Sample 4 With 99% Confidence Interval is", round (Z99RS4, 2)) 
-paste("The Margin of Error for Sample 4 with 99% Confidence Interval is", round (MarErr99S4, 2)) 
 
 paste("The Confidence Upper Limit for Sample 4 with 99% Confidence Interval is", round (CLU99S4, 2)) 
 
 paste("The Confidence Lower Limit for Sample 4 with 99% Confidence Interval is", round (CLL99S4, 2)) 
 
 paste("The Confidence Interval Width for Sample 4 with 99% Confidence Interval is", round (wd99S4, 2)) 
+
 
 ```
 
@@ -788,4 +816,8 @@ pvalueS6<alphaS6
 ```
 
 hello
+
+```{r message=FALSE,warning=FALSE}
+
+```
 

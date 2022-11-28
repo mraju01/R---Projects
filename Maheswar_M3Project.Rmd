@@ -106,7 +106,7 @@ The most important advantage of hypothesis testing is that it allows you to asse
 - It is beneficial to provide connections between the underlying theory and specific research concerns.
 
 
--- ***Applications of Hypothesis Testing in Criminal Justice System***
+-- ***Applications of Hypothesis Testing***
 
 In biology, hypothesis testing are frequently used to assess whether a new treatment, fertilizer, pesticide, chemical, etc. produces greater growth, stamina, immunity, and so on in plants or animals.
 
@@ -124,12 +124,15 @@ If the p-value of the test is less than a certain level of significance (e.g. =.
 <P>
 <BR> <B>
   <FONT SIZE = 5, COLOR ="#f70d1a">
-  2. ANALYSIS 
+  1. ANALYSIS 
   </FONT>
 </BR></B>
 
 <P>
+
+<FONT SIZE = 4.5>
 In this below section, we will perform various statistical analysis on our Data to make inferences and address our problems.
+<FONT/>
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -166,6 +169,9 @@ S5 <- na.omit(SData$`Sample 5`)
 S6 <- na.omit(SData$`Sample 6`)
 ```
 
+***About the Data Set***
+The data contains population and sample taken from population and placed into different columns
+
 
 <P>
 <BR> <B>
@@ -174,9 +180,13 @@ S6 <- na.omit(SData$`Sample 6`)
 </FONT>
 </BR></B>
 
+<FONT SIZE = 4.5>
+In this section, we will perform the head function to first 15 observation from our data
+</FONT>
+
 ```{r message=FALSE, warning=FALSE}
 
-# Creating a new vector for fetching first 15  records
+# Creating a new objects for fetching first 15  records
 hSData <- head(SData, 15)
 
 
@@ -184,7 +194,7 @@ hSData <- head(SData, 15)
 # Present the table using kableExtra Package
 hSData %>%
   kbl(
-    caption = "Table 2 : First 15 Observation of Data Set",
+    caption = "Table 1 : First 15 Observation of Data Set",
     format = "html"
   ) %>%
   kable_material_dark(
@@ -193,6 +203,12 @@ hSData %>%
   )
 ```
 
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 <P>
 <BR> <B>
@@ -253,6 +269,12 @@ SData_Table_Rounded %>%
   )
 ```
 
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 <P>
 <BR> <B>
@@ -371,9 +393,19 @@ S1_Table_Rounded %>%
     caption = "Table 3: Results  of Sample 1 with
                Different Confidence Intervals",
     format = "html"
+  ) %>%
+  kable_classic(
+    full_width = F,
+    html_font = "Times New Roman"
   )
 ```
 
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 <P>
 <BR> <B>
@@ -424,9 +456,18 @@ rownames(samplesizematrix_Rounded) <- c("Sample 1", "Population")
 samplesizematrix_Rounded %>%
   knitr::kable(caption = "Table 4: Sample Size based on Known Std of Sample 1
   and Population") %>%
-  kable_material_dark(full_width = F, html_font = "Times New Roman")
+  kable_classic(
+    full_width = F,
+    html_font = "Times New Roman"
+  )
 ```
 
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 <P>
 <BR> <B>
@@ -551,10 +592,24 @@ S2_Table_Rounded %>%
   kable_classic(full_width = F, html_font = "Times New Roman")
 ```
 
+<BR>
+<FONT SIZE = 4.5>
 
+***Observations***
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.6. Sample 3 : Confidence Interval for Sample Proportion
+</FONT>
+</BR></B>
 
 
 ```{r message=FALSE, warning=FALSE}
+
 
 # Calculation for sample proportion
 
@@ -609,22 +664,10 @@ Prop_Table_Rounded %>%
     caption = "Table 6: Proportion of Success and Failure for Sample 3 and Population",
     format = "html"
   ) %>%
-  kable_material_dark(
+  kable_classic(
     full_width = F,
     html_font = "Times New Roman"
   )
-```
-
-
-<P>
-<BR> <B>
-<FONT SIZE = 4.75, COLOR ="#f94c56">
-2.6. Sample 3 : Confidence Interval for Sample Proportion
-</FONT>
-</BR></B>
-
-
-```{r message=FALSE, warning=FALSE}
 
 # Creating Objects
 nS3 <- 1500
@@ -725,8 +768,20 @@ S3_Table_Rounded %>%
     format = "html"
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
-  kable_classic(full_width = F, html_font = "Times New Roman")
+  kable_classic(
+    full_width = F,
+    html_font = "Times New Roman"
+  )
 ```
+
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
+
 
 <P>
 <BR> <B>
@@ -868,6 +923,14 @@ paste("3.4. The Confidence Lower Limit for Sample 4 with 99% Confidence Interval
 paste("3.5. The Confidence Interval Width for Sample 4 with 99% Confidence Interval is", round(wd99S4, 2))
 ```
 
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
+
+
 <P>
 <BR> <B>
 <FONT SIZE = 4.75, COLOR ="#f94c56">
@@ -927,8 +990,19 @@ knitr::kable(HypothesisMatrix_Rounded,
   kable_styling(bootstrap_options = c(
     "striped", "hover",
     "condensed", "responsive"
-  ))
+  )) %>%
+  kable_classic(
+    full_width = F,
+    html_font = "Times New Roman"
+  )
 ```
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 
 <P>
@@ -948,6 +1022,13 @@ pvalueS5 <- round(1 - pnorm(ZtestS5), digits = 3)
 # Checking if the p-value is less than alpha value on right-tail
 pvalueS5 < alp95S5 / 2
 ```
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 
 <P>
@@ -1004,6 +1085,13 @@ knitr::kable(HypothesisMatrix6_Rounded,
 ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+</FONT>
 
 <P>
 <BR> <B>

@@ -585,14 +585,14 @@ display: none;
 <P>
 <p><BR></p>
 <CENTER>
-<p><FONT size="6," color="Red"> <strong>M3 Project Report</strong>
+<p><FONT size="5.5," color="Red"> <strong>M3 Project Report</strong>
 </FONT></p>
-<p><FONT size="6," color="Blue"> <BR><strong>Probability Theory and
+<p><FONT size="5.5," color="#800080"> <BR><strong>Probability Theory and
 Introductory Statistics</strong> </FONT></p>
 <P>
-<p><FONT size="6," color="Black"> ALY 6010 - 71579 </FONT></p>
+<p><FONT size="5.5," color="#008080"> ALY 6010 - 71579 </FONT></p>
 <P>
-<p><BR> <FONT size="5," color="Black"> <BR> <strong>Maheswar Raju
+<p><BR> <FONT size="5," color="Grey"> <BR> <strong>Maheswar Raju
 Narasaiah</strong></p>
 <p><FONT size="5," color="Black"> Prof: Dr. Dee Chiluiza</p>
 <p>Date: 28 November, 2022</p>
@@ -604,18 +604,18 @@ Narasaiah</strong></p>
 it’s Importance and Application</strong> </FONT>
 <P>
 <p><FONT SIZE="4.5"></p>
-<p>A confidence interval (CI) is a range of values that contains the
-value of an unknown population parameter. Given the properties of your
-sample data, these intervals represent a realistic domain for the
-parameter. Confidence intervals are produced using a defined confidence
-level and are derived from sample statistics.</p>
-<p>Because measuring complete populations is often impossible,
-population parameters are highly unpredictable. These parameters can be
-estimated using a sample. However, due to random sampling error, the
-estimates rarely exactly equal the parameter.</p>
-<p>The confidence level is the long-run likelihood that a set of
-confidence intervals will include the population parameter’s true
-value.</p>
+<p>A confidence interval (CI) is a set of numbers that includes the
+value of a previously unknown population parameter. These intervals
+provide a plausible domain for the parameter based on the qualities of
+the sample data. Confidence intervals are formed from sample statistics
+and produced using a predetermined confidence level.</p>
+<p>Because it is often hard to measure entire populations, population
+parameters are highly variable. A sample can be used to estimate these
+parameters. Due to random sampling error, however, the estimates rarely
+exactly equal the parameter.</p>
+<p>The confidence level is the long-run probability that a set of
+confidence intervals will encompass the real value of a population
+parameter.</p>
 <p>– <strong><em>Importance of Confidence Interval</em></strong></p>
 <p>The majority of what we do in statistics includes using a sample to
 answer a research question. A confidence interval expresses the degree
@@ -684,6 +684,14 @@ would be narrower (plus or minus 2.5 percent, for example).</p>
 Importance and Application</strong> </FONT>
 <P>
 <p><FONT SIZE="4.5"></p>
+<p>Hypothesis testing determines whether a specific assumption holds
+true for the entire population. It is a statistical instrument. It
+evaluates sample data from the entire population to determine the
+validity of conclusion.</p>
+<p>The hypothesis idea is based on the likelihood of an event occurring.
+It determines whether or not the primary hypothesis results are correct.
+It is commonly used in biological research, criminal trials, marketing,
+and manufacturing.</p>
 <p>– <strong><em>Importance of Hypothesis Testing</em></strong></p>
 <p>The most important advantage of hypothesis testing is that it allows
 you to assess the strength of your claim or assumption before including
@@ -703,40 +711,29 @@ results.</li>
 <li>It is beneficial to provide connections between the underlying
 theory and specific research concerns.</li>
 </ul>
-<p>– <strong><em>Applications of Hypothesis Testing in Criminal Justice
-System</em></strong></p>
-<p>An example. I am accused of murder. The null hypothesis is that I am
-not guilty, because the legal principle is that I am innocent until I am
-proven guilty. Since the null hypothesis must be constructed before you
-examine the evidence it must be that I am not guilty. The alternative
-hypothesis is that I am guilty. If the evidence is sufficiently
-persuasive, you will shift your belief from the null hypothesis to the
-alternative hypothesis.</p>
-<p>You may be wrong. You should consider the consequences of being wrong
-before you decide how much evidence will persuade you to move from the
-null hypothesis to the alternative hypothesis.</p>
-<p>If I am not guilty of the murder but you conclude that I am, an
-innocent man is sent to the gas chamber. If I am guilty of the murder
-but you conclude that I am not, I am free to kill again. Which of these
-is worse? We generally believe that being executed by the State after a
-protracted legal process is worse. So we require a lot of evidence
-before we shift our position from the null hypothesis to the alternative
-hypothesis. We require “proof beyond reasonable doubt”.</p>
-<p>On the other hand, suppose I am being sued in the civil courts for
-non-payment of a bill. The null hypothesis is that I do not owe the
-money. This is because it is for the person suing me to prove his case.
-The alternative hypothesis is that I do owe the money. Suppose the court
-makes the wrong decision: what are the consequences? Either I lose money
-unfairly or the person suing me loses money unfairly. Which is worse?
-Well, neither, really. So the evidence required is much less than in the
-criminal case: we require “proof on a balance of probabilities”.</p>
+<p>– <strong><em>Applications of Hypothesis Testing</em></strong></p>
+<p>In biology, hypothesis testing are frequently used to assess whether
+a new treatment, fertilizer, pesticide, chemical, etc. produces greater
+growth, stamina, immunity, and so on in plants or animals.</p>
+<p>For example, imagine a biologist believes that a specific fertilizer
+will allow plants to grow 20 inches faster in a month than they
+generally do. For one month, she applies the fertilizer to each of the
+plants in her experiment.</p>
+<p>She then performs a hypothesis test using the following
+hypotheses:</p>
+<p>H0: μ = 20 inches (the fertilizer will have no effect on the mean
+plant growth) HA: μ &gt; 20 inches (the fertilizer will cause mean plant
+growth to increase) If the p-value of the test is less than a certain
+level of significance (e.g. =.05), she can reject the null hypothesis
+and infer that the fertilizer increases plant growth.</p>
 <p></FONT></p>
 <P>
-<p><BR> <B> <FONT SIZE="5," COLOR="#f70d1a"> 2. ANALYSIS </FONT>
+<p><BR> <B> <FONT SIZE="5," COLOR="#f70d1a"> 1. ANALYSIS </FONT>
 </BR></B></p>
 <P>
-<p>In this section, we will perform analysis on various types of
-variables to gain insight and address our problems</p>
+<p><FONT SIZE="4.5"> In this below section, we will perform various
+statistical analysis on our Data to make inferences and address our
+problems. <FONT></FONT></p>
 <pre class="r"><code># Library Used for
 #####################################
 library(magrittr)
@@ -768,406 +765,23 @@ S3 &lt;- na.omit(SData$`Sample 3`)
 S4 &lt;- na.omit(SData$`Sample 4`)
 S5 &lt;- na.omit(SData$`Sample 5`)
 S6 &lt;- na.omit(SData$`Sample 6`)</code></pre>
+<p><strong><em>About the Data Set</em></strong> The data contains
+population and sample taken from population and placed into different
+columns</p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.1. Presenting First
 15 Observations of Data Set </FONT> </BR></B></p>
-<pre class="r"><code># Creating a new vector for fetching first 15  records
+<p><FONT SIZE="4.5"> In this section, we will perform the head function
+to first 15 observation from our data </FONT></p>
+<pre class="r"><code># Creating a new objects for fetching first 15  records
 hSData &lt;- head(SData, 15)
 
 
 
-# Present the table using kableExta Package
-knitr::kable(hSData,
-  caption = &quot;Presenting the First 15 Observation of Data Set&quot;,
-  format = &quot;html&quot;,
-  table.attr = &quot;style=width: 40%&quot;,
-  align = &quot;lccrr&quot;
-) %&gt;%
-  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;)) %&gt;%
-  kable_classic(
-    full_width = F,
-    html_font = &quot;Times New Roman&quot;
-  )</code></pre>
-<table style="width: margin-left: auto; margin-right: auto; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive lightable-classic">
-<caption>
-Presenting the First 15 Observation of Data Set
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Population
-</th>
-<th style="text-align:center;">
-Sample 1
-</th>
-<th style="text-align:center;">
-Sample 2
-</th>
-<th style="text-align:right;">
-Sample 3
-</th>
-<th style="text-align:right;">
-Sample 4
-</th>
-<th style="text-align:left;">
-Sample 5
-</th>
-<th style="text-align:center;">
-Sample 6
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-0.17
-</td>
-<td style="text-align:center;">
-1.10
-</td>
-<td style="text-align:center;">
-1.56
-</td>
-<td style="text-align:right;">
-1.16
-</td>
-<td style="text-align:right;">
-0.33
-</td>
-<td style="text-align:left;">
-0.39
-</td>
-<td style="text-align:center;">
-2.24
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2.92
-</td>
-<td style="text-align:center;">
-0.27
-</td>
-<td style="text-align:center;">
-1.07
-</td>
-<td style="text-align:right;">
-0.59
-</td>
-<td style="text-align:right;">
-1.14
-</td>
-<td style="text-align:left;">
-1.07
-</td>
-<td style="text-align:center;">
-0.34
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.27
-</td>
-<td style="text-align:center;">
-1.10
-</td>
-<td style="text-align:center;">
-0.69
-</td>
-<td style="text-align:right;">
-2.01
-</td>
-<td style="text-align:right;">
-2.55
-</td>
-<td style="text-align:left;">
-1.13
-</td>
-<td style="text-align:center;">
-1.24
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.39
-</td>
-<td style="text-align:center;">
-0.84
-</td>
-<td style="text-align:center;">
-1.69
-</td>
-<td style="text-align:right;">
-0.89
-</td>
-<td style="text-align:right;">
-0.19
-</td>
-<td style="text-align:left;">
-0.74
-</td>
-<td style="text-align:center;">
-0.64
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.82
-</td>
-<td style="text-align:center;">
-1.00
-</td>
-<td style="text-align:center;">
-1.55
-</td>
-<td style="text-align:right;">
-0.77
-</td>
-<td style="text-align:right;">
-0.48
-</td>
-<td style="text-align:left;">
-0.35
-</td>
-<td style="text-align:center;">
-0.57
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1.51
-</td>
-<td style="text-align:center;">
-0.45
-</td>
-<td style="text-align:center;">
-0.59
-</td>
-<td style="text-align:right;">
-1.18
-</td>
-<td style="text-align:right;">
-0.90
-</td>
-<td style="text-align:left;">
-1.06
-</td>
-<td style="text-align:center;">
-0.44
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1.02
-</td>
-<td style="text-align:center;">
-1.65
-</td>
-<td style="text-align:center;">
-0.76
-</td>
-<td style="text-align:right;">
-1.12
-</td>
-<td style="text-align:right;">
-1.46
-</td>
-<td style="text-align:left;">
-0.48
-</td>
-<td style="text-align:center;">
-0.98
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.57
-</td>
-<td style="text-align:center;">
-0.20
-</td>
-<td style="text-align:center;">
-1.00
-</td>
-<td style="text-align:right;">
-1.57
-</td>
-<td style="text-align:right;">
-1.41
-</td>
-<td style="text-align:left;">
-0.83
-</td>
-<td style="text-align:center;">
-1.90
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.35
-</td>
-<td style="text-align:center;">
-0.47
-</td>
-<td style="text-align:center;">
-0.41
-</td>
-<td style="text-align:right;">
-0.26
-</td>
-<td style="text-align:right;">
-1.90
-</td>
-<td style="text-align:left;">
-1.17
-</td>
-<td style="text-align:center;">
-1.44
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.28
-</td>
-<td style="text-align:center;">
-0.38
-</td>
-<td style="text-align:center;">
-0.45
-</td>
-<td style="text-align:right;">
-1.46
-</td>
-<td style="text-align:right;">
-0.29
-</td>
-<td style="text-align:left;">
-1.34
-</td>
-<td style="text-align:center;">
-0.83
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.69
-</td>
-<td style="text-align:center;">
-0.94
-</td>
-<td style="text-align:center;">
-0.55
-</td>
-<td style="text-align:right;">
-0.81
-</td>
-<td style="text-align:right;">
-0.72
-</td>
-<td style="text-align:left;">
-0.35
-</td>
-<td style="text-align:center;">
-4.73
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1.18
-</td>
-<td style="text-align:center;">
-1.05
-</td>
-<td style="text-align:center;">
-0.54
-</td>
-<td style="text-align:right;">
-1.29
-</td>
-<td style="text-align:right;">
-0.78
-</td>
-<td style="text-align:left;">
-0.46
-</td>
-<td style="text-align:center;">
-0.83
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.89
-</td>
-<td style="text-align:center;">
-3.34
-</td>
-<td style="text-align:center;">
-0.72
-</td>
-<td style="text-align:right;">
-0.52
-</td>
-<td style="text-align:right;">
-1.41
-</td>
-<td style="text-align:left;">
-0.97
-</td>
-<td style="text-align:center;">
-0.63
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.97
-</td>
-<td style="text-align:center;">
-0.78
-</td>
-<td style="text-align:center;">
-0.72
-</td>
-<td style="text-align:right;">
-0.47
-</td>
-<td style="text-align:right;">
-0.84
-</td>
-<td style="text-align:left;">
-0.99
-</td>
-<td style="text-align:center;">
-0.27
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.39
-</td>
-<td style="text-align:center;">
-0.85
-</td>
-<td style="text-align:center;">
-0.63
-</td>
-<td style="text-align:right;">
-0.32
-</td>
-<td style="text-align:right;">
-0.74
-</td>
-<td style="text-align:left;">
-1.25
-</td>
-<td style="text-align:center;">
-1.51
-</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>hSData %&gt;%
+# Present the table using kableExtra Package
+hSData %&gt;%
   kbl(
-    caption = &quot;Table 2 : First 15 Observation of Data Set&quot;,
+    caption = &quot;Table 1 : First 15 Observation of Data Set&quot;,
     format = &quot;html&quot;
   ) %&gt;%
   kable_material_dark(
@@ -1176,7 +790,7 @@ Sample 6
   )</code></pre>
 <table class=" lightable-material-dark" style="font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Table 2 : First 15 Observation of Data Set
+Table 1 : First 15 Observation of Data Set
 </caption>
 <thead>
 <tr>
@@ -1551,6 +1165,9 @@ Sample 6
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.2. Basic Descriptive
 Statistics : Population and Sample 1 </FONT> </BR></B></p>
@@ -1650,6 +1267,9 @@ Sample 1
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.3. Sample 1 :
 Confidence Interval for Sample Mean </FONT> </BR></B></p>
@@ -1759,8 +1379,12 @@ S1_Table_Rounded %&gt;%
     caption = &quot;Table 3: Results  of Sample 1 with
                Different Confidence Intervals&quot;,
     format = &quot;html&quot;
+  ) %&gt;%
+  kable_classic(
+    full_width = F,
+    html_font = &quot;Times New Roman&quot;
   )</code></pre>
-<table>
+<table class=" lightable-classic" style="font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Table 3: Results of Sample 1 with Different Confidence Intervals
 </caption>
@@ -1860,6 +1484,9 @@ CI 99%
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.4. Sample 1 : Sample
 Size Based On Confidence Interval </FONT> </BR></B></p>
@@ -1902,8 +1529,11 @@ rownames(samplesizematrix_Rounded) &lt;- c(&quot;Sample 1&quot;, &quot;Populatio
 samplesizematrix_Rounded %&gt;%
   knitr::kable(caption = &quot;Table 4: Sample Size based on Known Std of Sample 1
   and Population&quot;) %&gt;%
-  kable_material_dark(full_width = F, html_font = &quot;Times New Roman&quot;)</code></pre>
-<table class=" lightable-material-dark" style="font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
+  kable_classic(
+    full_width = F,
+    html_font = &quot;Times New Roman&quot;
+  )</code></pre>
+<table class=" lightable-classic" style="font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Table 4: Sample Size based on Known Std of Sample 1 and Population
 </caption>
@@ -1953,6 +1583,9 @@ Population
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.5. Sample 2 :
 Confidence Interval for Sample Mean </FONT> </BR></B></p>
@@ -2165,6 +1798,12 @@ CI 99%
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
+<P>
+<p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.6. Sample 3 :
+Confidence Interval for Sample Proportion </FONT> </BR></B></p>
 <pre class="r"><code># Calculation for sample proportion
 
 nS3 &lt;- 1500
@@ -2218,11 +1857,11 @@ Prop_Table_Rounded %&gt;%
     caption = &quot;Table 6: Proportion of Success and Failure for Sample 3 and Population&quot;,
     format = &quot;html&quot;
   ) %&gt;%
-  kable_material_dark(
+  kable_classic(
     full_width = F,
     html_font = &quot;Times New Roman&quot;
   )</code></pre>
-<table class=" lightable-material-dark" style="font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class=" lightable-classic" style="font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Table 6: Proportion of Success and Failure for Sample 3 and Population
 </caption>
@@ -2263,9 +1902,6 @@ Population
 </tr>
 </tbody>
 </table>
-<P>
-<p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.6. Sample 3 :
-Confidence Interval for Sample Proportion </FONT> </BR></B></p>
 <pre class="r"><code># Creating Objects
 nS3 &lt;- 1500
 
@@ -2365,7 +2001,10 @@ S3_Table_Rounded %&gt;%
     format = &quot;html&quot;
   ) %&gt;%
   kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;)) %&gt;%
-  kable_classic(full_width = F, html_font = &quot;Times New Roman&quot;)</code></pre>
+  kable_classic(
+    full_width = F,
+    html_font = &quot;Times New Roman&quot;
+  )</code></pre>
 <table class="table table-striped table-hover table-condensed table-responsive lightable-classic" style="margin-left: auto; margin-right: auto; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Table 7: Results of Sample 3 With Different Confidence Interval
@@ -2454,6 +2093,9 @@ CI 99%
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.7. Sample 4 :
 Confidence Interval for Sample Variance </FONT> </BR></B></p>
@@ -2584,6 +2226,9 @@ paste(&quot;3.1. The -ve Z Value of Sample 4 with 99% Confidence Interval is&quo
 <pre><code>## [1] &quot;3.4. The Confidence Lower Limit for Sample 4 with 99% Confidence Interval is 0.89&quot;</code></pre>
 <pre class="r"><code>paste(&quot;3.5. The Confidence Interval Width for Sample 4 with 99% Confidence Interval is&quot;, round(wd99S4, 2))</code></pre>
 <pre><code>## [1] &quot;3.5. The Confidence Interval Width for Sample 4 with 99% Confidence Interval is 0.37&quot;</code></pre>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.8. Sample 5 :
 Hypothesis Testing Using Using z-Test </FONT> </BR></B></p>
@@ -2637,8 +2282,12 @@ knitr::kable(HypothesisMatrix_Rounded,
   kable_styling(bootstrap_options = c(
     &quot;striped&quot;, &quot;hover&quot;,
     &quot;condensed&quot;, &quot;responsive&quot;
-  ))</code></pre>
-<table style="width: margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive">
+  )) %&gt;%
+  kable_classic(
+    full_width = F,
+    html_font = &quot;Times New Roman&quot;
+  )</code></pre>
+<table style="width: margin-left: auto; margin-right: auto; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;" class="table table-striped table-hover table-condensed table-responsive lightable-classic">
 <caption>
 Table 8: Sample 5: Result of Hypothesis Testing (Z-Test)
 </caption>
@@ -2675,6 +2324,9 @@ Z-test Value
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.9. Sample 5 :
 Hypothesis Testing Using P-Value Method </FONT> </BR></B></p>
@@ -2685,6 +2337,9 @@ pvalueS5 &lt;- round(1 - pnorm(ZtestS5), digits = 3)
 # Checking if the p-value is less than alpha value on right-tail
 pvalueS5 &lt; alp95S5 / 2</code></pre>
 <pre><code>## [1] TRUE</code></pre>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="4.75," COLOR="#f94c56"> 2.10. Sample 6 :
 Hypothesis Testing Using t-Test </FONT> </BR></B></p>
@@ -2768,6 +2423,9 @@ P-Value
 </tr>
 </tbody>
 </table>
+<p><BR> <FONT SIZE="4.5"></p>
+<p><strong><em>Observations</em></strong></p>
+<p></FONT></p>
 <P>
 <p><BR> <B> <FONT SIZE="5," COLOR="#f70d1a"> 3. CONCLUSIONS </FONT>
 </BR></B></p>

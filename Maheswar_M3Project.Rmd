@@ -631,9 +631,7 @@ S2_Table_Rounded %>%
 
 - After performing t-test as sample size was less than 30, We clearly see that population mean also lies within the 90% , 96%, and 99% confidence intervals presented in Table 5 for sample 3 mean.
 - When comparing our results from Table 5 to Table 3, we can notice that margin of error and width of confidence interval for t-distribution is definitely is greater than when we compare to Z-test.
-- And, the reason for this difference is because according to central limit theorm, the distribution of a sample variable approximates a normal distribution (i.e., a “bell curve”) as the sample size becomes larger, assuming that all samples are identical in size, and regardless of the population's actual distribution shape.
-
-  
+- And, the reason for this difference is because according to central limit theorm, the distribution of a sample variable approximates a normal distribution (i.e., a “bell curve”) as the sample size becomes larger.
 
 </FONT>
 
@@ -817,6 +815,12 @@ S3_Table_Rounded %>%
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+
+- From Table 6, we can see that probability of success for values lower than 1.7 are almost similar.
+- From calculated values presented in Table 7, we can see popluation propprtio of 0.90 lies with population proportion value within the calculated 90% , 96%, and 99% confidence intervals for Probability of Success.
+- We can notice that the z- value for Confidence Interval for 96% and 99% are different but rest of values like margin of error, upper and lower confidence are almost looking similar, because I have rounded the decimals to only 2 digits.
+- But, I checked out that after rounding to 3, I found out that all the values are different indeed. 
 
 </FONT>
 
@@ -844,12 +848,10 @@ VarPop <- var(SData$Population)
 paste("The variance of Sample 4 is", round(VarS4, 2))
 paste("The variance of Population is", round(VarPop, 2))
 
-
 # Creating Object for 90% Confidence Interval for Sample 4 Variance
 ########################################
 CL90S4 <- 0.90
 dfS4 <- nS4 - 1
-
 
 # Calculating Alpha Value
 alp90S4 <- (1 - CL90S4)
@@ -862,33 +864,19 @@ Z90RS4 <- qchisq(p = alp90S4, df = dfS4, lower.tail = FALSE)
 
 
 
-
 # Creating Objects for Confidence Interval: Upper and Lower Limit
 
-CLL90S4 <- ((dfS4) * (StdS4^2)) / Z90LS4
+CLL90S4 <- ((dfS4) * (StdS4^2)) / Z90RS4
 
-CLU90S4 <- ((dfS4) * (StdS4^2)) / Z90RS4
+CLU90S4 <- ((dfS4) * (StdS4^2)) / Z90LS4
 
 # Calculation of C.I. Width for 90
-wd90S4 <- CLL90S4 - CLU90S4
-
-# Inline R Code to present all the value calculated for 90% CI
-paste("1.1. The -ve Z Value of Sample 4 with 90% Confidence Interval is", round(Z90LS4, 2))
-
-paste("1.2. The +ve Z Value of Sample 4 With 90% Confidence Interval is", round(Z90RS4, 2))
-
-paste("1.3. The Confidence Upper Limit for Sample 4 with 90% Confidence Interval is", round(CLU90S4, 2))
-
-paste("1.4. The Confidence Lower Limit for Sample 4 with 90% Confidence Interval is", round(CLL90S4, 2))
-
-paste("1.5. The Confidence Interval Width for Sample 4 with 90% Confidence Interval is", round(wd90S4, 2))
-
+wd90S4 <- CLU90S4 - CLL90S4
 
 # Creating Object for 96% Confidence Interval for Sample 4 Variance
 ########################################
 CL96S4 <- 0.96
 dfS4 <- nS4 - 1
-
 
 # Calculating Alpha Value
 alp96S4 <- (1 - CL96S4)
@@ -901,32 +889,19 @@ Z96RS4 <- qchisq(p = alp96S4, df = dfS4, lower.tail = FALSE)
 
 
 
-
 # Creating Objects for Confidence Interval: Upper and Lower Limit
 
-CLL96S4 <- ((dfS4) * (StdS4^2)) / Z96LS4
+CLL96S4 <- ((dfS4) * (StdS4^2)) / Z96RS4
 
-CLU96S4 <- ((dfS4) * (StdS4^2)) / Z96RS4
+CLU96S4 <- ((dfS4) * (StdS4^2)) / Z96LS4
 
 # Calculation of C.I. Width for 96
-wd96S4 <- CLL96S4 - CLU96S4
-
-# Inline R Code to present all the value calculated for 96% CI
-paste("2.1. The -ve Z Value of Sample 4 with 96% Confidence Interval is", round(Z96LS4, 2))
-
-paste("2.2. The +ve Z Value of Sample 4 With 96% Confidence Interval is", round(Z96RS4, 2))
-
-paste("2.3. The Confidence Upper Limit for Sample 4 with 96% Confidence Interval is", round(CLU96S4, 2))
-
-paste("2.4. The Confidence Lower Limit for Sample 4 with 96% Confidence Interval is", round(CLL96S4, 2))
-
-paste("2.5. The Confidence Interval Width for Sample 4 with 96% Confidence Interval is", round(wd96S4, 2))
+wd96S4 <- CLU96S4 - CLL96S4
 
 # Creating Object for 99% Confidence Interval for Sample 4 Variance
 ########################################
 CL99S4 <- 0.99
 dfS4 <- nS4 - 1
-
 
 # Calculating Alpha Value
 alp99S4 <- (1 - CL99S4)
@@ -939,20 +914,44 @@ Z99RS4 <- qchisq(p = alp99S4, df = dfS4, lower.tail = FALSE)
 
 
 
-
 # Creating Objects for Confidence Interval: Upper and Lower Limit
 
-CLL99S4 <- ((dfS4) * (StdS4^2)) / Z99LS4
+CLL99S4 <- ((dfS4) * (StdS4^2)) / Z99RS4
 
-CLU99S4 <- ((dfS4) * (StdS4^2)) / Z99RS4
+CLU99S4 <- ((dfS4) * (StdS4^2)) / Z99LS4
 
 # Calculation of C.I. Width for 99
-wd99S4 <- CLL99S4 - CLU99S4
+wd99S4 <- CLU99S4 - CLL99S4
+
+
+# Inline R Code to present all the value calculated for 90% CI
+paste("1.1. The X^2 left Value of Sample 4 with 90% Confidence Interval is", round(Z90LS4, 2))
+
+paste("1.2. The X^2 right Value of Sample 4 With 90% Confidence Interval is", round(Z90RS4, 2))
+
+paste("1.3. The Confidence Upper Limit for Sample 4 with 90% Confidence Interval is", round(CLU90S4, 2))
+
+paste("1.4. The Confidence Lower Limit for Sample 4 with 90% Confidence Interval is", round(CLL90S4, 2))
+
+paste("1.5. The Confidence Interval Width for Sample 4 with 90% Confidence Interval is", round(wd90S4, 2))
+
+
+# Inline R Code to present all the value calculated for 96% CI
+paste("2.1. The X^2 left Value of Sample 4 with 96% Confidence Interval is", round(Z96LS4, 2))
+
+paste("2.2. The X^2 right Value of Sample 4 With 96% Confidence Interval is", round(Z96RS4, 2))
+
+paste("2.3. The Confidence Upper Limit for Sample 4 with 96% Confidence Interval is", round(CLU96S4, 2))
+
+paste("2.4. The Confidence Lower Limit for Sample 4 with 96% Confidence Interval is", round(CLL96S4, 2))
+
+paste("2.5. The Confidence Interval Width for Sample 4 with 96% Confidence Interval is", round(wd96S4, 2))
+
 
 # Inline R Code to present all the value calculated for 99% CI
-paste("3.1. The -ve Z Value of Sample 4 with 99% Confidence Interval is", round(Z99LS4, 2))
+paste("3.1. The X^2 left Value of Sample 4 with 99% Confidence Interval is", round(Z99LS4, 2))
 
-paste("3.2. The +ve Z Value of Sample 4 With 99% Confidence Interval is", round(Z99RS4, 2))
+paste("3.2. The X^2 right Value of Sample 4 With 99% Confidence Interval is", round(Z99RS4, 2))
 
 paste("3.3. The Confidence Upper Limit for Sample 4 with 99% Confidence Interval is", round(CLU99S4, 2))
 
@@ -965,6 +964,13 @@ paste("3.5. The Confidence Interval Width for Sample 4 with 99% Confidence Inter
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+- I have leant to find out x^2 right and x^2 left value by using a new R functions, called "qchisq()".
+- The variance of population is 0.87, so we clearly notice the population variance is outside the 90% Confidence Interval with upper limit as 0.58 and 0.78.
+- Also, It is also outside the 96% Confidence Interval with upper limit as 0.55 and 0.83.
+- Only for 99% Confidence interval of sample variance, the population variance is within it's interval width.
+- One thing particular, I have learned that for calculating the lower confidence limit, it's uses x^2 right value and vice versa which is bit atypical.
+
 
 </FONT>
 
@@ -994,19 +1000,20 @@ alp95S5 <- (1 - CL95S5)
 # Z-Test
 ZtestS5 <- (MeanS5 - MeanPop) / (StdPop / sqrt(nS5))
 
-ZtestS5
+paste("The Z-test value for with 95 % Confidence Interval is", round(ZtestS5, digits = 2))
+
 
 # Calculating Right Critical value as Z-test is positive
-Z95LS5 <- qnorm(alp95S5 / 2)
+
 Z95RS5 <- qnorm((alp95S5 / 2) + CL95S5)
 
-# Checking if Z-Test Value is greater than right critical value
-ZtestS5 > Z95RS5
+vectorS5 <- c(CL95S5, Z95RS5, ZtestS5)
 
-vectorS5 <- c(CL95S5, Z95LS5, Z95RS5, ZtestS5)
-
+paste("Is my Z Test Value Greater than Right Critical value?", " The answer is", ZtestS5 > Z95RS5)
 
 
+
+## Preparing Matrix to present the table
 HypothesisMatrix <- matrix(
   data = c(vectorS5),
   nrow = 1,
@@ -1016,7 +1023,7 @@ HypothesisMatrix <- matrix(
 ## Rounding Digits in Matrix
 HypothesisMatrix_Rounded <- round(HypothesisMatrix, digits = 2)
 
-colnames(HypothesisMatrix_Rounded) <- c("Confidence Interval", "Left Critical Value", "Right Critical Value", "Z-test Value")
+colnames(HypothesisMatrix_Rounded) <- c("Confidence Interval", "Right Critical Value", "Z-test Value")
 
 # Present the table using kableExta Package
 knitr::kable(HypothesisMatrix_Rounded,
@@ -1039,6 +1046,12 @@ knitr::kable(HypothesisMatrix_Rounded,
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+
+- As, we can observe from table 8 that the Z-test value (3.19) is definitely greater than our right critical value (1.96) as we have obtained a positive Z-test value, so it means we have to perform right-tailed to check this.
+- As our Z-test value is in critical region, so we can say that we have sufficent evidence to reject the null hypothesis.
+- But then, we have to also remember that, there is still 5% chance that, we are making mistake because we have choosen 95% confidence Interval.
+- Also, Type 1 error can also occur, where we rejected null hypothesis which was in this case, but it was true and should have been accepted. So, we have to find out the p-value , because it will give us the probability of Type 1 error.
 
 </FONT>
 
@@ -1058,13 +1071,21 @@ pvalueS5 <- round(1 - pnorm(ZtestS5), digits = 3)
 
 
 # Checking if the p-value is less than alpha value on right-tail
-pvalueS5 < alp95S5 / 2
+paste("Is my p-value smaller than alpha value?", " The answer is", pvalueS5 < alp95S5)
+
+# Presenting the P- Value
+
+paste("The p-value  is", pvalueS5)
 ```
 
 <BR>
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+
+- After comparing the results from Task 2.8 and Task 2.9 te, both answer came out to TRUE, means it we got enough evidence to reject the null hypothesis.
+- Our p-value(0.001) also shows that there is difference is also very significant between the null and alternative hypothesis.
 
 </FONT>
 
@@ -1098,16 +1119,21 @@ tvalueS6 <- qt(1 - alphaS6, dfS6)
 # Performing the right tailed test based on hypothesis
 ttestS6 <- (MeanS6 - MeanPop) / (StdPop / sqrt(nS6))
 
-ttestS6 > tvalueS6
+# Checking if Z Test Value Greater than Right Critical value as it's right-tailed test.
+paste("Is my Z Test Value Greater than Right Critical value?", " The answer is", ttestS6 > tvalueS6)
 
 # Calculating P Value from t-test
 pvalueS6 <- round(1 - pnorm(ttestS6), digits = 3)
 
 
-pvalueS6 < alphaS6
+
+# Checking if the p-value is less than alpha value on right-tail
+paste("Is my p-value smaller than alpha value?", " The answer is", pvalueS6 < alphaS6)
 
 vectorS6 <- c(alphaS6, tvalueS6, ttestS6, pvalueS6)
 
+
+# Making a matrix to present in table
 HypothesisMatrix6 <- matrix(data = c(vectorS6), nrow = 1, byrow = TRUE)
 
 ## Rounding Digits in Matrix
@@ -1128,6 +1154,9 @@ knitr::kable(HypothesisMatrix6_Rounded,
 <FONT SIZE = 4.5>
 
 ***Observations***
+<P>
+- Results shows that T-test value is not greater than right critical value and p-value is also smaller than alpha, 
+- So, We can conclude that so we don't have enough evidence to reject the null hypothesis
 
 </FONT>
 

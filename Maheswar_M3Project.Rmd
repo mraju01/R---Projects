@@ -4,22 +4,22 @@
 
 <CENTER>
 
-<FONT size=6, color="Red">
+<FONT size=5.5, color="Red">
 **M3 Project Report** </FONT>
 
-<FONT size=6, color="Blue">
+<FONT size=5.5, color="#800080">
 <BR>**Probability Theory and Introductory Statistics** </FONT>
 
 
 <P>
 
-<FONT size=6, color="Black"> ALY 6010 - 71579 </FONT>
+<FONT size=5.5, color="#008080"> ALY 6010 - 71579 </FONT>
 
 
 <P>
 
 <BR>
-<FONT size=5, color="Black"> 
+<FONT size=5, color="Grey"> 
 <BR>
 **Maheswar Raju Narasaiah**
 
@@ -37,21 +37,21 @@ Date:  `r format(Sys.time(), '%d %B, %Y')`
 </FONT>
 </BR></B>
    
+   <FONT SIZE = 4.75, COLOR ="#f94c56">
+   **A. Confidence Interval, it's Importance and Application**
+   </FONT>
+   <P>
 <FONT SIZE = 4.5>
-**What Is a Confidence Interval**
-<P>
-A confidence interval (CI) is a range of values that contains the value of an unknown population parameter. Given the properties of your sample data, these intervals represent a realistic domain for the parameter. Confidence intervals are produced using a defined confidence level and are derived from sample statistics.
-
-Because measuring complete populations is often impossible, 
-population parameters are highly unpredictable. 
-These parameters can be estimated using a sample. 
-However, due to random sampling error, the estimates rarely exactly equal the parameter. 
 
 
-The confidence level is the long-run likelihood that a set of confidence intervals will include the population parameter's true value.
+A confidence interval (CI) is a set of numbers that includes the value of a previously unknown population parameter. These intervals provide a plausible domain for the parameter based on the qualities of the sample data. Confidence intervals are formed from sample statistics and produced using a predetermined confidence level.
 
-**Importance of Confidence Interval**
-<P>
+Because it is often hard to measure entire populations, population parameters are highly variable. A sample can be used to estimate these parameters. Due to random sampling error, however, the estimates rarely exactly equal the parameter.
+
+The confidence level is the long-run probability that a set of confidence intervals will encompass the real value of a population parameter.
+
+-- ***Importance of Confidence Interval***
+
 The majority of what we do in statistics includes using a sample to answer a research question. A confidence interval expresses the degree of uncertainty or mistake associated with an estimated statistic. It should be noted that the interval can only reflect the uncertainty introduced by taking a sample from the underlying population (that is, sampling variability). A confidence interval cannot infer non-sampling concerns such as bias, measure accuracy, or generalization of the result.
 
 Generally, the confidence interval takes the form:
@@ -70,20 +70,66 @@ Fortunately, inferential statistics methods may analyze a sample while compensat
 that comes with collecting samples. Confidence intervals encompass the point estimate with a margin 
 of uncertainty to assist us in comprehending how wrong the estimate could be.
 
+-- ***Applications of Confidence Interval in News Industry***
 
+When poll results are revealed, confidence intervals are frequently shown on the news. This is an example from the October 2018 issue of the CNN Press:
 
-Using your own words, inform your audience what do you understand about the hypothesis testing processes, its importance, and provide practical applications on the industry of your interest.
+According to the most recent ABC News-Washington Post survey, 56 percent of respondents supported Trump, while 39 percent supported Biden. The ABC News-Washington Post telephone poll of 1,014 individuals was conducted between March 8 and 10, with a margin of error of 3.5 percentage points. (Emphasis added.)
+
+Even though it is not indicated, the margin of error presented here was most likely the 95 percent confidence interval. Simply put, there is a 95 percent chance that between 35.5 percent and 42.5 percent of voters will vote for Biden (39 percent plus or minus 3.5 percent). In contrast, there is a 5% possibility that less than 35.5 percent of voters or more than 42.5 percent of voters will support Biden.
+
+The precise statistical definition of the 95 percent confidence interval is that if the telephone poll were conducted 100 times, 95 percent of respondents favoring Biden would be within the calculated confidence intervals and five percent of respondents favoring Biden would be either higher or lower than the confidence interval range.
+
+Instead of 95 percent confidence intervals, confidence intervals depending on alternative degrees of significance, such as 90 percent or 99 percent, might be used. The statistical word for how willing you are to be wrong is the level of significance. You have a 5% probability of being wrong with a 95% confidence interval. 
+You have a 10% chance of being mistaken with a 90% confidence interval. A 95% confidence interval would be wider than a 95% confidence interval (for example, plus or minus 4.5 percent instead of 3.5 percent). A confidence interval of 90% would be narrower (plus or minus 2.5 percent, for example).
 
 </FONT>
+
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+   **B. Hypothesis Testing, it's Importance and Application**
+   </FONT>
+   <P>
+<FONT SIZE = 4.5>
+
+Hypothesis testing determines whether a specific assumption holds true for the entire population. It is a statistical instrument. It evaluates sample data from the entire population to determine the validity of conclusion.
+
+The hypothesis idea is based on the likelihood of an event occurring. It determines whether or not the primary hypothesis results are correct. It is commonly used in biological research, criminal trials, marketing, and manufacturing.
+
+-- ***Importance of Hypothesis Testing***
+
+The most important advantage of hypothesis testing is that it allows you to assess the strength of your claim or assumption before including it into your data collection. Furthermore, hypothesis testing is the sole valid approach for determining if something "is or is not." Other advantages include:
+
+- Hypothesis testing gives a dependable foundation for making data conclusions for your target population.
+- It aids the researcher in extrapolating data from the sample to the larger population.
+- The researcher can use hypothesis testing to examine whether the data from the sample is statistically significant.
+- In any systematic inquiry, hypothesis testing is one of the most crucial stages for determining the validity and dependability of results.
+- It is beneficial to provide connections between the underlying theory and specific research concerns.
+
+
+-- ***Applications of Hypothesis Testing in Criminal Justice System***
+
+In biology, hypothesis testing are frequently used to assess whether a new treatment, fertilizer, pesticide, chemical, etc. produces greater growth, stamina, immunity, and so on in plants or animals.
+
+For example, imagine a biologist believes that a specific fertilizer will allow plants to grow 20 inches faster in a month than they generally do. For one month, she applies the fertilizer to each of the plants in her experiment.
+
+She then performs a hypothesis test using the following hypotheses:
+
+H0: μ = 20 inches (the fertilizer will have no effect on the mean plant growth)
+HA: μ > 20 inches (the fertilizer will cause mean plant growth to increase)
+If the p-value of the test is less than a certain level of significance (e.g. =.05), she can reject the null hypothesis and infer that the fertilizer increases plant growth.
+
+</FONT>
+
+
 <P>
 <BR> <B>
-<FONT SIZE = 5, COLOR ="#f70d1a">
-2. ANALYSIS 
-</FONT>
+  <FONT SIZE = 5, COLOR ="#f70d1a">
+  2. ANALYSIS 
+  </FONT>
 </BR></B>
 
 <P>
-In this section, we will perform analysis on various types of variables to gain insight and address our problems
+In this below section, we will perform various statistical analysis on our Data to make inferences and address our problems.
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -135,19 +181,7 @@ hSData <- head(SData, 15)
 
 
 
-# Present the table using kableExta Package
-knitr::kable(hSData,
-  caption = "Presenting the First 15 Observation of Data Set",
-  format = "html",
-  table.attr = "style=width: 40%",
-  align = "lccrr"
-) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
-  kable_classic(
-    full_width = F,
-    html_font = "Times New Roman"
-  )
-
+# Present the table using kableExtra Package
 hSData %>%
   kbl(
     caption = "Table 2 : First 15 Observation of Data Set",

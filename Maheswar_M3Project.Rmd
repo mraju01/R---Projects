@@ -36,14 +36,45 @@ Date:  `r format(Sys.time(), '%d %B, %Y')`
 1. INTRODUCTION
 </FONT>
 </BR></B>
+   
+<FONT SIZE = 4.5>
+**What Is a Confidence Interval**
+<P>
+A confidence interval (CI) is a range of values that contains the value of an unknown population parameter. Given the properties of your sample data, these intervals represent a realistic domain for the parameter. Confidence intervals are produced using a defined confidence level and are derived from sample statistics.
 
-Write a very informative introduction.
+Because measuring complete populations is often impossible, 
+population parameters are highly unpredictable. 
+These parameters can be estimated using a sample. 
+However, due to random sampling error, the estimates rarely exactly equal the parameter. 
 
-Using your own words, inform your audience what do you understand about the confidence levels, their importance, and provide practical applications on the industry of your interest.   
+
+The confidence level is the long-run likelihood that a set of confidence intervals will include the population parameter's true value.
+
+**Importance of Confidence Interval**
+<P>
+The majority of what we do in statistics includes using a sample to answer a research question. A confidence interval expresses the degree of uncertainty or mistake associated with an estimated statistic. It should be noted that the interval can only reflect the uncertainty introduced by taking a sample from the underlying population (that is, sampling variability). A confidence interval cannot infer non-sampling concerns such as bias, measure accuracy, or generalization of the result.
+
+Generally, the confidence interval takes the form:
+
+<P>
+  *C.I. = statistic ± multiplier × standard error of the statistic*
+
+</P>
+
+The "statistic" in this calculation is the estimate from our sample; it is our best guess at the true value in the population. This statistic could be a mean, a percentage, a difference in means, a regression coefficient, a relative risk, a hazard ratio, or something else. The "multiplier" is a value from a specific theoretical distribution (for example, the normal distribution or the t distribution); the suitable distribution is determined by the type of statistic. The value chosen from that distribution expresses the "confidence" that the unknown parameter will fall inside the confidence interval. The variability due to sampling is represented by the "standard error of the statistic."
+
+Different random samples collected from the same population will almost certainly provide somewhat different intervals. If you take a large number of random samples and compute a confidence interval for each one, a percentage of them will contain the parameter.
+
+
+Fortunately, inferential statistics methods may analyze a sample while compensating for the uncertainty 
+that comes with collecting samples. Confidence intervals encompass the point estimate with a margin 
+of uncertainty to assist us in comprehending how wrong the estimate could be.
+
+
 
 Using your own words, inform your audience what do you understand about the hypothesis testing processes, its importance, and provide practical applications on the industry of your interest.
 
-
+</FONT>
 <P>
 <BR> <B>
 <FONT SIZE = 5, COLOR ="#f70d1a">
@@ -56,7 +87,8 @@ In this section, we will perform analysis on various types of variables to gain 
 
 ```{r message=FALSE, warning=FALSE}
 
-# Library Used for Analysis of Car Sales
+# Library Used for
+#####################################
 library(magrittr)
 library(knitr)
 library(plotrix)
@@ -75,7 +107,7 @@ library(kableExtra)
 
 
 # Datasets used in Project"
-
+###################################
 ## Sample data
 SData <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/M3ProjectData.xlsx")
 
@@ -98,7 +130,7 @@ S6 <- na.omit(SData$`Sample 6`)
 
 ```{r message=FALSE, warning=FALSE}
 
-# Creating a new vector for fething first 15  records
+# Creating a new vector for fetching first 15  records
 hSData <- head(SData, 15)
 
 
@@ -110,14 +142,21 @@ knitr::kable(hSData,
   table.attr = "style=width: 40%",
   align = "lccrr"
 ) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+  kable_classic(
+    full_width = F,
+    html_font = "Times New Roman"
+  )
 
 hSData %>%
   kbl(
     caption = "Table 2 : First 15 Observation of Data Set",
     format = "html"
   ) %>%
-  kable_material_dark(full_width = F, html_font = "Times New Roman")
+  kable_material_dark(
+    full_width = F,
+    html_font = "Times New Roman"
+  )
 ```
 
 
@@ -298,10 +337,6 @@ S1_Table_Rounded %>%
     caption = "Table 3: Results  of Sample 1 with
                Different Confidence Intervals",
     format = "html"
-  ) %>%
-  kable_classic(
-    full_width = F,
-    html_font = "Times New Roman"
   )
 ```
 

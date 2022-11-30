@@ -362,13 +362,371 @@ display: none;
 <h1>Core Programming Skills</h1>
 <div id="section" class="section level2">
 <h2></h2>
-<pre class="r"><code>library(swirl)</code></pre>
-<pre><code>## 
-## | Hi! Type swirl() when you are ready to begin.</code></pre>
-<pre class="r"><code># Integer
-
-x &lt;- 2L</code></pre>
+<p>library(swirl)</p>
+<p>#Type of Variables #####################</p>
 </div>
+</div>
+<div id="integer" class="section level1">
+<h1>Integer</h1>
+<p>x &lt;- 2L typeof(x)</p>
+<div id="double" class="section level2">
+<h2>Double</h2>
+<p>y &lt;- 3.5 typeof(y)</p>
+</div>
+</div>
+<div id="complex-number" class="section level1">
+<h1>Complex Number</h1>
+<p>z &lt;- 3 + 2i</p>
+</div>
+<div id="character" class="section level1">
+<h1>Character</h1>
+<p>a &lt;- “h” typeof(a)</p>
+</div>
+<div id="logical-operator" class="section level1">
+<h1>logical Operator</h1>
+<p>b &lt;- TRUE c &lt;- FALSE typeof(b)</p>
+<p>#Using Variables # Can be used to perform artimetic operation and
+calling function ########################</p>
+<p>A &lt;- 10 B &lt;- 5</p>
+<p>C &lt;- A+B C</p>
+<p>paste(“Value of C is”, C) # print message</p>
+<p>#Logical Operator (TRUE or FALSE) #####################</p>
+<p>#Greater than 4&lt;5</p>
+</div>
+<div id="less-than" class="section level1">
+<h1>less than</h1>
+<p>5&gt;10</p>
+<p>#Equal to 4==5</p>
+<p>#Not Equal #!=</p>
+<p>#less than and equal to &lt;=</p>
+<p>#Greater than equal to &gt;=</p>
+<p>#Not !</p>
+<p>#Or / # Some lanague uses double slash operat</p>
+<p>#And &amp;</p>
+<p>#isTrue(x) isTRUE(x)</p>
+<p>result &lt;- 4&lt;5 result2 &lt;- !(5&gt;2) # it changes the resukt
+result2</p>
+<p>result | result2</p>
+<p>result &amp; result2</p>
+<pre><code>
+
+
+
+```r
+# While Loop
+##########
+
+# Unitl it&#39;s false it is going to run
+counter &lt;- 1
+while (counter &lt; 12) { # will keep running it is statement written is FALSE
+    print(counter)
+    counter &lt;- counter + 1
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 11</code></pre>
+<p>Hello</p>
+<div id="r-programming-in-one-video" class="section level2">
+<h2>R Programming In One Video</h2>
+<p>library(tidyverse) data() View(starwars)</p>
+<p>starwars %&gt;% filter(height &gt; 150 &amp; mass &lt; 200) %&gt;%
+mutate(height_in_meters = height / 100) %&gt;% select(height_in_meters,
+mass) %&gt;% arrange(mass) %&gt;% # view() plot()</p>
+</div>
+</div>
+<div id="explore" class="section level1">
+<h1>Explore</h1>
+<div id="section-1" class="section level8">
+<p class="heading"></p>
+</div>
+</div>
+<div id="data-structure-and-tyepe-of-var9bales" class="section level1">
+<h1>Data Structure and tyepe of var9bales</h1>
+<p>view(msleep)</p>
+<p>glimpse(msleep)</p>
+<p>head(msleep)</p>
+<p>class(msleep$name)</p>
+<p>length(msleep) # No of Variables</p>
+<p>length(msleep$name) # no of observations</p>
+<p>names(msleep) # to get all variables # helps in cutting and pasting
+into the code, so we don’t make sp[elling mistake</p>
+<p>unique(msleep$vore) # to get all the unique categories in the
+variobale</p>
+<p>complete.cases(msleep) # to get all the mssing values as False</p>
+<p>missing &lt;- !complete.cases(msleep) # to get all the mssing values
+as True</p>
+<p>msleep[missing, ]</p>
+</div>
+<div id="clean" class="section level1">
+<h1>Clean</h1>
+<div id="section-2" class="section level7">
+<p class="heading"></p>
+</div>
+</div>
+<div id="select-varibales" class="section level1">
+<h1>Select Varibales</h1>
+<div id="section-3" class="section level21">
+<p class="heading"></p>
+<p>starwars %&gt;% select(name, height, mass)</p>
+<p>starwars %&gt;% select(1:3)</p>
+</div>
+</div>
+<div id="section-4" class="section level1">
+<h1></h1>
+<p>starwars %&gt;% select(ends_with(“color”))</p>
+</div>
+<div id="contains" class="section level1">
+<h1>Contains</h1>
+</div>
+<div id="starts_with" class="section level1">
+<h1>starts_with</h1>
+</div>
+<div id="changing-variable-order" class="section level1">
+<h1>Changing Variable Order</h1>
+<div id="section-5" class="section level24">
+<p class="heading"></p>
+<p>starwars %&gt;% select(name, height, mass, everything())</p>
+</div>
+</div>
+<div id="changing-variable-name" class="section level1">
+<h1>Changing Variable Name</h1>
+<div id="section-6" class="section level26">
+<p class="heading"></p>
+<p>starwars %&gt;% rename(“Character” = “name”) %&gt;% head()</p>
+</div>
+</div>
+<div id="changing-variable-type" class="section level1">
+<h1>Changing Variable Type</h1>
+<div id="section-7" class="section level26">
+<p class="heading"></p>
+<p>class(starwars$hair_color)</p>
+</div>
+</div>
+<div id="starwarshair_color-as.factorstarwarshair_color" class="section level1">
+<h1>starwars<span class="math inline">\(hair_color =
+as.factor(starwars\)</span>hair_color)</h1>
+<p>starwars<span class="math inline">\(hair_color &lt;-
+as.numeric(starwars\)</span>hair_color)</p>
+<p>class(starwars$hair_color)</p>
+<div id="using-tidy-verse" class="section level2">
+<h2>Using Tidy Verse</h2>
+<p>starwars %&gt;% mutate(hair_color = as.character(hair_color)) %&gt;%
+glimpse()</p>
+</div>
+</div>
+<div id="changing-factor-level" class="section level1">
+<h1>Changing factor level</h1>
+<div id="section-8" class="section level22">
+<p class="heading"></p>
+<p>df &lt;- starwars df<span class="math inline">\(sex &lt;-
+as.factor(df\)</span>sex)</p>
+<p>levels(df$sex)</p>
+<p>df &lt;- df %&gt;% mutate(sex = factor(sex, levels = c(“male”,
+“female”, “hermaphroditic”, “none”))) levels(df$sex)</p>
+<p>df<span class="math inline">\(name &lt;- as.factor(df\)</span>name)
+levels(df$name)</p>
+</div>
+</div>
+<div id="why-to-use-factor-in-r" class="section level1">
+<h1>Why to use factor in R</h1>
+</div>
+<div id="categorical-variables-in-r-are-stored-into-a-factor.-lets-check-the-code-below-to-convert-a-character-variable-into-a-factor-variable-in-r.-characters-are-not-supported-in-machine-learning-algorithm-and-the-only-way-is-to-convert-a-string-to-an-integer" class="section level1">
+<h1>Categorical variables in R are stored into a factor. Let’s check the
+code below to convert a character variable into a factor variable in R.
+Characters are not supported in machine learning algorithm, and the only
+way is to convert a string to an integer</h1>
+</div>
+<div id="filter-rows" class="section level1">
+<h1>Filter Rows</h1>
+<div id="section-9" class="section level22">
+<p class="heading"></p>
+<p>starwars %&gt;% select(mass, sex) %&gt;% filter(mass &lt; 55 &amp;
+sex == “male”)</p>
+</div>
+</div>
+<div id="recode-data" class="section level1">
+<h1>Recode Data</h1>
+<div id="section-10" class="section level17">
+<p class="heading"></p>
+</div>
+</div>
+<div id="to-chanh-the-data-in-the-datafrmae" class="section level1">
+<h1>To chanh the data in the datafrmae</h1>
+<p>starwars %&gt;% select(sex) %&gt;% mutate(sex = recode(sex, “male” =
+“man”, “female” = “Woman” ))</p>
+</div>
+<div id="dealing-withj-missing-data" class="section level1">
+<h1>Dealing withj Missing Data</h1>
+<div id="section-11" class="section level17">
+<p class="heading"></p>
+<p>mean(starwars$height)</p>
+<p>#&gt;NA</p>
+</div>
+</div>
+<div id="na.rm-true" class="section level1">
+<h1>na.rm = TRUE</h1>
+</div>
+<div id="to-remove-the-missing-data-from-the-columns" class="section level1">
+<h1>to remove the missing data from the columns</h1>
+<p>mean(starwars$height, na.rm = TRUE)</p>
+</div>
+<div id="dealing-withj-duplicates" class="section level1">
+<h1>Dealing withj Duplicates</h1>
+<div id="section-12" class="section level17">
+<p class="heading"></p>
+<p>Names &lt;- c(“Peter”, “John”, “Andrew”, “Peter1”)</p>
+<p>Age &lt;- c(23, 54, 36, 23)</p>
+<p>friends &lt;- data.frame(Names, Age)</p>
+<p>friends %&gt;% distinct()</p>
+</div>
+</div>
+<div id="note-only-works-well-with-numerical-varibale" class="section level1">
+<h1>Note: Only works well with numerical varibale</h1>
+</div>
+<div id="manipulate" class="section level1">
+<h1>Manipulate</h1>
+<div id="section-13" class="section level15">
+<p class="heading"></p>
+</div>
+</div>
+<div id="create-or-change-a-variable" class="section level1">
+<h1>Create or change a variable</h1>
+<p>starwars %&gt;% mutate(height_m = height / 100) %&gt;% select(name,
+height, height_m)</p>
+</div>
+<div id="conditonal-changeif_else" class="section level1">
+<h1>Conditonal change(if_else)</h1>
+<p>starwars %&gt;% mutate(height_m = height / 100) %&gt;% select(name,
+height, height_m) %&gt;% mutate(tallness = if_else(height_m &lt; 1,
+“short”, “tall”))</p>
+</div>
+<div id="reshape-data-with-pivot-wider" class="section level1">
+<h1>Reshape data with pivot wider</h1>
+<p>library(gapminder)</p>
+</div>
+<div id="datasets" class="section level1">
+<h1>Datasets</h1>
+<p>view(gapminder)</p>
+<p>data &lt;- select(gapminder, country, year, lifeExp) view(data)</p>
+<p>wide_data &lt;- data %&gt;% pivot_wider(names_from = year,
+values_from = lifeExp)</p>
+<p>view(wide_data)</p>
+</div>
+<div id="reshape-data-with-pivot-longer" class="section level1">
+<h1>Reshape data with pivot longer</h1>
+<p>long_data &lt;- wide_data %&gt;% pivot_longer(2:13, names_to =
+“year”, values_to = “lifeExp” )</p>
+<p>view(long_data)</p>
+</div>
+<div id="describe-the-data" class="section level1">
+<h1>Describe the data</h1>
+<div id="section-14" class="section level19">
+<p class="heading"></p>
+<p>view(msleep)</p>
+</div>
+</div>
+<div id="rangespread" class="section level1">
+<h1>Range/Spread</h1>
+<p>min(msleep$awake)</p>
+<p>max(msleep$awake)</p>
+<p>range(msleep$awake)</p>
+<p>IQR(msleep$awake)</p>
+</div>
+<div id="measure-of-central-tendency" class="section level1">
+<h1>Measure of Central tendency</h1>
+<p>mean(msleep$awake)</p>
+<p>median(msleep$awake)</p>
+<p>mode(msleep$awake)</p>
+</div>
+<div id="variance" class="section level1">
+<h1>Variance</h1>
+<p>var(msleep$awake)</p>
+</div>
+<div id="for-single-variable" class="section level1">
+<h1>for single variable</h1>
+<p>summary(msleep$awake)</p>
+</div>
+<div id="for-multiple-variables" class="section level1">
+<h1>for multiple variables</h1>
+<p>msleep %&gt;% select(awake, sleep_total) %&gt;% summary()</p>
+</div>
+<div id="summarize-your-data" class="section level1">
+<h1>summarize your data</h1>
+<p>msleep %&gt;% drop_na(vore) %&gt;% ## drop NA Values group_by(vore)
+%&gt;% summarise( Lower = min(sleep_total), Average = mean(sleep_total),
+Upper = max(sleep_total), Difference = max(sleep_total) -
+min(sleep_total) ) %&gt;% arrange(Average) %&gt;% view()</p>
+</div>
+<div id="create-table" class="section level1">
+<h1>Create Table</h1>
+<p>table(msleep$vore)</p>
+<p>msleep %&gt;% select(vore, order) %&gt;% filter(order %in%
+c(“Rodentia”, “Primates”)) %&gt;% table()</p>
+<div id="visuliza-the-data" class="section level2">
+<h2>Visuliza the data</h2>
+<div id="section-15" class="section level22">
+<p class="heading"></p>
+</div>
+</div>
+</div>
+<div id="the-grammar-of-graphics" class="section level1">
+<h1>The grammar of graphics</h1>
+</div>
+<div id="data" class="section level1">
+<h1>data</h1>
+</div>
+<div id="mapping" class="section level1">
+<h1>mapping</h1>
+</div>
+<div id="geometery" class="section level1">
+<h1>geometery</h1>
+</div>
+<div id="bar-plots" class="section level1">
+<h1>Bar Plots</h1>
+<p>library(ggplot2) ggplot( data = starwars, mapping = aes(x = gender) )
++ ## Remember to use the + Operator geom_bar()</p>
+</div>
+<div id="histograms" class="section level1">
+<h1>Histograms</h1>
+</div>
+<div id="we-can-use-to-perform-some-action-before-plotting-like-mutate-filter" class="section level1">
+<h1>We can use %&gt;% to perform some action before plotting like
+mutate, filter</h1>
+<p>starwars %&gt;% drop_na(height) %&gt;% ggplot(mapping = aes(x =
+height)) + ## Mapping geom_histogram()</p>
+</div>
+<div id="boxplots" class="section level1">
+<h1>Boxplots</h1>
+<p>starwars %&gt;% drop_na(height) %&gt;% ggplot(mapping = aes(x =
+height)) + geom_boxplot(fill = “steelblue”) + theme_bw() + labs( title =
+“Boxplot of heights”, x = “Height of characters” )</p>
+</div>
+<div id="density-plots" class="section level1">
+<h1>Density Plots</h1>
+<p>starwars %&gt;% drop_na(height) %&gt;% filter(sex %in% c(“male”,
+“female”)) %&gt;% ggplot(mapping = aes( x = height, color = sex, fill =
+sex )) + geom_density(alpha = 0.2) + theme_bw()</p>
+</div>
+<div id="scatter-plots" class="section level1">
+<h1>Scatter Plots</h1>
+<p>starwars %&gt;% filter(mass &lt; 200) %&gt;% ggplot(aes(x = height, y
+= mass, color = sex)) + geom_point(size = 5, alpha = 0.5) +
+theme_minimal() + labs(title = “Heights and Mass by Sex”)</p>
+</div>
+<div id="smoothed-mode" class="section level1">
+<h1>Smoothed Mode</h1>
+<p>starwars %&gt;% filter(mass &lt; 200) %&gt;% ggplot(aes(x = height, y
+= mass, color = sex)) + geom_point(size = 3, alpha = 0.8) +
+geom_smooth() + facet_wrap(~sex) + theme_bw() + labs(title = “Heights
+and Mass by Sex”) ```</p>
 </div>
 
 

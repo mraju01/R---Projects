@@ -173,8 +173,6 @@ S3 <- na.omit(SData$`Sample 3`)
 S4 <- na.omit(SData$`Sample 4`)
 S5 <- na.omit(SData$`Sample 5`)
 S6 <- na.omit(SData$`Sample 6`)
-x <- c(5, 6, 7)
-y <- mean(x)
 ```
 
 ***About the Data Set***

@@ -1,0 +1,43 @@
+
+
+<CENTER>
+
+<FONT size=6, color="blue">
+Maheswar Raju </FONT>
+
+<FONT size=4, color="green">
+Northeastern University </FONT>
+
+</CENTER>
+
+
+```{r task 1, message=FALSE, warning=FALSE}
+
+
+library(magrittr)
+library(knitr)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(CGPfunctions)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(DT)
+library(kableExtra)
+
+
+wine <- read_excel("Data Sets/wine.xlsx")
+
+
+t1 <- table(wine$Type)
+
+
+barplot(t1,
+    xlab = "Frequency",
+    ylab = "Type",
+    horiz = T,
+    col = brewer.pal(15, "Set1"),
+)
+```
+

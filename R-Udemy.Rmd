@@ -1,0 +1,17 @@
+
+
+# Core Programming Skills
+
+
+##
+
+```{r}
+
+library(swirl)
+
+# Integer
+
+x <- 2L
+```
+
+Hello 

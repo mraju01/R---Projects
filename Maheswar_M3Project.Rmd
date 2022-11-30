@@ -7,11 +7,11 @@ title="M3 Project - ALY 6010"
 
 <CENTER>
 
-<FONT size=5.5, color="Red">
-**M3 Project Report** </FONT>
+<FONT size=6, color="blue">
+Maheswar Raju </FONT>
 
-<FONT size=5.5, color="#800080">
-<BR>**Probability Theory and Introductory Statistics** </FONT>
+<FONT size=4, color="green">
+Northeastern University </FONT>
 
 
 <P>
@@ -173,6 +173,8 @@ S3 <- na.omit(SData$`Sample 3`)
 S4 <- na.omit(SData$`Sample 4`)
 S5 <- na.omit(SData$`Sample 5`)
 S6 <- na.omit(SData$`Sample 6`)
+x <- c(5, 6, 7)
+y <- mean(x)
 ```
 
 ***About the Data Set***
@@ -332,7 +334,7 @@ alp90S1 <- (1 - CL90S1) # Calculating Alpha Value####
 
 
 Z90LS1 <- qnorm(alp90S1 / 2) # Calculating Z value for Margin of Error###
-Z90RS1 <- qnorm((alp90S1 / 2) + CL90S1) # Calculating Z value for Margin of Error###
+Z90RS1 <- qnorm((alp90S1 / 2) + CL90S1) # Calculating Z value for Margin of Error### # nolint
 
 # Calculating Margin of Error
 ##################

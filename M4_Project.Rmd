@@ -1,0 +1,176 @@
+title="M4 Project - ALY 6010"
+
+
+Task 2
+```{r message=FALSE,  warning=FALSE}
+
+options(scipen = 100)
+
+
+# Library Used for M4 Project
+#####################################
+library(magrittr) ## Fetching magnittr
+library(knitr)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+# library(CGPfunctions)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(DT)
+library(kableExtra)
+
+
+
+
+# Datasets used in Project##################
+###########################################
+## Lizard data
+liz <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/lizards_project4.xlsx")
+
+
+
+# Creating Subsets for Analysis
+male <- subset(
+    liz,
+    liz$Sex == "MALE"
+)
+
+
+
+female <- subset(
+    liz,
+    liz$Sex == "FEMALE"
+)
+
+
+# page no = 517
+
+# The null and alternative hypotheses in this case are:
+# Ho: µ1 = µ2
+# Ha: µ1 ≠ µ2
+
+
+# Creating Objects for female sample
+nFemaleSample <- nrow(female)
+meanFemaleLenght <- mean(female$Length)
+varFemalePop <- 1.18
+
+
+# Creating Objects for Male Sample
+nMaleSample <- nrow(male)
+meanMaleLenght <- mean(male$Length)
+varMalePop <- 1.34
+
+alphaT2 <- 0.01
+
+# Calculating the critical value for alpha value
+
+zLeft <- qnorm(alphaT2 / 2)
+
+zRight <- qnorm(1 - (alphaT2 / 2))
+
+
+# Calculating the test value
+
+zTest <- ((meanFemaleLenght - meanMaleLenght) - 0) / sqrt((varFemalePop / nFemaleSample) + (varMalePop / nMaleSample))
+
+
+paste(zTest)
+
+
+
+# Calculating the p- value
+
+pValue <- 2 * (pnorm(zTest))
+
+pValue < alphaT2
+zTest < zLeft
+
+
+# Can reject the hypothesis, means tha
+```
+
+Task 3
+
+```{r message=FALSE, warning=FALSE}
+
+# State the hypothesis
+
+# Ho =
+
+
+# Calculating the degree of freedom
+
+dfN <- nFemaleSample - 1
+dfD <- nMaleSample - 1
+
+# Calculating the critical of F-distribution with qf function
+
+fcriticalValue <- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
+
+# Calculatitng the F test value
+
+Ftest <- varMalePop / varFemalePop
+
+# We cannot reject the null hypotheesis since Ftest < fcriticalValue, that is ftest does not fall in critical region
+
+Ftest < fcriticalValue
+```
+
+
+Task 4
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+# When the null hypothesis states that there is no difference between the two population means (i.e., d = 0), the null and alternative hypothesis are often stated in the following form.
+
+
+# Null hypothesis: μ1 - μ2 = 0
+
+# Alternative hypothesis: μ1 - μ2 ≠ 0
+
+
+# Creating Objects for female sample
+nFemaleSample <- nrow(female)
+meanFemaleHeartRate <- mean(female$HeartRate)
+varFemalePopT4 <- 0.3
+
+
+# Creating Objects for Male Sample
+nMaleSample <- nrow(male)
+meanMaleHeartRate <- mean(male$HeartRate)
+varMalePopT4 <- 0.34
+
+
+
+alphaT2 <- 0.01
+
+# Calculating the critical value for alpha value
+
+zLeft <- qnorm(alphaT2 / 2)
+
+zRight <- qnorm(1 - (alphaT2 / 2))
+
+
+# Calculating the test value
+
+zTestT4 <- ((meanFemaleHeartRate - meanMaleHeartRate) - 0) / sqrt((varFemalePopT4 / nFemaleSample) + (varMalePopT4 / nMaleSample))
+
+
+paste(zTestT4)
+
+
+
+# Calculating the p- value
+
+pValueT4 <- 2 * (pnorm(zTestT4))
+
+pValueT4 < alphaT2
+zTestT4 < zLeft
+# Cannot reject the hypotheis, means the heart rate are same for them
+```

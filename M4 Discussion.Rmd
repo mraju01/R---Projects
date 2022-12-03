@@ -1,0 +1,30 @@
+
+
+State the hypothesis
+
+
+```{r}
+
+alpha <- 0.10
+Zcritical <- round(qnorm(1 - alpha), 2)
+Zcritical
+
+np1 <- 35
+p1 <- round(17 / 35, 2)
+p1
+
+np2 <- 40
+p2 <- round(16 / 40, 2)
+p2
+
+
+p_addict <- round((17 + 16) / (35 + 40), 2)
+p_addict
+
+q_addict <- 1 - p_addict
+q_addict
+
+
+zTest <- round((p1 - p2 - 0) / sqrt((p_addict * q_addict) * ((1 / np1) + (1 / np2))), 2)
+zTest
+```

@@ -97,6 +97,7 @@ Task 3
 
 ```{r message=FALSE, warning=FALSE}
 
+# page 558 bluman
 # State the hypothesis
 
 # Ho =
@@ -106,18 +107,24 @@ Task 3
 
 dfN <- nFemaleSample - 1
 dfD <- nMaleSample - 1
+varFemaleLenght <- var(female$Length)
+varMaleLenght <- var(male$Length)
 
 # Calculating the critical of F-distribution with qf function
 
-fcriticalValue <- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
+fcriticalValueT3 <- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
 
 # Calculatitng the F test value
 
-Ftest <- varMalePop / varFemalePop
+FtestT3 <- varFemaleLenght / varMaleLenght
 
 # We cannot reject the null hypotheesis since Ftest < fcriticalValue, that is ftest does not fall in critical region
 
-Ftest < fcriticalValue
+FtestT3 < fcriticalValueT3
+
+PvalueT3 <- pf(FtestT3, df1 = dfN, df2 = dfD, lower.tail = FALSE)
+
+paste(PvalueT3)
 ```
 
 
@@ -173,4 +180,48 @@ pValueT4 <- 2 * (pnorm(zTestT4))
 pValueT4 < alphaT2
 zTestT4 < zLeft
 # Cannot reject the hypotheis, means the heart rate are same for them
+```
+
+
+
+Task 5
+
+```{r message=FALSE, warning=FALSE}
+
+# State the hypothesis
+
+# Ho =
+
+
+# Calculating the degree of freedom
+
+dfN <- nFemaleSample - 1
+dfD <- nMaleSample - 1
+varFemaleHeartRate <- var(female$HeartRate)
+varMaleHeartRate <- var(male$HeartRate)
+
+# Calculating the critical of F-distribution with qf function
+
+fcriticalValueT5 <- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
+
+# Calculatitng the F test value
+
+FtestT5 <- varFemaleHeartRate / varMaleHeartRate
+
+# We cannot reject the null hypotheesis since Ftest < fcriticalValue, that is ftest does not fall in critical region
+
+FtestT5 < fcriticalValueT5
+
+PvalueT5 <- pf(FtestT5, df1 = dfN, df2 = dfD, lower.tail = FALSE)
+
+paste(PvalueT5)
+```
+
+```{r message=FALSE, warning=FALSE}
+
+
+
+
+
+var.test(female$HeartRate, male$HeartRate, alternative = "greater")
 ```

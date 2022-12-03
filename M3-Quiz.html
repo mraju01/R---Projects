@@ -11,7 +11,7 @@
 
 
 
-<title>M4_Project.knit</title>
+<title>M3-Quiz.knit</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -358,211 +358,20 @@ display: none;
 </div>
 
 
-<p>title=“M4 Project - ALY 6010”</p>
-<p>Task 2</p>
-<pre class="r"><code>options(scipen = 100)
-
-
-# Library Used for M4 Project
-#####################################
-library(magrittr) ## Fetching magnittr
-library(knitr)
-library(plyr)
-library(dplyr)
-library(readxl)
-library(gridExtra)
-# library(CGPfunctions)
-library(RColorBrewer)
-library(lattice)
-library(ggplot2)
-library(DT)
-library(kableExtra)
-
-
-
-
-# Datasets used in Project##################
-###########################################
-## Lizard data
-liz &lt;- read_excel(&quot;~/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/lizards_project4.xlsx&quot;)
-
-
-
-# Creating Subsets for Analysis
-male &lt;- subset(
-    liz,
-    liz$Sex == &quot;MALE&quot;
-)
-
-
-
-female &lt;- subset(
-    liz,
-    liz$Sex == &quot;FEMALE&quot;
-)
-
-
-# page no = 517
-
-# The null and alternative hypotheses in this case are:
-# Ho: µ1 = µ2
-# Ha: µ1 ≠ µ2
-
-
-# Creating Objects for female sample
-nFemaleSample &lt;- nrow(female)
-meanFemaleLenght &lt;- mean(female$Length)
-varFemalePop &lt;- 1.18
-
-
-# Creating Objects for Male Sample
-nMaleSample &lt;- nrow(male)
-meanMaleLenght &lt;- mean(male$Length)
-varMalePop &lt;- 1.34
-
-alphaT2 &lt;- 0.01
-
-# Calculating the critical value for alpha value
-
-zLeft &lt;- qnorm(alphaT2 / 2)
-
-zRight &lt;- qnorm(1 - (alphaT2 / 2))
-
-
-# Calculating the test value
-
-zTest &lt;- ((meanFemaleLenght - meanMaleLenght) - 0) / sqrt((varFemalePop / nFemaleSample) + (varMalePop / nMaleSample))
-
-
-paste(zTest)</code></pre>
-<pre><code>## [1] &quot;-10.2246184112465&quot;</code></pre>
-<pre class="r"><code># Calculating the p- value
-
-pValue &lt;- 2 * (pnorm(zTest))
-
-pValue &lt; alphaT2</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>zTest &lt; zLeft</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code># Can reject the hypothesis, means tha</code></pre>
-<p>Task 3</p>
-<pre class="r"><code># page 558 bluman
-# State the hypothesis
-
-# Ho =
-
-
-# Calculating the degree of freedom
-
-dfN &lt;- nFemaleSample - 1
-dfD &lt;- nMaleSample - 1
-varFemaleLenght &lt;- var(female$Length)
-varMaleLenght &lt;- var(male$Length)
-
-# Calculating the critical of F-distribution with qf function
-
-fcriticalValueT3 &lt;- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
-
-# Calculatitng the F test value
-
-FtestT3 &lt;- varFemaleLenght / varMaleLenght
-
-# We cannot reject the null hypotheesis since Ftest &lt; fcriticalValue, that is ftest does not fall in critical region
-
-FtestT3 &lt; fcriticalValueT3</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>PvalueT3 &lt;- pf(FtestT3, df1 = dfN, df2 = dfD, lower.tail = FALSE)
-
-paste(PvalueT3)</code></pre>
-<pre><code>## [1] &quot;0.387943541531862&quot;</code></pre>
-<p>Task 4</p>
-<pre class="r"><code># When the null hypothesis states that there is no difference between the two population means (i.e., d = 0), the null and alternative hypothesis are often stated in the following form.
-
-
-# Null hypothesis: μ1 - μ2 = 0
-
-# Alternative hypothesis: μ1 - μ2 ≠ 0
-
-
-# Creating Objects for female sample
-nFemaleSample &lt;- nrow(female)
-meanFemaleHeartRate &lt;- mean(female$HeartRate)
-varFemalePopT4 &lt;- 0.3
-
-
-# Creating Objects for Male Sample
-nMaleSample &lt;- nrow(male)
-meanMaleHeartRate &lt;- mean(male$HeartRate)
-varMalePopT4 &lt;- 0.34
-
-
-
-alphaT2 &lt;- 0.01
-
-# Calculating the critical value for alpha value
-
-zLeft &lt;- qnorm(alphaT2 / 2)
-
-zRight &lt;- qnorm(1 - (alphaT2 / 2))
-
-
-# Calculating the test value
-
-zTestT4 &lt;- ((meanFemaleHeartRate - meanMaleHeartRate) - 0) / sqrt((varFemalePopT4 / nFemaleSample) + (varMalePopT4 / nMaleSample))
-
-
-paste(zTestT4)</code></pre>
-<pre><code>## [1] &quot;-1.48516841060021&quot;</code></pre>
-<pre class="r"><code># Calculating the p- value
-
-pValueT4 &lt;- 2 * (pnorm(zTestT4))
-
-pValueT4 &lt; alphaT2</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>zTestT4 &lt; zLeft</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code># Cannot reject the hypotheis, means the heart rate are same for them</code></pre>
-<p>Task 5</p>
-<pre class="r"><code># State the hypothesis
-
-# Ho =
-
-
-# Calculating the degree of freedom
-
-dfN &lt;- nFemaleSample - 1
-dfD &lt;- nMaleSample - 1
-varFemaleHeartRate &lt;- var(female$HeartRate)
-varMaleHeartRate &lt;- var(male$HeartRate)
-
-# Calculating the critical of F-distribution with qf function
-
-fcriticalValueT5 &lt;- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
-
-# Calculatitng the F test value
-
-FtestT5 &lt;- varFemaleHeartRate / varMaleHeartRate
-
-# We cannot reject the null hypotheesis since Ftest &lt; fcriticalValue, that is ftest does not fall in critical region
-
-FtestT5 &lt; fcriticalValueT5</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>PvalueT5 &lt;- pf(FtestT5, df1 = dfN, df2 = dfD, lower.tail = FALSE)
-
-paste(PvalueT5)</code></pre>
-<pre><code>## [1] &quot;0.117522582955406&quot;</code></pre>
-<pre class="r"><code>var.test(female$HeartRate, male$HeartRate, alternative = &quot;greater&quot;)</code></pre>
-<pre><code>## 
-##  F test to compare two variances
-## 
-## data:  female$HeartRate and male$HeartRate
-## F = 1.365, num df = 59, denom df = 59, p-value = 0.1175
-## alternative hypothesis: true ratio of variances is greater than 1
-## 95 percent confidence interval:
-##  0.8863609       Inf
-## sample estimates:
-## ratio of variances 
-##           1.364957</code></pre>
+<pre class="r"><code>R &lt;- qt(0.05, 21)
+R</code></pre>
+<pre><code>## [1] -1.720743</code></pre>
+<pre class="r"><code>L &lt;- qt(0.95, 21)
+L</code></pre>
+<pre><code>## [1] 1.720743</code></pre>
+<pre class="r"><code>E &lt;- L * 0.200732 / sqrt(12)
+
+A &lt;- 21.8825 + E
+A</code></pre>
+<pre><code>## [1] 21.98221</code></pre>
+<pre class="r"><code>B &lt;- 21.8825 - E
+B</code></pre>
+<pre><code>## [1] 21.78279</code></pre>
 
 
 

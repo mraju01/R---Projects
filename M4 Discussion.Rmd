@@ -1,30 +1,72 @@
+<FONT SIZE = 3, color="red"><B>WORD</B></FONT>
+
+<FONT RED><B>WORD</B></FONT>
+
+<FONT SIZE = 3, color="red"><Bold>WORD</B></FONT>
+
+<COLOR="red"><B>WORD</B></COLOR>
+
+<FONT SIZE = 3, color="red">WORD</FONT>
 
 
-State the hypothesis
+```{r message=FALSE, warning=FALSE}
 
-
-```{r}
-
+# Using the alpha value for my analysis
 alpha <- 0.10
-Zcritical <- round(qnorm(1 - alpha), 2)
-Zcritical
 
+# Calculating the critical value based on alpha value as it's right tailes test
+Zcritical <- round(qnorm(1 - alpha), 2)
+paste("The value of critical value for alpha value of 0.10:", Zcritical)
+
+# Creating Object for Adults group
 np1 <- 35
 p1 <- round(17 / 35, 2)
-p1
+paste("Proportion of people in the adults’ group whose intake is more than 200mg of caffeine", p1) # nolint
 
+
+# Creating Object for Youth group
 np2 <- 40
 p2 <- round(16 / 40, 2)
-p2
+paste("Proportion of people in the youth group whose intake is more than 200mg of caffeine", p2) # nolint
 
 
+# Calculating the Value of Sample Proportion
 p_addict <- round((17 + 16) / (35 + 40), 2)
 p_addict
+paste("The value of sample proportion is", p_addict)
 
 q_addict <- 1 - p_addict
 q_addict
 
+# Computing the test value
+zTest <- round((p1 - p2 - 0) / sqrt((p_addict * q_addict) * ((1 / np1) + (1 / np2))), 2) # nolint
 
-zTest <- round((p1 - p2 - 0) / sqrt((p_addict * q_addict) * ((1 / np1) + (1 / np2))), 2)
-zTest
+paste("The test value for my analysis is ", zTest)
+
+paste("Is my Test Value Greater than Right Critical value?", " The answer is", zTest > Zcritical) # nolint
+
+# Computing the p-value based on test value
+pvalue <- pnorm(zTest, lower.tail = FALSE)
+paste("The value of p-value is", pvalue)
+
+paste("Is my p-value smaller than alpha value?", " The answer is", pvalue < alpha) # nolint
+```
+
+
+```{r message=FALSE, warning=FALSE}
+
+
+
+A <-
+    B <- 1 - pt(-2.34, 22)
+
+
+
+A
+B
+```
+
+```{r}
+Z <- qnorm(0.1)
+Z
 ```

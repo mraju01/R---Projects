@@ -358,28 +358,62 @@ display: none;
 </div>
 
 
-<p>State the hypothesis</p>
-<pre class="r"><code>alpha &lt;- 0.10
+<p><FONT SIZE="3," color="red"><B>WORD</B></FONT></p>
+<p><FONT RED><B>WORD</B></FONT></p>
+<p><FONT SIZE="3," color="red"><Bold>WORD</B></FONT></p>
+<p>&lt;COLOR=“red”&gt;<B>WORD</B></COLOR></p>
+<p><FONT SIZE="3," color="red">WORD</FONT></p>
+<pre class="r"><code># Using the alpha value for my analysis
+alpha &lt;- 0.10
+
+# Calculating the critical value based on alpha value as it&#39;s right tailes test
 Zcritical &lt;- round(qnorm(1 - alpha), 2)
-Zcritical</code></pre>
-<pre><code>## [1] 1.28</code></pre>
-<pre class="r"><code>np1 &lt;- 35
+paste(&quot;The value of critical value for alpha value of 0.10:&quot;, Zcritical)</code></pre>
+<pre><code>## [1] &quot;The value of critical value for alpha value of 0.10: 1.28&quot;</code></pre>
+<pre class="r"><code># Creating Object for Adults group
+np1 &lt;- 35
 p1 &lt;- round(17 / 35, 2)
-p1</code></pre>
-<pre><code>## [1] 0.49</code></pre>
-<pre class="r"><code>np2 &lt;- 40
+paste(&quot;Proportion of people in the adults’ group whose intake is more than 200mg of caffeine&quot;, p1) # nolint</code></pre>
+<pre><code>## [1] &quot;Proportion of people in the adults’ group whose intake is more than 200mg of caffeine 0.49&quot;</code></pre>
+<pre class="r"><code># Creating Object for Youth group
+np2 &lt;- 40
 p2 &lt;- round(16 / 40, 2)
-p2</code></pre>
-<pre><code>## [1] 0.4</code></pre>
-<pre class="r"><code>p_addict &lt;- round((17 + 16) / (35 + 40), 2)
+paste(&quot;Proportion of people in the youth group whose intake is more than 200mg of caffeine&quot;, p2) # nolint</code></pre>
+<pre><code>## [1] &quot;Proportion of people in the youth group whose intake is more than 200mg of caffeine 0.4&quot;</code></pre>
+<pre class="r"><code># Calculating the Value of Sample Proportion
+p_addict &lt;- round((17 + 16) / (35 + 40), 2)
 p_addict</code></pre>
 <pre><code>## [1] 0.44</code></pre>
+<pre class="r"><code>paste(&quot;The value of sample proportion is&quot;, p_addict)</code></pre>
+<pre><code>## [1] &quot;The value of sample proportion is 0.44&quot;</code></pre>
 <pre class="r"><code>q_addict &lt;- 1 - p_addict
 q_addict</code></pre>
 <pre><code>## [1] 0.56</code></pre>
-<pre class="r"><code>zTest &lt;- round((p1 - p2 - 0) / sqrt((p_addict * q_addict) * ((1 / np1) + (1 / np2))), 2)
-zTest</code></pre>
-<pre><code>## [1] 0.78</code></pre>
+<pre class="r"><code># Computing the test value
+zTest &lt;- round((p1 - p2 - 0) / sqrt((p_addict * q_addict) * ((1 / np1) + (1 / np2))), 2) # nolint
+
+paste(&quot;The test value for my analysis is &quot;, zTest)</code></pre>
+<pre><code>## [1] &quot;The test value for my analysis is  0.78&quot;</code></pre>
+<pre class="r"><code>paste(&quot;Is my Test Value Greater than Right Critical value?&quot;, &quot; The answer is&quot;, zTest &gt; Zcritical) # nolint</code></pre>
+<pre><code>## [1] &quot;Is my Test Value Greater than Right Critical value?  The answer is FALSE&quot;</code></pre>
+<pre class="r"><code># Computing the p-value based on test value
+pvalue &lt;- pnorm(zTest, lower.tail = FALSE)
+paste(&quot;The value of p-value is&quot;, pvalue)</code></pre>
+<pre><code>## [1] &quot;The value of p-value is 0.217695437585733&quot;</code></pre>
+<pre class="r"><code>paste(&quot;Is my p-value smaller than alpha value?&quot;, &quot; The answer is&quot;, pvalue &lt; alpha) # nolint</code></pre>
+<pre><code>## [1] &quot;Is my p-value smaller than alpha value?  The answer is FALSE&quot;</code></pre>
+<pre class="r"><code>A &lt;-
+    B &lt;- 1 - pt(-2.34, 22)
+
+
+
+A</code></pre>
+<pre><code>## [1] 0.9856194</code></pre>
+<pre class="r"><code>B</code></pre>
+<pre><code>## [1] 0.9856194</code></pre>
+<pre class="r"><code>Z &lt;- pnorm(0.1)
+Z</code></pre>
+<pre><code>## [1] 0.5398278</code></pre>
 
 
 

@@ -1,7 +1,151 @@
 title="M4 Project - ALY 6010"
 
+<P>
 
-Task 2
+<BR>
+
+<CENTER>
+
+<FONT size=6, color="Purple">
+**M4 Project Report** </FONT>
+
+<FONT size=6, color="Red">
+<BR>**Probability Theory and Introductory Statistics** </FONT>
+
+
+<P>
+
+<FONT size=6, color="Black"> ALY 6010 - 71579 </FONT>
+
+
+
+<P>
+
+<BR>
+<FONT size=5, color="Black"> 
+<BR>
+**Maheswar Raju Narasaiah**
+
+<FONT size=5, color="Black"> 
+Prof: Dr. Dee Chiluiza 
+
+Date:`r format(Sys.time(), '%d %B, %Y')`
+
+</CENTER>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 5, COLOR ="#7393B3">
+1. INTRODUCTION 
+</FONT>
+</BR></B>
+
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+**A. Hypothesis Testing And it's Application**
+</FONT>
+<FONT SIZE = 4>
+
+Hypothesis testing is a formal process for utilizing statistics to investigate our views about the world. It is most commonly employed by scientists to examine particular predictions derived from theories, known as hypotheses (Bluman, 2014).
+
+In hypothesis testing, there are five major steps:
+
+- Create a null hypothesis and an alternate hypothesis (Ho) for your research (Ha or H1).
+- Collect data in a way that will allow you to test the hypothesis.
+- Conduct a suitable statistical test.
+- Choose whether or not to reject your null hypothesis.
+- In your results and discussion section, present your findings.
+Though the specifics may differ, the technique you will employ to test a hypothesis will always include some variation of these phases (Shaffer, 1995).
+
+-- ***Applications of Hypothesis Testing In Manafacturing***
+
+In a large motor manufacturing company, leadership has given a responsibility to the production line engineers to find out if new processes and preventive measures that they have implemented recently in one of their factories led to fewer manufacturing defects or not. As a result of this analysis, they can use these same processes to implement in their other factories to bring down overall wastage in their production line and increase profits.
+
+After collecting the data, they compared the average of defects in the month when the new processes were implemented or not implemented. If μp denotes the average defects when the new processes were not introduced and μs denotes the average defects when the process where implemented, then we are essentially testing the claim that μp=μs, there was no change in average defects.
+
+Hence the appropriate hypothesis test to conduct is the left-tailed test with the following hypotheses:
+
+        H0 :: μp=μs
+
+        H1 :: μp>μs
+
+Here, the null hypothesis represents both having the same average no. of defects (indicating new processes are not reducing defects) and the alternative hypothesis represents having a decrease in average defects per (indicating the processes and measures are indeed effective)
+
+So by hypothesis testing , we can check if they are any improvements by implementing these measure which will save lot of money and prevent lot of wastage
+
+</FONT>
+
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+**B. The different applications of z test, t test and F test for two sample comparisons.**
+</FONT>
+
+<FONT SIZE = 4>
+
+The two statistical techniques that use data analysis and have uses in many other fields, including business and science, are Z-tests and T-tests. The T-test is a univariate hypothesis test based on T-statistics, in which the mean (average) is known and the population variance (standard deviation) is estimated from the sample. The Z-test, on the other hand, is a univariate test based on a conventional normal distribution.
+
+-- ***Applications of Z-Test***
+
+As previously stated, the Z-test may be used to compare population averages to those of a sample. The Z-test will tell you how far a data point is from the average of a data set in standard deviations (McCarthy, 1939). A Z-test compares a sample to a specific population and is commonly used to solve problems with big samples (n > 30). They are primarily useful when the standard deviation is known.
+
+-- ***Applications of T-Test***
+
+T-tests are another type of calculation that can be used to test a hypothesis. Nonetheless, they are quite valuable in establishing whether or not there is a statistically significant difference between the two independent sample groups. In other words, a t-test examines whether the comparison between the averages of 2 groups is unlikely to have occurred owing to random chance. T-tests are typically more appropriate when dealing with problems with a small sample size (Mishra et. al., 2019)).
+
+-- ***Applications of F-Test***
+
+The researcher performs an F-test based on the F statistic. The F statistic is defined as the ratio of two independent chi square variates divided by their degrees of freedom. The F-test is based on Snedecor's F-distribution.
+
+The F-test is also used by researchers to check whether the two independent estimates of population variances are homogeneous.
+
+An illustration of the above circumstance in which the F-test is used is if two sets of pumpkins are produced under two different experimental settings. In this situation, the researcher would choose a random sample of 9 and 11 people. Their weights have standard deviations of 0.6 and 0.8, respectively. After assuming that the distribution of their weights is normal, the researcher uses an F-test to determine whether or not the true variances are identical.
+
+
+</FONT>
+
+
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+**C. Importance of Proper Referencing**
+</FONT>
+<FONT SIZE = 4>
+
+Referencing is an essential component of academic writing. Whatever the type of your study, you will be unable to complete it unless you cite the source materials (Brown et. al., 2008). It seeks to contextualize your work. It demonstrates the breadth of your research and knowledge on the subject of interest. It also attempts to prevent the loss of original work in the depths of the internet, or it serves as a way to recognize people's work. As a result, the references are crucial for a variety of reasons, but the three most important are listed below. Let's have a peek.
+
+- Referencing clarifies your content. It seeks to inform readers about which ideas originated with you and which you borrowed from other studies. In other words, it states what others say about a problem under investigation and how you relate others' conclusions to your context. Thus, these referencing functions assist researchers in avoiding plagiarism, which is a crucial ethical consideration in research.
+- It is the most effective technique to back up your claim. Academic writing entails verifying, examining, and exploring real-world truths that require evidence for each claim. In many circumstances, the facts mentioned in previously published scholarly studies are sufficient to support your point. However, normal research recommendations recommend that you always include a valid reference for every data so that the uniqueness of your research is never called into question.
+- Another crucial reason for appropriate referencing is that it assists other scholars in locating data. Even if you are undertaking separate study, you must still look for closely connected scholarly literature. The reference list and in-text citation are also the quickest ways to identify the most relevant source material for your research.
+
+
+</FONT>
+
+
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+**D. Description of Data Set And Their Purpose.**
+</FONT>
+
+<FONT SIZE = 4>
+
+The first data set we are going to use, has information about the Sex, Lenght and Heart Rate of Lizards. Through this data set we are going to check if there are difference between the Lenght and heart rate of Male and Female Lizards.
+
+
+</FONT>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 5, COLOR ="#7393B3">
+2. ANALYSIS 
+</FONT>
+</BR></B>
+
+<P>
+
+<FONT SIZE = 4.5>
+In this below section, we will perform various type of hypthesis testing on our Data to make inferences.
+<FONT/>
+
+
 ```{r message=FALSE,  warning=FALSE}
 
 options(scipen = 100)
@@ -29,7 +173,116 @@ library(kableExtra)
 ###########################################
 ## Lizard data
 liz <- read_excel("~/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/lizards_project4.xlsx")
+```
 
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.1. Presenting Descriptive Statistics of Lizard Data
+</FONT>
+</BR></B>
+
+<FONT SIZE = 4.5>
+In this section, I am going to present some descriptive statistics and visualization from our lizard Data Set
+</FONT>
+
+
+```{r message=FALSE, warning=FALSE}
+
+table <- liz %>%
+    dplyr::select(c("Length", "HeartRate")) %>%
+    psych::describe()
+table1 <- round((table), digits = 2)
+
+
+
+
+# Present the table using kableExta Package
+knitr::kable(table1,
+    caption = "Table 1: Descriptive Statistics of Lizard Data ",
+    format = "html",
+    table.attr = "style=width: 40%", align = "lccrr",
+    font_size = 8
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+
+
+
+
+par(
+    mfrow = c(2, 1),
+    mai = c(0.5, 0.5, 0.5, 0.5)
+)
+
+
+plot1 <- boxplot(liz$Length ~ liz$Sex,
+    main = "Boxplot: Length of Male and Female",
+    xlab = "Sex",
+    ylab = "Lenght",
+    col = c("#DA7B7B", "#9D8FF3", "#9D8FF7"),
+    border = "brown",
+    las = 1,
+    horizontal = TRUE,
+    cex.axis = 0.4,
+    cex.names = 0.7,
+    space = 0.5
+)
+
+
+plot2 <- boxplot(liz$HeartRate ~ liz$Sex,
+    main = "Boxplot: Heart Rate of Male and Female",
+    xlab = "Sex",
+    ylab = "Lenght",
+    col = brewer.pal(12, "Set3"),
+    border = "brown",
+    las = 1,
+    horizontal = TRUE,
+    cex.axis = 0.4,
+    cex.names = 0.7,
+    space = 0.5
+)
+```
+
+
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+- After looking at boxplots of Lenght, we can notice the for box plot female fength is negatively skewed and box plot of male length is little bit postively skewed
+- After looking at boxplot of Heart Rate, we can notice the for both box plots female Heart rate and male Heart Rate is little bit postively skewed
+
+
+</FONT>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.2. Analysis on Difference between Means of Male and Female Lenght
+</FONT>
+</BR></B>
+
+In this section, we are going to perform Z-test to check the difference between the mean of length between different gender of lizards
+
+The null and alternative hypotheses in this case are:
+
+    Ho: Mean of Female Length = Mean of Male Length
+    Ha: Mean of Female Length ≠ Mean of Male Length
+
+```{r message=FALSE, warning=FALSE}
 
 
 # Creating Subsets for Analysis
@@ -44,13 +297,6 @@ female <- subset(
     liz,
     liz$Sex == "FEMALE"
 )
-
-
-# page no = 517
-
-# The null and alternative hypotheses in this case are:
-# Ho: µ1 = µ2
-# Ha: µ1 ≠ µ2
 
 
 # Creating Objects for female sample
@@ -72,6 +318,9 @@ zLeft <- qnorm(alphaT2 / 2)
 
 zRight <- qnorm(1 - (alphaT2 / 2))
 
+zLeft
+zRight
+
 
 # Calculating the test value
 
@@ -86,14 +335,40 @@ paste(zTest)
 
 pValue <- 2 * (pnorm(zTest))
 
-pValue < alphaT2
-zTest < zLeft
-
-
-# Can reject the hypothesis, means tha
+# Results of Hypothesis Testing
+paste("Can we reject the null hypothesis based on p value", pValue < alphaT2)
+paste("Can we reject the null hypothesis based on test value", zTest < zLeft)
 ```
 
-Task 3
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+- After computing the value of critical value, test value and p-value, we have enough evidence to reject the null the hypothesis
+- So, it means that there is difference between length of male and female lizards
+
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.3. Analysis on Difference between Variance of Male and Female Lenght
+</FONT>
+</BR></B>
+
+
+In this section, we are going to perform F-test to check the difference between the variance of length of between different gender of lizards
+
+
+The null and alternative hypotheses in this case are:
+
+    Ho: Var of Female Length = Var of Male Length
+    Ha: Var of Female Length > Var of Male Length
+
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -102,6 +377,7 @@ Task 3
 
 # Ho =
 
+alpha3 <- 0.01
 
 # Calculating the degree of freedom
 
@@ -112,24 +388,54 @@ varMaleLenght <- var(male$Length)
 
 # Calculating the critical of F-distribution with qf function
 
-fcriticalValueT3 <- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
+fcriticalValueT3 <- qf(p = alpha3, df1 = dfN, df2 = dfD, lower.tail = FALSE)
 
 # Calculatitng the F test value
 
 FtestT3 <- varFemaleLenght / varMaleLenght
 
+
+
 # We cannot reject the null hypotheesis since Ftest < fcriticalValue, that is ftest does not fall in critical region
 
-FtestT3 < fcriticalValueT3
+
 
 PvalueT3 <- pf(FtestT3, df1 = dfN, df2 = dfD, lower.tail = FALSE)
 
-paste(PvalueT3)
+
+
+# Results of Hypothesis Testing
+
+paste("Can we reject the null hypothesis based on test value", FtestT3 > fcriticalValueT3)
+paste("Can we reject the null hypothesis based on p-value", PvalueT3 < alpha3)
 ```
 
 
-Task 4
+<BR>
+<FONT SIZE = 4.5>
 
+***Observations***
+
+- After computing the value of critical value, test value and p-value, we don't have enough evidence to reject the null the hypothesis
+- We can see that variance of female length is same to variance of male length
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.4. Analysis on Difference between Means of Male and Female Heart Rate
+</FONT>
+</BR></B>
+
+
+In this section, we are going to perform Z-test to check the difference between the mean of Heart Rate of different gender of lizards
+
+The null and alternative hypotheses in this case are:
+
+    Ho: Mean of Female Heart Rate = Mean of Male Heart Rate
+    Ha: Mean of Female Heart Rate ≠ Mean of Male Heart Rate
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -137,9 +443,6 @@ Task 4
 # When the null hypothesis states that there is no difference between the two population means (i.e., d = 0), the null and alternative hypothesis are often stated in the following form.
 
 
-# Null hypothesis: μ1 - μ2 = 0
-
-# Alternative hypothesis: μ1 - μ2 ≠ 0
 
 
 # Creating Objects for female sample
@@ -177,20 +480,46 @@ paste(zTestT4)
 
 pValueT4 <- 2 * (pnorm(zTestT4))
 
-pValueT4 < alphaT2
-zTestT4 < zLeft
+
+# Results of Hypothesis Testing
+paste("Can we reject the null hypothesis based on p-value", pValueT4 < alphaT2)
+
+paste("Can we reject the null hypothesis based on test value", zTestT4 < zLeft)
 # Cannot reject the hypotheis, means the heart rate are same for them
 ```
 
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+- After computing the value of critical value, test value and p-value, we don't have enough evidence to reject the null the hypothesis
+- So, it means that there is no difference between Heart Rate of male and female lizards.
 
 
-Task 5
+</FONT>
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.5. Analysis on Difference between Variance of Male and Female Heart Rate
+</FONT>
+</BR></B>
+
+
+In this section, we are going to perform F-test to check the difference between the variance of Heart Rate of between different gender of lizards
+
+
+The null and alternative hypotheses in this case are:
+
+    Ho: Var of Female Heart Rate = Var of Male Heart Rate
+    Ha: Var of Female Heart Rate > Var of Male Heart Rate
+
+
 
 ```{r message=FALSE, warning=FALSE}
 
-# State the hypothesis
-
-# Ho =
+alpha5 <- 0.01
 
 
 # Calculating the degree of freedom
@@ -208,20 +537,221 @@ fcriticalValueT5 <- qf(p = 0.01, df1 = dfN, df2 = dfD, lower.tail = FALSE)
 
 FtestT5 <- varFemaleHeartRate / varMaleHeartRate
 
-# We cannot reject the null hypotheesis since Ftest < fcriticalValue, that is ftest does not fall in critical region
-
-FtestT5 < fcriticalValueT5
+# Calculting the p-value
 
 PvalueT5 <- pf(FtestT5, df1 = dfN, df2 = dfD, lower.tail = FALSE)
 
-paste(PvalueT5)
+
+# Results of Hypothesis Testing
+
+paste("Can we reject the null hypothesis based on test value", FtestT5 > fcriticalValueT5)
+
+
+paste("Can we reject the null hypothesis based on p-value", PvalueT5 < alpha5)
 ```
+
+
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+- After computing the value of critical value, test value and p-value, we have enough evidence to reject the null the hypothesis
+- We can see that variance of female Heart Rate is greater than variance of male length
+
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#f94c56">
+2.6. Analysis on Difference between Sleep Quality Before and After Meditation
+</FONT>
+</BR></B>
+
+
+
+**Explain why this is a test of two dependent paired samples.**
+
+The test is two dependent paired samples, because the volunteers which were recruited for a meditation workshop didn't change after , so meaning same subject which were used for sample were same to check the differenece. 
+
+
+In this section, we are going to perform t-test between two dependent samples to check if there are any benefit of meditation
+
+The null and alternative hypotheses in this case are:
+            
+            Ho: µD = 0
+            
+            Ha:  µD ≠ 0
+
 
 ```{r message=FALSE, warning=FALSE}
 
+sleepQualitybefore <- c(5.7, 7.8, 5.9, 5.6, 5.9, 6.8, 5.7, 3.9, 4.6, 4.5, 7.7, 6.3)
+
+sleepQualityafter <- c(6.8, 8.7, 7.6, 6.2, 6.1, 7.7, 5.9, 4.5, 6.5, 6.1, 6.9, 9.2)
+
+
+
+# State your two hypotheses.
+
+# Prepare and present all your codes using only one R Chunk.
+
+
+
+# Present the table where you calculated D=(X1-X2) and D2=(X1-X2)2. For an example, check my lecture power point or Bluman’s book.
+
+SleepDiff <- c(sleepQualitybefore - sleepQualityafter)
+
+
+SqrSleepDiff <- c(SleepDiff^2)
+
+
+SleepTable <- matrix(c(sleepQualitybefore, sleepQualityafter, SleepDiff, SqrSleepDiff),
+    nrow = 12,
+    byrow = FALSE
+)
+
+## Naming Columns and Row Names in Table#######
+colnames(SleepTable) <- c("Sleep Before ", "Sleep after", "Diff between Sleep Quality", "Square of Diff") # nolint
+
+rownames(SleepTable) <- c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")
+
+
+# Table Creation of of Matrix Using Knitr Package##################
+######################################################
+SleepTable %>%
+    knitr::kable(
+        caption = "Table : Descriptive Statistics of Sleep Quality",
+        format = "html"
+    ) %>%
+    kable_material_dark(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+
+
+# Finding Critical Value
+
+nSample <- 12
+df6 <- nSample - 1
+alpha6 <- 0.01
+
+ZL <- qt(alpha6 / 2, df6)
+ZR <- qt(1 - (alpha6 / 2), df6)
+
+# Finding themena of Difference
+MeanDiff <- mean(SleepDiff)
+SumDiff <- sum(SleepDiff)
+
+MeanSqrDiff <- mean(SqrSleepDiff)
+SumSqrDiff <- sum(SqrSleepDiff)
 
 
 
 
-var.test(female$HeartRate, male$HeartRate, alternative = "greater")
+
+# Finding the standar deviation of Difference
+Sd <- sqrt(((nSample * SumSqrDiff) - ((SumDiff)^2)) / (nSample * (nSample - 1)))
+
+
+# Present the test critical values and compare it to your test value.
+
+testValue6 <- (MeanDiff - 0) / (Sd / sqrt(nSample))
+
+pvalue6 <- 2 * pt(testValue6, df6)
+
+pvalue6
+
+rejectH0_6 <- testValue6 < ZL
+# Checking if the p-value is less than alpha value on right-tail
+paste("Is my test-value in the critical region ?", " The answer is", testValue6 < ZL)
+
+# Vector Creation
+v6 <- c(alpha6, ZL, ZR, testValue6, pvalue6)
+
+
+
+# row & Column Names
+row_names_6 <- c("Alpha", "CV Left", "CV Right", "T Test", "P- Value")
+col_names_6 <- c("Confidence Level 99")
+
+
+
+# Creating matrix
+lengthcf6 <- round(matrix(c(v6), nrow = 5, byrow = TRUE), digits = 3)
+colnames(lengthcf6) <- col_names_6
+rownames(lengthcf6) <- row_names_6
+
+
+
+
+# Present the table using kableExta Package
+knitr::kable(lengthcf6,
+    caption = "Table 6: Results of Hypothesis Testing for Task 6 ",
+    format = "html",
+    table.attr = "style=width: 40%",
+    font_size = 8
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
 ```
+
+
+<BR>
+<FONT SIZE = 4.5>
+
+***Observations***
+
+- After looking at table, we can say that there is enough evidence to reject the null hypotheis
+- So, there is definetly difference between the sleep quality before and after meditation.
+
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 5, COLOR ="#7393B3">
+3. CONCLUSIONS 
+</FONT>
+</BR></B>
+
+- I have how hypothesis testing seek to infer a difference between two samples from any  population. They provide us to good understanding if any change of behaviour is between the sample, especially that is useful in many sectors like pharmasueticals, Manafacturing, etc.
+- I have learned that the choice of the comparison test to utilize for a specific analysis is critical to making fair and proper conclusions regarding your study findings. When incorrect tests are conducted on research data, professional articles are frequently rejected. As a result, you should choose your analyses carefully and consult a professional.
+- I have gained new skill about how to use two sample data, and check the difference betweeen their mean or variance by hypothesis testing which is performed to examine the plausibility of a theory. Given the facts, the test gives evidence for the hypothesis's plausibility. Statistical analysts put a theory to the test by measuring and analysing a random sample of the population under consideration.
+- Also, gained knowledge about when z-test, t-test, or f-test is used to check the difference between dependent or independent samples which gives us many application in real world.
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 5, COLOR ="#7393B3">
+4. REFERENCES 
+</FONT>
+</BR></B>
+
+- Bluman, A. (2014). Elementary Statistics: A step by step approach 9e. McGraw Hill.
+- Shaffer, J. P. (1995). Multiple hypothesis testing. Annual review of psychology, 46(1), 561-584.
+- Brown, C. A., Dickson, R., Humphreys, A. L., McQuillan, V., & Smears, E. (2008). Promoting academic writing/referencing skills: Outcome of an undergraduate e‐learning pilot project. British journal of educational technology, 39(1), 140-156.
+- McCarthy, M. D. (1939). On the application of the z-test to randomized blocks. The Annals of Mathematical Statistics, 10(4), 337-359.
+- Mishra, P., Singh, U., Pandey, C. M., Mishra, P., & Pandey, G. (2019). Application of student's t-test, analysis of variance, and covariance. Annals of cardiac anaesthesia, 22(4), 407.
+
+<P>
+
+
+<BR> <B>
+<FONT SIZE = 5, COLOR ="#7393B3">
+5. APPENDIX 
+</FONT>
+</BR></B>
+
+An R Markdown file has been attached to this report. The name of the
+file is M4_Project.Rmd

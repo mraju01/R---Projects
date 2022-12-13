@@ -1,0 +1,314 @@
+title="Final Project - ALY 6010"
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+# Library Used for M3 Project
+#####################################
+library(magrittr) ## Fetching magnittr
+library(knitr)
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(summarytools)
+library(DT)
+library(kableExtra)
+```
+
+kaggle.com/datasets/uciml/autompg-dataset
+Task 2.1
+```{r message=FALSE, warning=FALSE}
+
+
+
+#### Outocome of summarytools::descr()
+###################################
+table2.1 <- mpg %>%
+    summarytools::descr() %>%
+    t()
+
+table1 <- round((table2.1), digits = 2)
+
+
+# Present the table using kableExta Package
+knitr::kable(table1,
+    caption = "Table 1: Descriptive Statistics of MPG ",
+    format = "html",
+    table.attr = "style=width: 40%",
+    font_size = 8
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+
+
+#### Outocome of psych::describe ()
+###################################
+table2.2 <- mpg %>%
+    psych::describe()
+
+table2 <- round((table2.2), digits = 2)
+
+
+# Present the table using kableExta Package
+knitr::kable(table2,
+    caption = "Table 1: Descriptive Statistics of MPG ",
+    format = "html",
+    table.attr = "style=width: 40%",
+    font_size = 8
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+```
+
+Task 2.2
+
+```{r message=FALSE, warning=FALSE}
+
+
+unique(mpg$cyl)
+
+# Using mpg data set
+# Plot and observe relationship between engine size and displ
+# Start by grouping by the different engine sizes
+
+detach(package:plyr)
+table2.2 <- mpg %>%
+    group_by(CylinderSize = cyl) %>%
+    summarise(
+        Mean = mean(displ),
+        SD = sd(displ),
+        Minimum = min(displ),
+        Maximum = max(displ)
+    )
+
+table2.2 %>%
+    kable(
+        align = "c",
+        caption = "Table 2: Descriptive values of displacement per cylinders",
+        format = "html",
+        digits = 2,
+        table.attr = "style='width:60%;'"
+    ) %>%
+    kable_classic_2(
+        bootstrap_options = c("hover", "bordered", "condensed"),
+        html_font = "Cambria",
+        position = "center",
+        font_size = 12
+    ) %>%
+    add_header_above(c(" " = 1, "Displacement" = 4))
+```
+
+Task2.3
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+
+# Creating table for r value
+
+n2.3 <- length(mpg$displ)
+
+YDisplacement <- c(mpg$displ)
+
+XCylinder <- c(mpg$cyl)
+
+XY <- c(XCylinder * YDisplacement)
+
+X_Square <- c(XCylinder^2)
+
+Y_Square <- c(YDisplacement^2)
+
+
+Table2.3 <- matrix(c(XCylinder, YDisplacement, XY, X_Square, Y_Square),
+    nrow = n2.3,
+    byrow = FALSE
+)
+
+
+## Naming Columns and Row Names in Table#######
+colnames(Table2.3) <- c("Cylinder", "Displacement", "Cylinder*Displacement", "Square of Cylinder", "Square of Displacement") # nolint
+
+
+# Table Creation of of Matrix Using Knitr Package##################
+######################################################
+Table2.3 %>%
+    head() %>%
+    knitr::kable(
+        caption = "Table : Descriptive Statistics of Sleep Quality",
+        format = "html"
+    ) %>%
+    kable_material_dark(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+
+# Creating Objects for Calculation of R
+SumXCylinder <- sum(XCylinder)
+SumYDisplacement <- sum(YDisplacement)
+SumXY <- sum(XY)
+SumX_Square <- sum(X_Square)
+SumY_Square <- sum(Y_Square)
+
+
+correlationDisplCyl <- ((n2.3 * SumXY) - ((SumXCylinder) * (SumYDisplacement))) / sqrt(((n2.3 * SumX_Square) - (SumXCylinder^2)) * ((n2.3 * SumY_Square) - (SumYDisplacement^2)))
+
+correlationDisplCyl
+
+determinationDisplCyl <- correlationDisplCyl^2
+determinationDisplCyl
+
+correlation <- cor(mpg$displ, mpg$cyl)
+correlation
+```
+
+Task 2.4
+
+
+
+
+Task 2.5
+```{r message=FALSE, warning=FALSE}
+
+XDisplacement <- c(mpg$displ)
+
+YCylinder <- c(mpg$cyl)
+
+linearReg <- lm(YCylinder ~ XDisplacement)
+
+SumData <- summary(linearReg)
+SumData
+names(SumData)
+
+SumData$coefficients
+
+Intercept <- SumData$coefficients[[1]]
+Intercept
+Slope <- SumData$coefficients[[2]]
+Slope
+
+
+paste("The linear regression equation for YCyclinder = ", round(Intercept, digits = 3), "+", round(Slope, digits = 3), "*", "XDisplacement")
+```
+
+Task 2.6
+
+```{r message=FALSE, warning=FALSE}
+
+YDisplacement <- c(mpg$displ)
+
+XCylinder <- c(mpg$cyl)
+
+linearReg <- lm(YDisplacement ~ XCylinder)
+SumData <- summary(linearReg)
+SumData
+names(SumData)
+
+SumData$coefficients
+
+Intercept2.6 <- SumData$coefficients[[1]]
+Intercept2.6
+Slope2.6 <- SumData$coefficients[[2]]
+Slope2.6
+
+
+plot(
+    YDisplacement ~ XCylinder,
+    pch = 4,
+    xlim = c(0, 8),
+    ylim = c(-2, 8)
+)
+
+abline(linearReg, col = "#99004C", lty = 1, lwd = 1)
+abline(v = 0, lwd = 2)
+abline(h = 0, lwd = 2)
+abline(h = Intercept2.6)
+abline(h = mean(YDisplacement), col = "Yellow")
+abline(h = median(YDisplacement), col = "Purple")
+
+
+# Add text to the line later
+```
+
+Task 2.7 
+```{r message=FALSE, warning=FALSE}
+
+YDisplacement <- c(mpg$displ)
+
+XCylinder <- c(mpg$cyl)
+
+YDisplacementPedict <- Intercept2.6 + (XCylinder * Slope2.6)
+
+Residual <- YDisplacement - YDisplacementPedict
+
+
+Table2.7 <- matrix(c(XCylinder, YDisplacement, YDisplacementPedict, Residual),
+    nrow = n2.3,
+    byrow = FALSE
+)
+
+
+## Naming Columns and Row Names in Table#######
+colnames(Table2.7) <- c("Cylinder", "Displacement", "Predicted Value of Y", "Residual")
+
+
+# Table Creation of of Matrix Using Knitr Package##################
+######################################################
+Table2.7 %>%
+    head(20) %>%
+    knitr::kable(
+        caption = "Table : Descriptive Statistics of Sleep Quality",
+        format = "html"
+    ) %>%
+    kable_material_dark(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+```
+
+Task 2.8
+
+```{r message=FALSE, warning=FALSE}
+
+# "Create the vector for Frequency, Cumulative Frequency, Percentage, Cumulative Percentage
+
+Table2.8 <- mpg$cyl %>%
+    table() %>%
+    as.data.frame() %>%
+    rename(Column1 = Freq) %>%
+    mutate(
+        Column2 = cumsum(Column1),
+        Column3 = (Column1 / nrow(mpg)) * 100,
+        Column4 = cumsum(Column3)
+    )
+
+
+# Present the table"
+knitr::kable(Table2.8,
+    digits = 2,
+    caption = "Frequency and Percentage Tabele for Cylinder Size",
+    col.names = c("Cylinder Size", "Frequency", "Cumulative Frequency", "Percentage", "Cumulative Percentage"),
+    format = "html",
+    table.attr = "style=width: 40%", align = "c"
+) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+    kable_classic(full_width = TRUE, position = "center", font_size = 12)
+```

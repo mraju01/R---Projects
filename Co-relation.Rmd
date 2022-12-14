@@ -1,0 +1,130 @@
+
+
+```{r}
+
+data <- cars
+
+
+Ydistance <- cars$dist
+XSpeed <- cars$speed
+
+# Y should be
+
+plot(Ydistance ~ XSpeed)
+
+
+coorelationXY <- cor(Ydistance, XSpeed)
+coorelationXY
+
+determinationXY <- coorelationXY^2
+determinationXY
+
+OtherFactors <- 1 - determinationXY
+OtherFactors
+
+
+
+linearReg <- lm(Ydistance ~ XSpeed)
+
+SumData <- summary(linearReg)
+SumData
+names(SumData)
+
+SumData$coefficients
+
+SumData$coefficients[[1]]
+
+
+
+
+
+plot(Ydistance ~ XSpeed,
+    xlim = c(0, 25),
+    ylim = c(-50, 50)
+)
+abline(linearReg)
+abline(v = 0)
+abline(h = 0)
+abline(h = -17.579, col = "red")
+```
+
+
+```{r}
+linearReg <- lm(Ydistance ~ XSpeed)
+```
+
+
+```{r}
+x <- sqrt(0.298)
+x
+
+y <- x^2
+y
+```
+Know your tools
+
+```{r}
+A <- c(1, 2)
+B <- c(3, 4)
+C <- c(5, 6)
+
+D <- c(A, B, C)
+
+E <- matrix(D, nrow = 3, byrow = TRUE)
+
+E
+
+t <- qt(0.01 / 2, 17)
+t
+```
+
+<FONT RED><B>WORD</B></FONT>
+
+<FONT SIZE = 3, color="red"><Bold>WORD</B></FONT>
+
+<COLOR="red"><B>WORD</B></COLOR>
+
+<FONT SIZE = 3, color="red"><B>WORD</B></FONT>
+
+<FONT SIZE = 3, color="red">WORD</FONT>
+
+<FONT SIZE = 3, color="red"><B>WORD</B></FONT>
+
+```{r}
+x <- c(rnorm(200, mean = 55, sd = 15), rnorm(100, mean = 25, sd = 5))
+
+y <- c(rnorm(200, mean = 256, sd = 43), rnorm(100, mean = 500, sd = 80))
+
+plot(x ~ y)
+
+weight <- c(20, 22, 30, 24, 44, 75, 120, 150, 200, 80)
+x <- mean(weight)
+x
+```
+
+```{r}
+company <- c("A", "B", "C", "D", "E", "F")
+cars <- c(63, 29, 20.8, 19.1, 13.4, 8.5)
+income <- c(7, 3.9, 2.1, 2.8, 1.4, 1.5)
+
+n <- length(company)
+
+r <- cor(income, cars)
+r
+
+alpha <- 0.05
+
+t_left <- qt(alpha / 2, n - 1)
+t_right <- qt(1 - (alpha / 2), n - 1)
+t_left
+t_right
+
+testValue <- r * sqrt((n - 2) / (1 - r^2))
+
+testValue
+
+paste("Can we reject the null hypothesis based on test value", testValue > t_right)
+
+pvalue <- 2 * pt(testValue, n - 1, lower.tail = FALSE)
+pvalue
+```

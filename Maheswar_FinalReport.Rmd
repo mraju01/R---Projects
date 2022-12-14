@@ -304,11 +304,168 @@ Table2.8 <- mpg$cyl %>%
 # Present the table"
 knitr::kable(Table2.8,
     digits = 2,
-    caption = "Frequency and Percentage Tabele for Cylinder Size",
+    caption = "Frequency and Percentage Table for Cylinder Size",
     col.names = c("Cylinder Size", "Frequency", "Cumulative Frequency", "Percentage", "Cumulative Percentage"),
     format = "html",
     table.attr = "style=width: 40%", align = "c"
 ) %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
-    kable_classic(full_width = TRUE, position = "center", font_size = 12)
+    kable_material(c("striped", "hover"))
 ```
+
+
+
+Task 2.9
+
+```{r message=FALSE, warning=FALSE}
+
+```
+
+Task 2.10
+
+```{r message=FALSE, warning=FALSE}
+
+```
+
+Part 3 :Multiple Regresssion
+
+
+Task 3.1
+```{r message=FALSE, warning=FALSE}
+
+patient_id <- c("PK01", "PK02", "PK03", "PK04", "PK05", "PK06", "PK07", "PK08", "PK09", "PK10", "PK11", "PK12", "PK13", "PK14", "PK15")
+Ysystolic_bp <- c(112, 156, 125, 145, 155, 162, 139, 144, 153, 126, 169, 132, 143, 153, 162)
+X1age <- c(45, 60, 55, 60, 62, 71, 57, 59, 64, 42, 75, 52, 59, 67, 73)
+X2weight <- c(135, 182, 148, 182, 190, 232, 194, 182, 217, 171, 225, 173, 184, 194, 211)
+
+linearReg3.1 <- lm(Ysystolic_bp ~ X1age + X2weight)
+
+SumData3.1 <- summary(linearReg3.1)
+
+SumData3.1
+
+names(SumData3.1)
+
+SumData3.1$coefficients
+
+Intercept3.1 <- SumData3.1$coefficients[[1]]
+
+Intercept3.1
+
+X1Slope <- SumData3.1$coefficients[[2]]
+X1Slope
+
+X2Slope <- SumData3.1$coefficients[[3]]
+X2Slope
+
+
+paste("The multiple regression equation = ", round(Intercept3.1, digits = 3), "+", round(X1Slope, digits = 3), "*", "X1age", "+", round(X2Slope, digits = 3), "*", "X2weight")
+
+
+# Correlation Cofficient of age between systolic_bp and age
+
+
+data <- data.frame(X1age, X2weight, Ysystolic_bp)
+cor(data)
+
+cor_age_systolicbp <- cor(X1age, Ysystolic_bp)
+cor_age_systolicbp
+cor_age_with_systolicbp <- cor(X1age + Ysystolic_bp, X2weight)
+cor_age_with_systolicbp
+
+
+deter_age_systolicbp <- cor_age_systolicbp^2
+
+deter_age_with_systolicbp <- cor_age_with_systolicbp^2
+
+
+# Vector Creation
+VectorCor <- c(cor_age_systolicbp, cor_age_with_systolicbp)
+VectorDeter <- c(deter_age_systolicbp, deter_age_with_systolicbp)
+
+
+# Matrix Creation for Table#####
+######################################################
+Table3.1 <- matrix(c(VectorCor, VectorDeter),
+    nrow = 2,
+    byrow = FALSE
+)
+
+
+# Rounding Digits in Matrix##################
+######################################################
+Table3.1_Rounded <- round(Table3.1, digits = 2)
+
+## Naming Columns and Row Names in Table#######
+colnames(Table3.1_Rounded) <- c("Correlation", "Determination")
+
+rownames(Table3.1_Rounded) <- c("Age~SystBP", "Age+SystBP~Weight")
+
+
+# Table Creation of of Matrix Using Knitr Package##################
+######################################################
+Table3.1_Rounded %>%
+    knitr::kable(
+        caption = "Table 2 : Descriptive Statistics of Populations and Sample 1",
+        format = "html"
+    ) %>%
+    kable_material_dark(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+
+
+MultipleR_Squared <- SumData3.1$r.squared
+
+paste("The Value of multiple R square is", round(MultipleR_Squared, digits = 2))
+
+MultipleR <- sqrt(MultipleR_Squared)
+
+paste("The Value of multiple R is", round(MultipleR, digits = 2))
+
+
+# Calculation F-Test Value
+
+n3.1 <- length(patient_id)
+k <- 2
+
+
+F_Test <- (MultipleR_Squared / k) / ((1 - MultipleR_Squared) / (n3.1 - k - 1))
+
+F_Test
+
+## Performing Hypothesis Testing is used to test the significance of R
+# The hypothesis are
+# H0 :𝜌=0 and
+# H1 :𝜌≠0
+# where 𝜌 represents the population correlation coefficient for multiple correlation.
+
+
+# Calculating the Critical Value for alpha value of 0.05
+
+## Creating Objects for calculation of critical value
+
+dfN <- n3.1 - k
+dfD <- n3.1 - k - 1
+alpha <- 0.05
+
+# Calculating the right critical value as F-test value is positive
+
+r_cv <- qf(alpha, dfN, dfD, lower.tail = FALSE)
+
+r_cv
+```
+
+
+
+SumData
+names(SumData)
+
+SumData$coefficients
+
+Intercept <- SumData$coefficients[[1]]
+Intercept
+Slope <- SumData$coefficients[[2]]
+Slope
+
+
+paste("The linear regression equation for YCyclinder = ", round(Intercept, digits = 3), "+", round(Slope, digits = 3), "*", "XDisplacement")

@@ -1,10 +1,200 @@
 title="Final Project - ALY 6010"
 
 
+<P>
+
+<BR>
+
+<CENTER>
+
+<FONT size=6, color="blue">
+**Final Project Report** </FONT>
+
+<FONT size=5, color="#F9042F">
+
+<BR>**Probability Theory and Introductory Statistics** </FONT>
+
+
+<P>
+
+<FONT size=4, color="#F94104"> ALY 6010 - 71579 </FONT>
+
+
+
+<P>
+
+<BR>
+<FONT size=5, color="#0493F9"> 
+<BR>
+**Maheswar Raju Narasaiah**
+
+<FONT size=5, color="Black"> 
+Prof: Dr. Dee Chiluiza 
+
+Date:`r format(Sys.time(), '%d %B, %Y')`
+
+</CENTER>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+1. INTRODUCTION 
+</FONT>
+</BR></B>
+
+Write a very informative introduction.
+
+Start with a little bit of history about correlation and linear regression, and the difference between correlation and determination coefficients
+
+Using your own words, inform your audience what do you understand about simple regression and multiple regression analysis. Talk about their importance and provide practical applications on the industry of your interest
+
+Explain the application of hypothesis testing in the context of regression analysis. Again, use a practical application example.
+
+Explain the importance of this final project to demonstrate all the analytical skills you gained during the class.
+
+Discuss of all the advantages of using R for data analysis.
+
+For each one of the topics, write a substantial well-informed paragraph.  and remember to use at least two different academic references for each topic.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**1.1. History of Correlation and Linear Regression, and Their Difference**
+</FONT>
+<FONT SIZE = 4>
+
+-- ***History of Correlation and Linear Regression***
+
+The concept of correlation may be dated to the early nineteenth century but the work on the binomial normal distribution through the French geologist Bravais in the middle of the 19th century was essential to its eventual definition. Whereas Francis Galton, Mendel's contemporary and Darwin's cousin, grasped the concept of correlation implicit in the bivariate normal density function, the mathematical formulation was left to Pearson years later. Galton got the notion using data on n=934 children from m=205 families, with p=4 variables: daughter's height Y1, son's height Y2, mother's height X1, and father's height X2. For the time being, we will disregard the fact that the families have several children, ranging from one to fifteen; we will revisit to this issue and how to deal with it later.
+
+Galton boosted all female heights by 8%, recognizing that the link between kid and parent had to be for a single population, and that there were actually two populations, males and females. Then, in order to have only one value for each parent, he calculated "midparent" averages X=12(X1+X2) using the incremented values of X1. His research resulted in the development of linear regression as well as an initial estimate of the slope of children's heights in relation to midparents' heights as roughly 2/3 and of the correlations as approximately 1/2.
+
+Figure 1 shows scatterplots of children's heights versus those of their midparents. (Left) Original children's heights, with ellipses encompassing 95% of the spots in each case. Simple linear regression analysis through each group of points are represented by dashed lines. (Right) The same plot with adjusted heights for the daughters, with ellipses and regression lines nearly identical. The overall group's computed slope is 0.713, and the correlations is 0.497.
+
+
+```{r message=FALSE, warning=FALSE}
+knitr::include_graphics("Screenshot 2022-12-16 at 1.11.10 PM.png")
+```
+
+In Fig. 1, the heights Y1 and Y2 of both the daughters and sons are plotted versus the midparents' heights X, and then on the right, the plot with the daughters' heights adjusted up, revealing that the two trying to cover ellipses (covering 95% of the points in each case) are practically identical, as are the two regression lines. The notion that Galton was working with two data sets is plainly seen on the left, and the merger into one population is shown to be quite successful on the right, thanks to the 8% modification of the daughters' heights. This "single population" data set's actual computed slope is 0.713, which is marginally greater than 2/3, and the coefficient of correlation is 0.497, which is extremely near to 1/2. The connection between daughters' and midparents' heights is 0.513, while the correlation between sons' and midparents' heights is 0.483.
+
+Several years later, Karl Pearson, using the bivariate normal distribution, constructed the correlation coefficient in its famous form in terms of the covariance and two variances: rxy=Sxy/SxxSyy, and conducted his own research of the parent-child relationship in heights, yielding an estimated slope of 0.52 and a correlation of 0.51.
+Galton's work "Regression towards mediocre in hereditary stature," from whence the name regression derives, was inspired by the fact that the slope was less than one. The regression model can predict, for example, that changes such as increased parents would've had taller-than-average offspring, but their heights were closer to the average then their parents, i.e., there was a "regression to the mean".
+
+
+-- ***Difference Between Correlation And Determination Coefficients***
+
+The correlation coefficient between two data sets reflects the strength of their link. The values range from -1 to 1, with -1 being the least and 1 being the highest. The negative number indicates that one data increases followed by another data decreases, whereas the positive value indicates that both data increase or decrease simultaneously.
+
+The determination coefficient is the correlation coefficient squared, hence the value is always positive and the highest value is 1. This figure reflects the proportion of a data's variation that can be explained by another data.
+
+For example, if two data sets A and B have a correlation coefficient of 0.7, then A relates pretty well to B, with increasing values of A followed by increasing values of B and vice versa.
+
+The determination coefficient is 0.49, which is the squared correlation coefficient. It means that B determines the fluctuation of the data in A 49% and vice versa. In other words, the remaining 51% could be determined by other factors.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**1.2. Importance and Application of Simple and Multiple Regression**
+</FONT>
+<FONT SIZE = 4>
+
+-- ***Importance of Simple and Multiple Regression***
+
+The advantages of regression analysis are numerous: The regression method of forecasting is used for forecasting and determining the causal link between variables, as the name implies. The benefits of linear regression, which is a process for modeling the value of one variable on the value(s) of one or more other variables, are an important related, almost equivalent idea.
+
+The significance of regression analysis stems from the fact that it is all about data: data consists of numbers and figures that characterize your business. The benefits of regression analysis include the ability to crunch the data to assist you make better decisions for your organization now and in the future. The regression forecasting method entails investigating the correlations between data points, which can assist you in:
+
+- Forecast weather in the short and long term.
+- Recognize inventory levels.
+- Recognize both supply and demand.
+- Examine and comprehend how various variables affect every one of these things.
+
+-- ***Application of Simple and Multiple Regression in Manafacturing and Retail***
+
+Organizations have gathered a vast quantity of complex data over time, which can yield invaluable amounts of fresh insights. Unfortunately, without the proper analysis, this data is useless. Regression analysis can reveal a relationship between numerous variables by revealing patterns that were previously overlooked. "For example, examination of data from point of sale systems and purchase accounts may show reveal trends like increase in demand on specific days of the week or at certain seasons of the year. By recognizing these insights, you can maintain appropriate supply and staff before an increase in demand occurs."
+
+- Manafacturing
+
+Efficiency of operation: Big Industrial Plant can use regression analysis to optimize their processes. A manufacturing manager, for example, might use regression analysis to determine the effect of new cooling system on new microprocessor made in those plant, such as how long their speed might be. 
+
+- Retail
+
+Regression analysis is useful not only for generating information for decision making, in addition to identifying judgment errors. For example, store executives may believe that expanding after-hours shopping will enhance profits. Regression analysis, on the other hand, examines all of the variables that surround this action and may indicate that supporting the rise in operating expenditures due to extended working hours (such as more worker labor charges) will considerably reduce profit. Regression analysis gives quantitative support for judgments and helps to avoid mistakes caused by intuition.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**1.3. Application of Hypothesis Testing In The Context of Regression Analysis**
+</FONT>
+<FONT SIZE = 4>
+
+The Hypothesis testing is used to check the significance of correlation Cofficient. The correlation coefficient (r) has a range of + 1 to 1. There is a strong linear association when r is close to +1 or -1. When r is close to zero, the linear relation is weak or non-existent. Since the value of r is computed from data gathered from samples, there are two alternatives when r is not equal to zero: either the value of r is high enough to determine that there is a substantial linear connection between the variables, or the value of r is due to chance. In order to determine the connection between the response and predictor factors, we must rely on hypothesis testing to make that decision.
+
+Here is stated hypthesis statement that we use for simple regression:
+
+H0: 𝜌 = 0 - This null hypothesis means that there is no correlation between the x and y variables in the population. 
+
+H1: 𝜌 ≠ 0 - This alternative hypothesis means that there is a significant correlation between the variables in the population.
+
+When the null hypothesis is dismissed at a certain confidence interval, it indicates that there is a substantial difference between r and 0. When the null hypothesis is not rejected, the value of r is not substantially different from 0 (zero) and is most likely due to chance.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**1.4. Importance Of Final Project To Demonstrate All The Analytical Skills You Gained During The Class**
+</FONT>
+<FONT SIZE = 4>
+
+Below are the three most important analytical skills I would like to develop in my career.
+
+a. Critical Thinking - Critical thinkers can look at a problem or scenario and understand how and why the problem exists (Gil, 2016). The ability to understand the full scope of the problem is the first important step toward developing effective solutions.
+
+b. Tenacity - Not all problems are straightforward, especially in the world of data science. Many challenges have multiple layers, each with its complex nature. Sometimes, this complexity and lack of a simple linear track can cause people to give up. Strong analytical skills mean seeing beyond one issue at a time to develop a more cohesive view of a problem's complexity.
+
+c. Attention to Detail - When handling large sets of data, it’s easy to overlook details that might be essential to a project's outcome. Successful data scientists analyze mountains of information and use their ability to pay attention to detail to identify and use the most important data sets.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**1.5. Advantages Of Using R For Data Analysis**
+</FONT>
+<FONT SIZE = 4>
+
+<B>
+  A. R is a statistical programming language.</B>
+
+R was created by statisticians to perform statistical study, and it is still the computer language of choice for most statisticians today. The syntax of R makes it simple to design complicated statistical models with a few lines of code. You should be able to find support for any statistical study you need to do because so many statisticians use and contribute to R packages.
+
+R is the data and statistical analysis language of choice in many academic settings for obvious reasons. If you want to work in academia, or if you just like to read scholarly papers and then dig into the code behind them, knowing R programming is a requirement.
+
+<B>
+  B. R is a prominent data science language used by leading technology companies. </B>
+   
+The majority of them recruit R data scientists. For example, Facebook employs R to conduct behavioral analysis on user post data. R is used by Google to evaluate ad effectiveness and produce economic forecasts. R is used by Twitter for graphs and charts and semantic clustering. Microsoft, Uber, AirBnB, IBM, and HP all employ data scientists that can code in R.
+
+R is used at analytic and consulting organizations, banks and other financial institutions, academic institutions and research labs, and pretty much anywhere else data needs analyzing and visualizing. R is even used by the New York Times!
+
+<B>
+  C. Learning the fundamentals of data science is perhaps easier in R.</B>
+   
+Python is one of the most user-friendly programming languages for beginners, but once you get over the syntax, R has a significant advantage: it was built expressly for data processing and analysis.
+
+As a result, once you've mastered the fundamentals, mastering the main skills of data science - manipulating data, visualization of data, and machine learning - can actually be simpler in R. Take a look at how simple it is to construct some standard data visualization techniques with R.
+
+There's also the tidyverse, a collection of packages designed expressly to make the data work in R faster, simpler, and more accessible. In fact, that is a clear advantage in and of itself.
+
+<B>
+  D. Fantastic packages that will make your life easier.</B>
+   
+R offers a superb ecosystem of packages and other tools for data science because it was created with statistical data in mind. The dplyr package, for example, makes data processing simple, while ggplot2 is an excellent data visualization tool.
+
+These modules are part of the tidyverse, a shall be designed and constructed of packages managed by RStudio, a B-corp that also produces the free-to-use R environment of the same name, which is ideal for data work. These packages are powerful, simple to use, and well-documented.
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+2. ANALYSIS OF SIMPLE REGRESSION 
+</FONT>
+</BR></B>
 
 ```{r message=FALSE, warning=FALSE}
 
-# Library Used for M3 Project
+# Library Used for Final Project
 #####################################
 library(magrittr) ## Fetching magnittr
 library(knitr)
@@ -19,51 +209,91 @@ library(ggplot2)
 library(summarytools)
 library(DT)
 library(kableExtra)
+library(DescTools)
+library(qcc)
 ```
 
-kaggle.com/datasets/uciml/autompg-dataset
-Task 2.1
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.1. Description about MPG Data Set**
+</FONT>
+
+<FONT SIZE = 4>
+
+In this section, I am going to present some descriptive statistics and visualization from our lizard Data Set
+
+The mpg dataset is included in the Tidyverse. We notice the following in the help file, which you can access by typing help(mpg) or?mpg:
+
+This dataset contains a portion of the fuel economy data made accessible by the EPA at http://fueleconomy.gov. It only includes models that were released each year between 1999 and 2008 - this was used as a proxy for the car's popularity.
+
+A 234-row data frame with 11 variables.
+
+This dataset provides fuel economy data from 1999 and 2008 for 38 popular models of cars. The dataset is shipped with ggplot2 package.
+</FONT>
+
+| Variable     | Type    | Description                   | Details                                         |
+| ------------ | ------- | ----------------------------- | ----------------------------------------------- |
+| manufacturer | string  | car manufacturer              | 15 manufacturers                                |
+| model        | string  | model name                    | 38 models                                       |
+| displ        | numeric | engine displacement in liters | 1.6 - 7.0, median: 3.3                          |
+| year         | integer | year of manufacturing         | 1999, 2008                                      |
+| cyl          |         | number of cylinders           | 4, 5, 6, 8                                      |
+| trans        | string  | type of transmission          | automatic, manual (many sub types)              |
+| drv          | string  | drive type                    | f, r, 4, f=front wheel, r=rear wheel, 4=4 wheel |
+| cty          | integer | city mileage                  | miles per gallon                                |
+| hwy          | integer | highway mileage               | miles per gallon                                |
+| fl           | string  | fuel type                     | 5 fuel types (diesel, petrol, electric, etc.)   |
+| class        | string  | vehicle class                 | 7 types (compact, SUV, minivan etc.)            |
+
+
+
 ```{r message=FALSE, warning=FALSE}
 
 
 
-#### Outocome of summarytools::descr()
+#### Outcome of summarytools::descr()
 ###################################
 table2.1 <- mpg %>%
-    summarytools::descr() %>%
-    t()
+    summarytools::descr()
 
+
+# Rounding off the digits in Table
 table1 <- round((table2.1), digits = 2)
 
 
 # Present the table using kableExta Package
 knitr::kable(table1,
-    caption = "Table 1: Descriptive Statistics of MPG ",
+    caption = "Table 1: Descriptive Statistics of MPG Using
+    Code summarytools::descr() ",
     format = "html",
-    table.attr = "style=width: 40%",
-    font_size = 8
+    table.attr = "style=width: 100%"
 ) %>%
     kable_styling(bootstrap_options = c(
         "striped", "hover",
         "condensed", "responsive"
     )) %>%
     kable_classic(
-        full_width = F,
+        full_width = T,
         html_font = "Times New Roman"
     )
+
 
 
 #### Outocome of psych::describe ()
 ###################################
 table2.2 <- mpg %>%
-    psych::describe()
+    psych::describe() %>%
+    t()
 
-table2 <- round((table2.2), digits = 2)
+
+# Rounding off the digits in Table
+table2 <- round((table2.2), digits = 1)
 
 
 # Present the table using kableExta Package
 knitr::kable(table2,
-    caption = "Table 1: Descriptive Statistics of MPG ",
+    caption = "Table 2: Descriptive Statistics of MPG Data Set Using
+    Code psych::describe () ",
     format = "html",
     table.attr = "style=width: 40%",
     font_size = 8
@@ -78,20 +308,38 @@ knitr::kable(table2,
     )
 ```
 
-Task 2.2
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+
+- As we can observe from Table 1, code descr() in summary tools package is used to generates descriptive statistics, i.e. some major measures of central tendency statistics and measures of dispersion or spread. It accepts single vectors as well as data frames in it's analysis; in the latter case, and all the variable with non-numerical values. This is specailly useful when there are lot of columns, this code can be used to filter out the columns with numeriacl values and their desciptive statistics.
+- When we look at table 2, we can observe that code psych::describe () can be used for data analysis to generate desciptive statistics, one difference we can notice that it includes all the columns irrespective of if it's values are numerical or character. It marks all the columns with non-numerical values with asterisk at the end of variable name. It has a useful function for descriptive statistics for numerical variables: describe(). The generic form is: describe(x, na.rm = TRUE, interp = FALSE, skew = TRUE, ranges = TRUE, trim = .1, type = 3, check = TRUE).
+x stands for the data frame or the variable to be analyzed (df$variable).
+- We can see that there are no null values in data set by looking N.Valid Results. And the standard deviation for higway mileage is highest.
+- The variable with highest skewness and kurtosis is city mileage. 
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.2. Description Statistics Of Displacement Based on Cylinder Size**
+</FONT>
+<FONT SIZE = 4>
+
+In this task, we are going to present the desciptive statistics of displacement based on number of cyclinder present in the automobile.
+
 
 ```{r message=FALSE, warning=FALSE}
 
 
-unique(mpg$cyl)
-
-# Using mpg data set
-# Plot and observe relationship between engine size and displ
-# Start by grouping by the different engine sizes
+# Start by grouping by the different cylinder sizes
 
 detach(package:plyr)
 table2.2 <- mpg %>%
-    group_by(CylinderSize = cyl) %>%
+    group_by(Cylinder_Count = cyl) %>%
     summarise(
         Mean = mean(displ),
         SD = sd(displ),
@@ -99,32 +347,52 @@ table2.2 <- mpg %>%
         Maximum = max(displ)
     )
 
+
+# Present the table using kableExta Package
 table2.2 %>%
     kable(
         align = "c",
-        caption = "Table 2: Descriptive values of displacement per cylinders",
+        caption = "Table 2.2: Descriptive Statistics of Displacement Based on Number of Cylinders",
         format = "html",
         digits = 2,
-        table.attr = "style='width:60%;'"
+        table.attr = "style='width:100%;'"
     ) %>%
     kable_classic_2(
         bootstrap_options = c("hover", "bordered", "condensed"),
         html_font = "Cambria",
         position = "center",
-        font_size = 12
+        font_size = 15
     ) %>%
     add_header_above(c(" " = 1, "Displacement" = 4))
 ```
 
-Task2.3
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
 
+***Observations***
 
+</FONT>
+
+- Before presenting my observation, I would like to explain what is engine displacement? Why it is measured in liters?. Engine displacement is defined as the total volume of air/fuel mixture an engine can draw in during one
+complete engine cycle; it is normally stated in cubic inches, cubic centimeters, or litres. In a piston engine,
+this is the volume that is swept as the pistons are moved from top dead center to bottom dead center. Displacement is equal to the volume of combustible air/fuel mixture ingested during one cycle of all the
+cylinders at 100% volumetric efficiency. 
+- We can observe from Table 2.2 that automobile with 8 cyclinders in them has most highest mean of displacement of 5.13.  High Engine displacement means an engine can move more air and fuel, so it means engines with more cylinder has the potential to make more power.
+- The automobiles with 5 cylinder has zero standard deviation,  this means that every automobile with 5 cylinders in the sample is the exact same displacement.
+- The vehicles with less cyclinders have less displacement which means they generate less power as compared to vehicle with more cyclinders, that's why we see that as the cylinders are increasing the mean, min and max value of displacement is increasing.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.3. Correlation and Determination Between Displacement and Cylinders**
+</FONT>
+<FONT SIZE = 4>
+
+In this section, we are going to find out coffiecient of correlation and coffiecient of determination between displacement and cylinders to check the relationship between these two variables.
+
+Then, we are going to present the values using inline R code and make some observation.
 
 ```{r message=FALSE, warning=FALSE}
 
-
-# Creating table for r value
-
+# Creating Objects for Table
 n2.3 <- length(mpg$displ)
 
 YDisplacement <- c(mpg$displ)
@@ -138,6 +406,7 @@ X_Square <- c(XCylinder^2)
 Y_Square <- c(YDisplacement^2)
 
 
+# Presenting the table for calculating for R value
 Table2.3 <- matrix(c(XCylinder, YDisplacement, XY, X_Square, Y_Square),
     nrow = n2.3,
     byrow = FALSE
@@ -148,12 +417,12 @@ Table2.3 <- matrix(c(XCylinder, YDisplacement, XY, X_Square, Y_Square),
 colnames(Table2.3) <- c("Cylinder", "Displacement", "Cylinder*Displacement", "Square of Cylinder", "Square of Displacement") # nolint
 
 
-# Table Creation of of Matrix Using Knitr Package##################
+# Table Creation of of Matrix Using Knitr Package ##################
 ######################################################
 Table2.3 %>%
     head() %>%
     knitr::kable(
-        caption = "Table : Descriptive Statistics of Sleep Quality",
+        caption = "Table 2.3. : Presenting values which are needed for calculation of R ",
         format = "html"
     ) %>%
     kable_material_dark(
@@ -161,7 +430,7 @@ Table2.3 %>%
         html_font = "Times New Roman"
     )
 
-# Creating Objects for Calculation of R
+# Calculating the sum of all individual columns for Calculation of R
 SumXCylinder <- sum(XCylinder)
 SumYDisplacement <- sum(YDisplacement)
 SumXY <- sum(XY)
@@ -169,113 +438,278 @@ SumX_Square <- sum(X_Square)
 SumY_Square <- sum(Y_Square)
 
 
+# Calculating the R using the formula
 correlationDisplCyl <- ((n2.3 * SumXY) - ((SumXCylinder) * (SumYDisplacement))) / sqrt(((n2.3 * SumX_Square) - (SumXCylinder^2)) * ((n2.3 * SumY_Square) - (SumYDisplacement^2)))
 
-correlationDisplCyl
 
+## Presenting the Value of coefficients of correlation
+paste("The coefficients of correlation between displacement and cylinders is", round(correlationDisplCyl, digits = 3))
+
+# Calculating the Value of coefficients of determination
 determinationDisplCyl <- correlationDisplCyl^2
-determinationDisplCyl
 
-correlation <- cor(mpg$displ, mpg$cyl)
-correlation
+
+## Presenting the Value of Determination
+paste("The coefficients of determination between displacement and cylinders is", round(determinationDisplCyl, digits = 3))
 ```
 
-Task 2.4
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+</FONT>
+
+- The correlation coefficient between the displacement and no. of cylinders is 0.93. The linear correlation coefficient indicates a strong positive relationship between the two variables. 
+- In this case, as the value of cylinder (independent variable) increase, displacement (dependent variable) increases, and vice versa. That's we observed in our observation Task 2.2., but after the checking the correlation we can clearly say that the is strong postive linear relation betweemn them.
+- The coefficient of determination between the cylinders and displacement is 0.865. Hence about, 86.5% of the variation in displacement can be explained by the linear relationship between the frequency of cylinders count and displacement.  The coefficient of determination is the measure of the variation of the dependent variable that is explained by the regression line and independent variable
+- About 1-0.865 or 0.135 or 13.5% (coefficient of non-determination) of the variation of displacement cannot be explained by the variation in cylinder size and it can be explained by other factors.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.4. Description of DescTools library and It's Results**
+</FONT>
+<FONT SIZE = 4>
+
+In this task we are to explain about DescTool and it's utilities for data analysis. Then, using this library, we are going to analyze the Highway mileage and City Mileage and present the observation below:
+
+a.	Using your own words, describe the DescTools library and its utilities for your work. Use at least 2 references.
+
+-- **Description Of DescTools library**
+
+DescTools is an extensive assortment of various basic statistical functions and convenience wrappers not available in R-based systems for efficiently describing data. The author's intention is
+Create a toolbox that facilitates the (notoriously time consuming) task of writing data first
+Analysis consisting of computing descriptive statistics, generating graphical summaries, and creating reports
+result. Particular attention was paid to the integration of different computational approaches
+of confidence intervals. Most basic statistical functions have variants included and ready to use
+of weight. This package includes MS Word (or PowerPoint) and functions for importing data from Excel. A good portion of the included functionality is scattered across other packages and other packages.
+Source written in part by Titans of R. The reason why we gathered here in the first place
+They are consolidated into one instead of dozens of packages (the packages themselves may depend on other packages).
+packages you don't need at all) and to provide as uniform and consistent an interface as possible. 
+
+It involves naming functions and arguments, NA handling, recycling rules, etc. Google style
+A guide was used as a naming convention (in the absence of a compelling alternative). "camel style"
+As a result, it also applies to functionality borrowed from provided R packages. The DescTools R package provides tools for basic statistics and convenience wrappers for an efficient data description tools that analyze data with robust methods. This includes methodology for model selection and multivariate statistics.
+
+A list containing the following components:
+
+
+| Component | Details                                                                                                     |
+| --------- | ----------------------------------------------------------------------------------------------------------- |
+| length    | the length of the vector (n + NAs).                                                                         |
+| n         | the valid entries (NAs are excluded)                                                                        |
+| NAs       | number of NAs                                                                                               |
+| unique    | number of unique values.                                                                                    |
+| 0s        | number of zeros                                                                                             |
+| mean      | arithmetic mean                                                                                             |
+| MeanSE    | standard error of the mean, as calculated by MeanSE.                                                        |
+| quant     | a table of quantiles, as calculated by quantile(x, probs = c(.05,.10,.25,.5,.75,.9,.95), na.rm = TRUE).     |
+| sd        | standard deviation                                                                                          |
+| vcoef     | coefficient of variation: mean(x) / sd(x)                                                                   |
+| mad       | median absolute deviation (mad)                                                                             |
+| IQR       | interquartile range                                                                                         |
+| skew      | skewness, as calculated by Skew.                                                                            |
+| kurt      | kurtosis, as calculated by Kurt.                                                                            |
+| highlow   | the lowest and the highest values, reported with their frequencies in brackets, if > 1.                     |
+| frq       | a data.frame of absolute and relative frequencies given by Freq if maxlevels > unique values in the vector. |
 
 
 
-
-Task 2.5
 ```{r message=FALSE, warning=FALSE}
 
-XDisplacement <- c(mpg$displ)
 
-YCylinder <- c(mpg$cyl)
-
-linearReg <- lm(YCylinder ~ XDisplacement)
-
-SumData <- summary(linearReg)
-SumData
-names(SumData)
-
-SumData$coefficients
-
-Intercept <- SumData$coefficients[[1]]
-Intercept
-Slope <- SumData$coefficients[[2]]
-Slope
-
-
-paste("The linear regression equation for YCyclinder = ", round(Intercept, digits = 3), "+", round(Slope, digits = 3), "*", "XDisplacement")
+# Using code DescTools::Desc for analysis highway miles per gallon
+DescTools::Desc(mpg$hwy, main = "Figure 1: Highway Miles Per Gallon", xlab = "Miles")
 ```
 
-Task 2.6
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations of Figure 1: Highway Miles Per Gallon ***
+</FONT>
+
+- We can observe from Figure 1: Highway Miles Per Gallon, that it is continuous numerical variable after looking at 1st graphs of density, also we can notice that it has bimodal distribution, where there are two distinct values or bins that contain more data than the others, usually separated by a gap. It is characterized by two peaks or humps rather than the more common single peak which characterizes the normal distribution and most other standardized distributions.
+- Also, we can notice that the data is slightly negatively skewed when we look at value we received after apply desc() function, as we can mean is 23.44 and median is 24.00.
+- Also, we can notice from the second graph of boxplot that shows that there are only 3 outliers in hwy and our data from 1st Quartile to 3rd Quartile lies in between 18 and 76 miles, and the lowest and highest value are 12 and 44 respectively.
 
 ```{r message=FALSE, warning=FALSE}
 
+
+# Using code DescTools::Desc for analysis city miles per gallon
+DescTools::Desc(mpg$cty, main = "Figure 2: City Miles Per Gallon")
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations of Figure 2: City Miles Per Gallon***
+</FONT>
+
+- We can observe from Figure 2: City Miles Per Gallon, that it is continuous numerical variable after looking at 1st graphs of density, also we can notice that it is has having nearly perfect normal distribution curve, which means that it symmetric around their mean. The mean, median, and mode of a normal distribution are near to each other. 
+- Also, we can notice that the data is slightly negatively skewed when we look the density graph closely, also we verify this by checking the value of mean which is 16.86 and median is 17.00.
+- Also, we can notice from the second graph of boxplot that shows that there are only 5 outliers in plot and our data from 1st Quartile to 3rd Quartile lies in between 14 and 19 miles, and the lowest and highest value are 9 and 35 respectively.
+- We can clearly see the automobiles can cover more miles per gallon of fuel when it's on highway when compared to driving in city, because of many factors like less traffic, less traffic signals, less pedestrian crossing, etc.
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.5. Linear Regression Between Cylinders (Dependent) and Displacement (Independent)**
+</FONT>
+<FONT SIZE = 4>
+
+In this task, we are going to find out the linear regression betweeen the Cylinders (Dependent) and Displacement (Independent). We are going to first an object to store the linear regression values and then we are going to store the summary of the regression in another object. And then from there we are going to extract the value of slope and intecept from this object. 
+
+
+```{r message=FALSE, warning=FALSE}
+
+# Creating Objects for Analysis
 YDisplacement <- c(mpg$displ)
-
 XCylinder <- c(mpg$cyl)
 
+
+# Using the linear Regression Formula
 linearReg <- lm(YDisplacement ~ XCylinder)
+
+# Creatinng an object to store the summary of the linear regression
 SumData <- summary(linearReg)
-SumData
-names(SumData)
 
-SumData$coefficients
+# Storing the intercept and slope value in object
+Intercept <- SumData$coefficients[[1]]
+Slope <- SumData$coefficients[[2]]
 
-Intercept2.6 <- SumData$coefficients[[1]]
-Intercept2.6
-Slope2.6 <- SumData$coefficients[[2]]
-Slope2.6
+# Presenting the Linear Regression Value
+paste("The linear regression formula between cylinders (dependent) and displacement (independent) is Y'(Cylinder) = ", round(Intercept, digits = 3), "+", round(Slope, digits = 3), "*", "x(Displacement)")
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+</FONT>
+
+- The linear regression equation we obtained is y' = -0.92 + 0.746 * x, which describes the relationship between the independent variables (Cylinder) and the dependent variable (displacement). It can also predict new values of the displacement for the cylinders values you specify.
+- Here from the equation, we can see that our regression line is intercepting the y-axis at -0.92 and the slope of the line is 0.746.
+- The regression line is drawn through these spots to reduce their overall distance from the line. More specifically, least squares regression minimizes the total of the squared differences between the data points and the line, also known as the sum of squared errors by statisticians (SSE).
 
 
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.6. Scatter Plot Between Cylinders (Dependent) and Displacement (Independent)**
+</FONT>
+<FONT SIZE = 4>
+
+
+In this task, we are going to draw a scatter to study the relationship betweeen the Cylinders (independent) and Displacement (dependent). Then we are going to add the regression line, mean and median to the plot to add more details.
+
+```{r message=FALSE, warning=FALSE}
+
+# Creating Objects for Analysis
+YDisplacement <- c(mpg$displ)
+XCylinder <- c(mpg$cyl)
+
+
+# Using the linear Regression Formula
+linearReg2.6 <- lm(YDisplacement ~ XCylinder)
+
+# Creatinng an object to store the summary of the linear regression
+SumData2.6 <- summary(linearReg2.6)
+
+# Extracting Values and Creating Object to store the value of Intercept and Slope
+Intercept2.6 <- SumData2.6$coefficients[[1]]
+
+Slope2.6 <- SumData2.6$coefficients[[2]]
+
+# Plotting the Scatter Plot
 plot(
     YDisplacement ~ XCylinder,
-    pch = 4,
+    pch = 19,
+    col = "blue",
     xlim = c(0, 8),
-    ylim = c(-2, 8)
+    ylim = c(-2, 8),
+    xlab = "No. of Cylinder",
+    ylab = "Displacement",
+    main = "Scatter Plot: Cylinders (Dependent) and Displacement (Independent) "
 )
 
-abline(linearReg, col = "#99004C", lty = 1, lwd = 1)
+
+# Adding Lines and Text in Scatter Plot
+abline(linearReg2.6, col = "#99004C", lty = 2, lwd = 2) # Adding the Regression Line
+text(
+    x = 4.10,
+    y <- 0.75,
+    paste("<-- Regression Line:", round(Intercept2.6, digits = 3), "+", round(Slope2.6, digits = 3), "*", "x"),
+    cex = 0.8
+)
 abline(v = 0, lwd = 2)
+
 abline(h = 0, lwd = 2)
-abline(h = Intercept2.6)
+
 abline(h = mean(YDisplacement), col = "Yellow")
+text(
+    1, mean(YDisplacement) + 0.20,
+    paste("Mean = ", round(mean(YDisplacement), digits = 2)),
+    cex = 0.8
+)
 abline(h = median(YDisplacement), col = "Purple")
-
-
-# Add text to the line later
+text(
+    3, median(YDisplacement) - 0.20,
+    paste("Median = ", round(median(YDisplacement), digits = 2)),
+    cex = 0.8
+)
 ```
 
-Task 2.7 
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+</FONT>
+
+- Now, we can see that observe from plot and regression line, cyclinder is discrete numerical variable and we can notice that there is strong postive linear relationship between them. As we increase the no of cylinder, the displacement is also increasing.
+- We can also see that, Our regression line which is also known as line of best fit is having intercept of -0.92 and slope of 0.746, using this we can find out the predicted value of displacement for any given value of cylinder.
+- Also, we can see the mean=3.47 and median=3.3 for Displacement is very close to each other, which shows signs of symmetrical distribution but further analysis would be require to confirm that.
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.7. Predicted Values and Residual of Displacement**
+</FONT>
+<FONT SIZE = 4>
+
+In this section, using the regression equation we obtained from task 2.6, we are going to calculate the predicted value of displacement and residual for first 20 observation.
+
 ```{r message=FALSE, warning=FALSE}
 
+# Creating objects for Analysi
 YDisplacement <- c(mpg$displ)
 
 XCylinder <- c(mpg$cyl)
 
+# Using the Intercept and Slope Value to Calculate the predicted value
 YDisplacementPedict <- Intercept2.6 + (XCylinder * Slope2.6)
 
+# Calculating the Residual value
 Residual <- YDisplacement - YDisplacementPedict
 
-
+# Creating the matrix
 Table2.7 <- matrix(c(XCylinder, YDisplacement, YDisplacementPedict, Residual),
     nrow = n2.3,
     byrow = FALSE
 )
 
+# Rounding off digits
+Table2.7_rounded <- round(Table2.7, digits = 2)
+
 
 ## Naming Columns and Row Names in Table#######
-colnames(Table2.7) <- c("Cylinder", "Displacement", "Predicted Value of Y", "Residual")
+colnames(Table2.7_rounded) <- c("Cylinder", "Displacement", "Predicted Value of Y", "Residual")
 
 
-# Table Creation of of Matrix Using Knitr Package##################
+# Present only the first 20 observations ##################
 ######################################################
-Table2.7 %>%
+Table2.7_rounded %>%
     head(20) %>%
     knitr::kable(
-        caption = "Table : Descriptive Statistics of Sleep Quality",
+        caption = "Table 2.7  : Predicted Values and Residual of Displacement",
         format = "html"
     ) %>%
     kable_material_dark(
@@ -284,7 +718,26 @@ Table2.7 %>%
     )
 ```
 
-Task 2.8
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- We can observe from the Table 2.7 that the predicted value of displacement are also discrete numeric value which is result of cylinder variable being discrete as well.
+- The residual value, we obtained shows that they are continuous numerical variable because they are result of subtraction of Predicted Value from Actual Value. 
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.8. Frequency and Percentage Table of Cars Based On Cylinders**
+</FONT>
+<FONT SIZE = 4>
+
+In this task, we are going to present the frequency, cummulative frequency, percentage and cummulative percentage of cars based on no of cylinder.
+
+For this, we are going to use mutate function from dplyr package to calculate all the values based on frequency we obtain.
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -304,81 +757,258 @@ Table2.8 <- mpg$cyl %>%
 # Present the table"
 knitr::kable(Table2.8,
     digits = 2,
-    caption = "Frequency and Percentage Table for Cylinder Size",
-    col.names = c("Cylinder Size", "Frequency", "Cumulative Frequency", "Percentage", "Cumulative Percentage"),
+    caption = "Table 2.8.: Frequency and Percentage Table for Cylinder Size",
+    col.names = c(
+        "Cylinder Size", "Frequency", "Cumulative Frequency",
+        "Percentage", "Cumulative Percentage"
+    ),
     format = "html",
-    table.attr = "style=width: 40%", align = "c"
+    table.attr = "style=width: 100%", align = "r"
 ) %>%
     kable_material(c("striped", "hover"))
 ```
 
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+</FONT>
+
+- Table 2.8. shows that automobile with 4 cylinders have the highest frequency of 81 in the mpg data set. But, we can also see it is not very far away from automobile with 6 and 8 cyclinders.
+- Also, we can see that automobile with 5 cylinder is having lowest frequency of 4, which shows people don't prefer buying this car with this configuration as much as with other configuration.
+- From looking at cummulative frequency, we can determine the number of observations that lie above (or below) a particular value in a data set. Let's say for example, I want to find out how many care were sold with less than 6 cylinder, we can say based on table, the answer is 85. 
+- Same logic applies for cummulative percentage as well, if I want to find out how much percentage of cars were sold with less than 8 cylinders, I can say it is 70.09%.
 
 
-Task 2.9
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.9. Graphs to Visulaize Information From Table 2.8**
+</FONT>
+<FONT SIZE = 4>
+
+In this section, I am present several graphs to Visulaize information which was displayed in Table 2.8.
+
+<FONT SIZE = 4, COLOR ="#8E348B">
+**2.9.1. Pie Chart: Frequency of Cylinder Count**
+</FONT>
+<FONT SIZE = 4>
 
 ```{r message=FALSE, warning=FALSE}
 
+
+
+
+t17piechart <- table(mpg$cyl)
+
+pieLabel4 <- paste(names(t17piechart), "Cylinder:", Table2.8$Column1)
+
+pie1 <- pie(t17piechart,
+    labels = pieLabel4,
+    radius = 0.8,
+    col = brewer.pal(7, "Paired"),
+    border = "white",
+    cex = 0.8,
+    font = 3,
+    rotate = FALSE,
+    main = "Pie Chart: Frequency of Cylinder Count"
+)
+
+legend("topleft",
+    legend = paste(names(t17piechart), "Cylinder"),
+    fill = brewer.pal(7, "Paired"),
+    border = "white"
+)
+box(col = "black")
+
+
+box(col = "black")
 ```
 
-Task 2.10
 
+
+
+
+<FONT SIZE = 4, COLOR ="#8E348B">
+**2.9.2. Bar Graph: Cumulative Frequency**
+</FONT>
+<FONT SIZE = 4>
 ```{r message=FALSE, warning=FALSE}
 
+# Bar chart for Cumulative frequency
+barFreq <- barplot(Table2.8$Column2 ~ Table2.8$.,
+    main = "Bar Graph: Cumulative Frequency",
+    ylab = "Size",
+    xlab = "Cumulative Frequency",
+    col = brewer.pal(7, "Pastel2"),
+    las = 1, horiz = T,
+    cex.lab = 1,
+    cex.axis = 0.6,
+    cex.names = 0.8,
+    space = 0.4,
+    xlim = c(0, 250)
+)
 ```
 
-Part 3 :Multiple Regresssion
 
 
-Task 3.1
+<FONT SIZE = 4, COLOR ="#8E348B">
+**2.9.3. Pie Chart: Probabilty of Cylinder Count**
+</FONT>
+<FONT SIZE = 4>
+
 ```{r message=FALSE, warning=FALSE}
 
+# Creating Tbale for Pie Chart
+t18piechart <- table(mpg$cyl)
+
+# Creating Pie lables
+pieLabel5 <- paste(names(t18piechart), "Cylinder:", round(Table2.8$Column3, digits = 2), "%")
+
+# Creating Pie Chart
+pie1 <- pie(t18piechart,
+    labels = pieLabel5,
+    radius = 0.7,
+    col = rainbow(length(pieLabel5)),
+    border = "white",
+    cex = 0.6,
+    font = 2,
+    main = "Pie Chart: Probabilty of Cylinder Count"
+)
+
+legend("topleft",
+    legend = paste(names(t18piechart), "Cylinder"),
+    fill = rainbow(length(pieLabel5)),
+    border = "white"
+)
+box(col = "black")
+
+
+box(col = "black")
+```
+
+
+
+
+<FONT SIZE = 4, COLOR ="#8E348B">
+**2.9.4. Pareto Chart: Cylinder Count**
+</FONT>
+
+```{r message=FALSE, warning=FALSE}
+# Creating Pareto Chart
+pareto.chart(Table2.8$Column1,
+    main = "Pareto Chart: Cylinder Count",
+    col = heat.colors(length(Table2.8$Column1)),
+    cumperc = seq(0, 100, by = 25),
+)
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+</FONT>
+
+- 
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.10. Prediction of Displacement with 2 and 10 Cylinders**
+</FONT>
+<FONT SIZE = 4>
+
+
+```{r message=FALSE, warning=FALSE}
+
+
+# Calculation of predicted value of displacement for a car with 2 Cylinders
+
+cyl1 <- 2
+
+YPredict_2.10.1 <- Intercept2.6 + (cyl1 * Slope2.6)
+
+
+paste(
+    "2.10.A. The predicted value of displacement a car with 2 cylinders is",
+    round(YPredict_2.10.1, digits = 2)
+)
+```
+
+```{r message=FALSE, warning=FALSE}
+
+
+# Calculation of predicted value of displacement for a car with 10 Cylinders
+
+cyl2 <- 10
+
+YPredict_2.10.2 <- Intercept2.6 + (cyl2 * Slope2.6)
+
+
+paste(
+    "2.10.B. The predicted value of displacement a car with 10 cylinders is",
+    round(YPredict_2.10.2, digits = 2)
+)
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+</FONT>
+
+- 
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+3. ANALYSIS OF MULTIPLE REGRESSION 
+</FONT>
+</BR></B>
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**3.1. Predictions**
+</FONT>
+<FONT SIZE = 4>
+
+```{r message=FALSE, warning=FALSE}
+
+# Creating the Data Set
 patient_id <- c("PK01", "PK02", "PK03", "PK04", "PK05", "PK06", "PK07", "PK08", "PK09", "PK10", "PK11", "PK12", "PK13", "PK14", "PK15")
 Ysystolic_bp <- c(112, 156, 125, 145, 155, 162, 139, 144, 153, 126, 169, 132, 143, 153, 162)
 X1age <- c(45, 60, 55, 60, 62, 71, 57, 59, 64, 42, 75, 52, 59, 67, 73)
 X2weight <- c(135, 182, 148, 182, 190, 232, 194, 182, 217, 171, 225, 173, 184, 194, 211)
 
+# Using lm() to fetch the values of intercept and slope
 linearReg3.1 <- lm(Ysystolic_bp ~ X1age + X2weight)
 
 SumData3.1 <- summary(linearReg3.1)
 
-SumData3.1
 
-names(SumData3.1)
-
-SumData3.1$coefficients
-
+# Creating Object to save intercept value
 Intercept3.1 <- SumData3.1$coefficients[[1]]
 
-Intercept3.1
-
+# Creating Object to save slope value
 X1Slope <- SumData3.1$coefficients[[2]]
-X1Slope
 
 X2Slope <- SumData3.1$coefficients[[3]]
-X2Slope
+
+# Presenting the equation
+paste("3.1.1. The multiple regression equation = ", round(Intercept3.1, digits = 3), "+", round(X1Slope, digits = 3), "*", "X1age", "+", round(X2Slope, digits = 3), "*", "X2weight")
 
 
-paste("The multiple regression equation = ", round(Intercept3.1, digits = 3), "+", round(X1Slope, digits = 3), "*", "X1age", "+", round(X2Slope, digits = 3), "*", "X2weight")
-
-
-# Correlation Cofficient of age between systolic_bp and age
-
-
-data <- data.frame(X1age, X2weight, Ysystolic_bp)
-cor(data)
-
+# Correlation Cofficient of systolic bp between age and weight
 cor_age_systolicbp <- cor(X1age, Ysystolic_bp)
-cor_age_systolicbp
 cor_age_with_systolicbp <- cor(X1age + Ysystolic_bp, X2weight)
-cor_age_with_systolicbp
 
 
+## Determinatio Cofficient of systolic bp between age and weight
 deter_age_systolicbp <- cor_age_systolicbp^2
-
 deter_age_with_systolicbp <- cor_age_with_systolicbp^2
 
 
-# Vector Creation
+# Vector Creation for matrix
 VectorCor <- c(cor_age_systolicbp, cor_age_with_systolicbp)
 VectorDeter <- c(deter_age_systolicbp, deter_age_with_systolicbp)
 
@@ -405,7 +1035,7 @@ rownames(Table3.1_Rounded) <- c("Age~SystBP", "Age+SystBP~Weight")
 ######################################################
 Table3.1_Rounded %>%
     knitr::kable(
-        caption = "Table 2 : Descriptive Statistics of Populations and Sample 1",
+        caption = "Table 3.1.2 : Correlation and Determination Coefficients",
         format = "html"
     ) %>%
     kable_material_dark(
@@ -413,14 +1043,14 @@ Table3.1_Rounded %>%
         html_font = "Times New Roman"
     )
 
-
+# Fetching the value of multiple R Square and R square
 MultipleR_Squared <- SumData3.1$r.squared
-
-paste("The Value of multiple R square is", round(MultipleR_Squared, digits = 2))
-
 MultipleR <- sqrt(MultipleR_Squared)
 
-paste("The Value of multiple R is", round(MultipleR, digits = 2))
+
+# Presenting the value of multiple R square
+paste("3.1.3. The Value of multiple R square is", round(MultipleR_Squared, digits = 2), "The Value of multiple R is", round(MultipleR, digits = 2))
+
 
 
 # Calculation F-Test Value
@@ -431,7 +1061,7 @@ k <- 2
 
 F_Test <- (MultipleR_Squared / k) / ((1 - MultipleR_Squared) / (n3.1 - k - 1))
 
-F_Test
+paste("3.1.4. The Value of F-test is ", round(F_Test, digits = 2))
 
 ## Performing Hypothesis Testing is used to test the significance of R
 # The hypothesis are
@@ -452,20 +1082,224 @@ alpha <- 0.05
 
 r_cv <- qf(alpha, dfN, dfD, lower.tail = FALSE)
 
-r_cv
+paste("The Value of Right Critical Value for two-tail distribution with alphas of 0.05 is ", round(r_cv, digits = 2))
+
+paste("3.1.5. Can we reject the null hypotheis based on test value and critical value", F_Test > r_cv)
+
+
+# Based on your data analysis results? Can the systolic blood pressure be predicted using the other two variables?
+
+
+
+# Calculation of expected systolic blood pressure for a person age = 30, weight = 148
+
+age1 <- 30
+weight1 <- 148
+
+YPredict_1 <- Intercept3.1 + (X1Slope * age1) + (X2Slope * weight1)
+
+paste("3.1.7. The expected systolic blood pressure for a person with age = 30 and weight = 148 is", round(YPredict_1, digits = 2))
+
+# Calculation of expected systolic blood pressure for a person age = 75, weight = 196
+
+age2 <- 75
+weight2 <- 196
+
+YPredict_2 <- Intercept3.1 + (X1Slope * age2) + (X2Slope * weight2)
+
+paste("3.1.8. The expected systolic blood pressure for a person with age = 75 and weight = 196 is", round(YPredict_2, digits = 2))
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**3.2. Scatter Plots: Age Versus Systolic Blood Pressure & Weight Versus Systolic Blood Pressure**
+</FONT>
+<FONT SIZE = 4>
+
+```{r message=FALSE, warning=FALSE}
+
+par(mfrow = c(1, 2))
+
+# Creating Object to Store Linear regression line
+linearRegAge <- lm(Ysystolic_bp ~ X1age)
+
+SumData3.2 <- summary(linearRegAge)
+
+InterceptAge <- SumData3.2$coefficients[[1]]
+
+SlopeAge <- SumData3.2$coefficients[[2]]
+
+# Plotting the Scatter Plot
+plot(Ysystolic_bp ~ X1age,
+    pch = 19,
+    col = "red",
+    xlab = c("Age"),
+    ylab = c("Systolic BP"),
+    main = "Systolic BP vs Age"
+)
+
+# Adding the lines
+abline(linearRegAge, col = "#99004C", lty = 6, lwd = 1)
+text(
+    x <- 55,
+    y <- 120,
+    paste(
+        "<--y':",
+        round(InterceptAge, digits = 2),
+        "+", round(SlopeAge, digits = 2), "*", "x"
+    ),
+    cex = 0.8
+)
+abline(v = 0, lwd = 2)
+abline(h = 0, lwd = 2)
+
+
+# Creating Object to Store Linear regression line
+linearRegWeight <- lm(Ysystolic_bp ~ X2weight)
+
+SumData3.3 <- summary(linearRegWeight)
+
+InterceptWeight <- SumData3.3$coefficients[[1]]
+
+SlopeWeight <- SumData3.3$coefficients[[2]]
+
+# Plotting the Scatter Plot
+plot(Ysystolic_bp ~ X2weight,
+    pch = 19,
+    col = "blue",
+    xlab = c("Weight"),
+    ylab = c("Systolic BP"),
+    main = "Systolic BP vs Weight"
+)
+
+# Adding the lines
+abline(linearRegWeight, col = "#99004C", lty = 6, lwd = 1)
+text(
+    x <- 175,
+    y <- 120,
+    paste(
+        "<--y':",
+        round(InterceptWeight, digits = 2),
+        "+", round(SlopeWeight, digits = 2), "*", "x"
+    ),
+    cex = 0.8
+)
+abline(v = 0, lwd = 2)
+abline(h = 0, lwd = 2)
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**3.3. Predicted Values And Residuals**
+</FONT>
+<FONT SIZE = 4>
+
+```{r message=FALSE, warning=FALSE}
+
+
+# Calcuting the Systolic BP predicted Value based on value from task 3.1.1
+Ysystolic_bpPedict <- Intercept3.1 + (X1age * X1Slope) + (X2weight * X2Slope)
+
+# calculating the residula value
+Residual3.1 <- Ysystolic_bp - Ysystolic_bpPedict
+
+# Creating the Matrix
+Table3.3 <- matrix(c(X1age, X2weight, Ysystolic_bp, Ysystolic_bpPedict, Residual3.1),
+    nrow = n3.1,
+    byrow = FALSE
+)
+
+# Rounding Off digits in table
+Table3.3_rounded <- round(Table3.3, digits = 2)
+
+## Naming Columns and Row Names in Table#######
+colnames(Table3.3_rounded) <- c("Age", "Weight", "Systolic BP", "Predicted Systolic BP", "Residual")
+
+# Table Creation of of Matrix Using Knitr Package##################
+######################################################
+Table3.3_rounded %>%
+    knitr::kable(
+        caption = "Table 3.3.: Predicted Values and Residuals of Systolic BP",
+        format = "html"
+    ) %>%
+    kable_material_dark(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**3.4. Scatter Plots: Residuals Versus Age Values And Weight Values.**
+</FONT>
+<FONT SIZE = 4>
+
+```{r message=FALSE, warning=FALSE}
+
+
+# Creating the scatter plot btw residuals and age based on value in 3.3.
+plot(Residual3.1 ~ X1age,
+    pch = 19,
+    col = "blue",
+    xlab = c("Age"),
+    ylab = c("Residual"),
+    main = "Scatter Plot: Residual Vs Age"
+)
+
+# Adding the line to the plot
+abline(v = 0, lwd = 2)
+abline(h = 0, lwd = 2)
+
+# Creating the scatter plot btw residuals and weight based on value in 3.3.
+plot(Residual3.1 ~ X2weight,
+    pch = 19,
+    col = "yellow",
+    xlab = c("Weight"),
+    ylab = c("Residual"),
+    main = "Scatter Plot: Residual Vs Weight"
+)
+
+# Adding the line to the plot
+abline(v = 0, lwd = 2)
+abline(h = 0, lwd = 2)
 ```
 
 
 
-SumData
-names(SumData)
-
-SumData$coefficients
-
-Intercept <- SumData$coefficients[[1]]
-Intercept
-Slope <- SumData$coefficients[[2]]
-Slope
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+4. CONCLUSIONS
+</FONT>
+</BR></B>
 
 
-paste("The linear regression equation for YCyclinder = ", round(Intercept, digits = 3), "+", round(Slope, digits = 3), "*", "XDisplacement")
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+5. REFERENCES
+</FONT>
+</BR></B>
+
+- Cuadras, C. M., & Greenacre, M. (2022). A short history of statistical association: From correlation to correspondence analysis to copulas. Journal of Multivariate Analysis, 188, 104901.
+- Andri et mult. al. S (2022). DescTools: Tools for Descriptive Statistics. R package version 0.99.47, https://cran.r-project.org/package=DescTools.
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+6. ACKNOWLEDGMENTS
+</FONT>
+</BR></B>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+7. APPENDIX
+</FONT>
+</BR></B>
+
+An R Markdown file has been attached to this report. The name of the
+file is Maheswar_FinalProject.Rmd

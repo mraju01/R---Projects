@@ -1,0 +1,12 @@
+
+
+```{r}
+A <- c(155, 133, 122, 193, 145, 143, 142)
+
+B <- c(142, 128, 123, 175, 133)
+
+x <- mean(A)
+y <- mean(B)
+
+t.test(x, y, alternative = "two.sided", var.equal = FALSE)
+```

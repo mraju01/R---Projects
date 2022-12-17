@@ -358,6 +358,48 @@ display: none;
 </div>
 
 
+<pre class="r"><code># Library Used for M3 Project
+#####################################
+library(magrittr) ## Fetching magnittr
+library(knitr)
+library(plyr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:plyr&#39;:
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(readxl)
+library(gridExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;gridExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre class="r"><code># library(CGPfunctions)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(DT)
+library(kableExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<pre class="r"><code>library(ggpubr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggpubr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:plyr&#39;:
+## 
+##     mutate</code></pre>
 <pre class="r"><code>X &lt;- (65 - 19) / 65
 X</code></pre>
 <pre><code>## [1] 0.7076923</code></pre>
@@ -367,7 +409,22 @@ SE</code></pre>
 <pre class="r"><code>Y &lt;- (X - 0.66) / SE
 Y</code></pre>
 <pre><code>## [1] 0.8454008</code></pre>
-<pre class="r"><code>z &lt;- 8 - 2 * 0.54</code></pre>
+<pre class="r"><code>z &lt;- 8 - 2 * 0.54
+z</code></pre>
+<pre><code>## [1] 6.92</code></pre>
+<pre class="r"><code>A &lt;- c(19, 16, 14, 18, 19)
+
+B &lt;- c(25, 18, 27, 11, 23)
+
+C &lt;- mean(A)
+D &lt;- mean(B)
+
+C</code></pre>
+<pre><code>## [1] 17.2</code></pre>
+<pre class="r"><code>D</code></pre>
+<pre><code>## [1] 20.8</code></pre>
+<pre class="r"><code>pnorm(0.05, lower.tail = FALSE)</code></pre>
+<pre><code>## [1] 0.4800612</code></pre>
 
 
 

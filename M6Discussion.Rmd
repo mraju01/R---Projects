@@ -1,0 +1,69 @@
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+
+# Creating the Data Set
+YStresslevel <- c(2, 6, 1, 5, 3, 9, 7, 4, 10, 8, 6, 5)
+X1YrsofExp <- c(8, 1, 2, 7, 4, 3, 12, 2, 5, 3, 4, 5)
+X2Age <- c(30, 21, 22, 31, 26, 27, 34, 23, 28, 25, 24, 32)
+
+# Using lm() to fetch the values of intercept and slope
+linearRegStress <- lm(YStresslevel ~ X1YrsofExp + X2Age)
+
+SumDataStress <- summary(linearRegStress)
+
+
+# Creating Object to save intercept value
+InterceptStress <- SumDataStress$coefficients[[1]]
+
+# Creating Object to save slope value
+X1YrsofExpSlope <- SumDataStress$coefficients[[2]]
+
+X2AgeSlope <- SumDataStress$coefficients[[3]]
+
+# Presenting the equation
+paste(
+    "The multiple regression equation = ", round(InterceptStress, digits = 3),
+    round(X1YrsofExpSlope, digits = 3), "*", "x1", "+", round(X2AgeSlope, digits = 3), "*", "x2"
+)
+
+
+par(mfrow = c(1, 2))
+
+# Creating linear Regression for Age and Yrs of Experience
+LinearRegX1YrsofExp <- lm(YStresslevel ~ X1YrsofExp)
+
+LinearRegX2Age <- lm(YStresslevel ~ X2Age)
+
+# Plotting the Scatter Plot
+plot(YStresslevel ~ X1YrsofExp,
+    pch = 19,
+    col = "red",
+    xlab = c("Years of Experience"),
+    ylab = c("Stress level"),
+    main = "Fig 1: Stress Level vs Yrs of Exp "
+)
+
+# Adding the lines
+abline(LinearRegX1YrsofExp, col = "#99004C", lty = 6, lwd = 1)
+
+# Plotting the Scatter Plot
+plot(YStresslevel ~ X2Age,
+    pch = 19,
+    col = "#f19a0c",
+    xlab = c("Age"),
+    ylab = c("Stress level"),
+    main = "Fig 2: Stress Level vs Age"
+)
+
+# Adding the lines
+abline(LinearRegX2Age, col = "#99004C", lty = 6, lwd = 1)
+
+cor(YStresslevel, X1YrsofExp)
+
+cor(YStresslevel, X2Age)
+
+summary(lm(YStresslevel ~ X1YrsofExp + X2Age))
+```

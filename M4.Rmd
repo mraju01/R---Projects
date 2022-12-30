@@ -1,12 +1,36 @@
 
 
 ```{r}
-A <- c(155, 133, 122, 193, 145, 143, 142)
 
-B <- c(142, 128, 123, 175, 133)
+# Library Used for Final Project
+#####################################
+library(magrittr) ## Fetching magnittr
+library(knitr)
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(summarytools)
+library(DT)
+library(kableExtra)
 
-x <- mean(A)
-y <- mean(B)
+qnorm(0.95)
 
-t.test(x, y, alternative = "two.sided", var.equal = FALSE)
+qnorm(1 - 0.05)
+
+
+a <- c(2, 5, 7, 4, 1, 8, 9, 3, 6, 12)
+b <- c(6, 13, 17, 10, 4, 16, 21, 9, 19, 22)
+
+plot(b ~ a)
+
+ceiling(3.39)
+
+floor(3.39)
+
+critical(0.1 / 2)
 ```

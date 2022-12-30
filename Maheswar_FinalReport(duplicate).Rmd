@@ -58,7 +58,7 @@ Galton boosted all female heights by 8%, recognizing that the link between kid a
 Figure 1 shows scatterplots of children's heights versus those of their midparents. (Left) Original children's heights, with ellipses encompassing 95% of the spots in each case. Simple linear regression analysis through each group of points are represented by dashed lines. (Right) The same plot with adjusted heights for the daughters, with ellipses and regression lines nearly identical. The overall group's computed slope is 0.713, and the correlations is 0.497.
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("Screenshot 2022-12-16 at 1.11.10 PM.png")
 ```
 
@@ -185,7 +185,7 @@ These modules are part of the tidyverse, a shall be designed and constructed of 
 </FONT>
 </BR></B>
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # Library Used for Final Project
 #####################################
@@ -241,7 +241,7 @@ This dataset provides fuel economy data from 1999 and 2008 for 38 popular models
 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 
@@ -326,7 +326,7 @@ x stands for the data frame or the variable to be analyzed (df$variable).
 In this task, we are going to present the descriptive statistics of displacement based on number of cyclinder present in the automobile.
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Start by grouping by the different cylinder sizes
@@ -384,7 +384,7 @@ In this section, we are going to find out coffiecient of correlation and coffiec
 
 Then, we are going to present the values using inline R code and make some observation.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # Creating Objects for Table
 n2.3 <- length(mpg$displ)
@@ -506,7 +506,7 @@ A list containing the following components:
 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Using code DescTools::Desc for analysis highway miles per gallon
@@ -523,7 +523,7 @@ DescTools::Desc(mpg$hwy, main = "Figure 1: Highway Miles Per Gallon", xlab = "Mi
 - Also, we can notice that the data is slightly negatively skewed when we look at value we received after apply desc() function, as we can mean is 23.44 and median is 24.00.
 - Also, we can notice from the second graph of boxplot that shows that there are only 3 outliers in hwy and our data from 1st Quartile to 3rd Quartile lies in between 18 and 76 miles, and the lowest and highest value are 12 and 44 respectively.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Using code DescTools::Desc for analysis city miles per gallon
@@ -552,7 +552,7 @@ DescTools::Desc(mpg$cty, main = "Figure 2: City Miles Per Gallon")
 In this task, we are going to find out the linear regression betweeen the Cylinders (Dependent) and Displacement (Independent). We are going to first an object to store the linear regression values and then we are going to store the summary of the regression in another object. And then from there we are going to extract the value of slope and intecept from this object. 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # Creating Objects for Analysis
 YDisplacement <- c(mpg$displ)
@@ -593,7 +593,7 @@ paste("The linear regression formula between cylinders (dependent) and displacem
 
 In this task, we are going to draw a scatter to study the relationship betweeen the Cylinders (independent) and Displacement (dependent). Then we are going to add the regression line, mean and median to the plot to add more details.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # Creating Objects for Analysis
 YDisplacement <- c(mpg$displ)
@@ -669,7 +669,7 @@ text(
 
 In this section, using the regression equation we obtained from task 2.6, we are going to calculate the predicted value of displacement and residual for first 20 observation.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # Creating objects for Analysi
 YDisplacement <- c(mpg$displ)
@@ -731,7 +731,7 @@ In this task, we are going to present the frequency, cummulative frequency, perc
 
 For this, we are going to use mutate function from dplyr package to calculate all the values based on frequency we obtain.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # "Create the vector for Frequency, Cumulative Frequency, Percentage, Cumulative Percentage
 
@@ -784,7 +784,7 @@ In this section, I am present several graphs to Visualize information which was 
 **2.9.1. Pie Chart: Frequency of Cylinder Count**
 </FONT>
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 
@@ -831,7 +831,7 @@ box(col = "black")
 **2.9.2. Bar Graph: Cumulative Frequency**
 </FONT>
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Bar chart for Cumulative frequency using ggoplot function
@@ -858,7 +858,7 @@ ggplot(Table2.8, aes(x = Table2.8$., y = Table2.8$Column2)) +
 </FONT>
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # define values to plot
 value_bins <- graph.freq(mpg$cyl, plot = FALSE)
@@ -887,7 +887,7 @@ plot(values,
 **2.9.4. Pareto Chart: Cylinder Count**
 </FONT>
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 # Creating Pareto Chart
 pareto.chart(Table2.8$Column1,
     main = "Pareto Chart: Cylinder Count",
@@ -917,7 +917,7 @@ pareto.chart(Table2.8$Column1,
 In this task, using our linear regression equation, we are to predict the value of displacement based on cyclinder count we assign to x in the equation.
 
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Calculation of predicted value of displacement for a car with 2 Cylinders
@@ -933,7 +933,7 @@ paste(
 )
 ```
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Calculation of predicted value of displacement for a car with 10 Cylinders
@@ -980,7 +980,7 @@ In this analysis, we are going to treat Systolic BP as dependent variable, and r
 
 In this task, we are going to perform a multiregression analysis and hypothesis test for the following data set and present the value using inline R code.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 # Creating the Data Set
 patient_id <- c("PK01", "PK02", "PK03", "PK04", "PK05", "PK06", "PK07", "PK08", "PK09", "PK10", "PK11", "PK12", "PK13", "PK14", "PK15")
@@ -1153,7 +1153,7 @@ paste("Task 3.1.8. The expected systolic blood pressure for a person with age = 
 
 In this task, we are going to study the relationship of Systolic Blood Pressure with Age and Weight as dependent variable individually.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 par(mfrow = c(1, 2))
 
@@ -1283,7 +1283,7 @@ text(
 
 For this task, we are going to calculate the predicted value of systolic bp based on multiple regression equation we obtained on Task 3.1.1. And then, we are going to present in the table.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Calcuting the Systolic BP predicted Value based on value from task 3.1.1
@@ -1341,7 +1341,7 @@ paste("Task 3.3.1. The sum of all residual values is ", round(sum(Residual3.1), 
 
 For this task, we are going to plot the residual values we obtained in above task against the age and weight individually.
 
-```{r message=FALSE, warning=FALSE}
+```{r  echo=FALSE, message=FALSE, warning=FALSE}
 
 par(mfcol = c(1, 2))
 

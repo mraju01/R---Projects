@@ -8,7 +8,7 @@ title="Final Project - ALY 6010"
 <CENTER>
 
 <FONT size=6, color="blue">
-**Final Project Report** </FONT>
+**Final Project Report** ß</FONT>
 
 <FONT size=5, color="#F9042F">
 

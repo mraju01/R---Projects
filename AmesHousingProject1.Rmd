@@ -1,0 +1,744 @@
+
+title="Final Project - ALY 6010"
+
+
+<P>
+
+<BR>
+
+<CENTER>
+
+<FONT size=6, color="blue">
+**Final Project Report**</FONT>
+
+<FONT size=5, color="#F9042F">
+
+<BR>**Intermediate Analytics** </FONT>
+
+
+<P>
+
+<FONT size=4, color="#F94104"> ALY 6015</FONT>
+
+
+
+<P>
+
+<BR>
+<FONT size=5, color="#0493F9"> 
+<BR>
+**Maheswar Raju Narasaiah**
+
+<FONT size=5, color="Black"> 
+Professor Eric Gero
+
+Date: `r format(Sys.time(), '%d %B, %Y')`
+
+</CENTER>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+1. INTRODUCTION 
+</FONT>
+</BR></B>
+
+<FONT SIZE = 4>
+
+In this assigment, we are going interpret and evaluate the models using Ames Housing Data. 
+
+We are going to further construct and analyze two regression models, interpret their results, and utilize diagnostic methods to identify and resolve any problems with the models.
+
+**Objectives Of Project**
+
+1: Develop and analyze regression models using established functions and diagnostic methods.
+
+2: Address problems related to overfitting, linearity, multicollinearity and outliers.
+
+3: Utilize automated techniques to determine the most appropriate model from a pool of multiple predictors."
+
+**About the Datasets**
+
+We are going to use Ames Housing Data. The data set contains information on 2,930 properties in Ames, Iowa, including columns related to:
+
+- house characteristics (bedrooms, garage, fireplace, pool, porch, etc.)
+- location (neighborhood)
+- lot information (zoning, shape, size, etc.)
+- ratings of condition and quality
+- sale price
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+2. ANALYSIS
+</FONT>
+</BR></B>
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.1. Load the library and Ames housing dataset**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+```{r warning=FALSE, message=FALSE}
+## Load the Library Used
+library(magrittr)
+library(knitr)
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(corrplot)
+library(summarytools)
+library(DT)
+library(kableExtra)
+library(DescTools)
+library(qcc)
+library(agricolae)
+library(car)
+library(tidyverse)
+library(RColorBrewer)
+library(corrplot)
+library(psych)
+library(dplyr)
+library(ggplot2)
+library(gtools)
+library(ggfortify)
+library(GGally)
+library(readr)
+library(readxl)
+library(knitr)
+library(modelr)
+library(scales)
+library(lmtest)
+library(olsrr)
+library(leaps)
+library(tibble)
+library(sjPlot)
+library(performance)
+library(see)
+
+# Load the data
+Ames <- read_csv("~/Desktop/Intro To Analytics - ALY 6000/ALY 6000 - Project/Data Sets/AmesHousing.csv")
+
+
+# Disabling scientific notation, so my graphs and outputs will be more readable:
+options(scipen = 100)
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.2. Perform Exploratory Data Analysis and use descriptive statistics to describe the data. **
+</FONT>
+
+<FONT SIZE = 4>
+
+Exploratory Data Analysis (EDA) is performed in order to better understand the underlying structure of the data, and to identify patterns, relationships, and outliers in the data set. It is an initial step in the data analysis process that helps to inform the decisions that will be made later in the analysis, such as which statistical models to use and which features to include in the models. Additionally, EDA can help to identify any issues or problems with the data, such as missing values or outliers, so that they can be addressed before modeling begins.
+
+
+```{r warning=FALSE, message=FALSE}
+# 2. Perform Exploratory Data Analysis and use descriptive statistics to describe the data.
+###########################################################################
+# Histogram of prices
+ggplot(Ames, aes(x = SalePrice)) +
+    geom_histogram(color = "black", fill = "#ed610b", bins = 50) +
+    labs(title = "Graph 1: Distribution of house prices", x = "Price", y = "Frequency") +
+    theme_minimal()
+
+barplot(table(Ames$"Yr Sold"),
+    main = "Graph 2: When were the most houses Sold?",
+    xlab = "Year",
+    ylab = "Number of houses",
+    col = brewer.pal(9, "Blues")
+)
+
+
+barplot(table(Ames$"Overall Qual"),
+    main = "Graph 3: In what Quality are the most houses on the market?",
+    xlab = "Year",
+    ylab = "Number of houses",
+    col = brewer.pal(10, "RdYlBu")
+)
+
+
+# Histogram of Living area
+ggplot(Ames, aes_string(x = "`Gr Liv Area`")) +
+    geom_histogram(color = "black", fill = "#2c0ce6", bins = 30) +
+    scale_x_continuous(labels = comma) +
+    labs(title = "Graph 4: Distribution of House Lot Area", x = "Living area (sqft)", y = "Frequency") +
+    theme_minimal()
+
+# Let's see median prices per neighborhood
+neighbourhoods <- tapply(Ames$SalePrice, Ames$Neighborhood, median)
+neighbourhoods <- sort(neighbourhoods, decreasing = TRUE)
+
+dotchart(neighbourhoods,
+    pch = 21, bg = "purple1",
+    cex = 0.85,
+    xlab = "Average price of a house",
+    main = "Graph 5: Which neighborhood is the most expensive to buy a house in?"
+)
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+1. From Graph 1 we notice that, the house prices are rightly-skewed distributed with a majority of them being priced below $200,000. The data shows that the prices range from $12,789 to $755,000, with an average of $180,796 and a median price of $160,000.
+
+2. From Graph 2, We can see that most houses were sold in 2007, and suddenly we see reduction in 2008 because of Subprime mortgage crisis.
+
+3. From Graph 3, It appears that the majority of houses available are of average condition, with more well-maintained houses than those that are below average.
+
+4. From Graph 4, It appears that the majority of houses have a square footage of less than 2000 sqft. The data shows that the average square footage is 1500 sqft and the median is 1442 sqft.
+
+5. In Graph 5, I chose to use the median instead of the average because it is less affected by outliers, such as a single house with an extremely high value. The graph illustrates that the location of the neighborhood plays a significant role in determining the house prices, with the most expensive areas having prices three times higher than the least expensive areas. We can see that Stone Br Locality is the most expensive to buy a house in Ames.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.3. Prepare the dataset for modeling by imputing missing values with the variable's mean value **
+</FONT>
+
+<FONT SIZE = 4>
+
+In this section, we are going to clean the dataset for modeling by imputing missing values with the variable's mean value in "Mas Vnr Area" Variable
+
+
+```{r warning=FALSE, message=FALSE}
+# Firstly, I'd like to check the missing values
+na_count <- sapply(Ames, function(Ames) sum(length(which(is.na(Ames)))))
+
+na_count
+
+# 3. Imputation of Mean Value in "Mas Vnr Area" Variable
+#################################################################
+Ames$"Mas Vnr Area"[is.na(Ames$"Mas Vnr Area")] <- mean(Ames$"Mas Vnr Area", na.rm = TRUE)
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.4. Use the "cor()" function to produce a correlation matrix of the numeric values.**
+</FONT>
+
+<FONT SIZE = 4>
+In this section, we are going to use the "cor()" function to produce a correlation matrix of the numeric values. Produce a plot of the correlation matrix, and explain how to interpret it.
+
+
+
+A correlation matrix is a table showing the correlation coefficients between multiple variables. It is an important tool in identifying which variables are related to each other and the strength of the relationship.
+
+The correlation coefficient ranges from -1 to 1, with -1 indicating a perfect negative correlation, 0 indicating no correlation and 1 indicating a perfect positive correlation (Bluman, 2014).
+
+Correlation matrix is important in various ways:
+
+- Identifying multicollinearity: It is a problem when two or more independent variables are highly correlated, this can cause problems in statistical models, such as linear regression.
+
+- Identifying patterns in data: It can help identify which variables are related and which are not. This can be useful in feature selection and modeling.
+
+- Identifying outliers: It can help identify outliers or extreme values in the data by identifying large correlation coefficients.
+
+- Identifying potential confounding variables: It can help identify potential confounding variables in observational studies.
+
+- Identifying which variables to include in a model: By identifying the relationship between different variables, it can help determine which variables should be included in a model.
+
+Overall, correlation matrix is an important exploratory data analysis tool that helps to understand the relationships between different variables in a data set.
+
+
+```{r warning=FALSE, message=FALSE}
+# 4. Use the "cor()" function to produce a correlation matrix of the numeric values.
+###################################################################################
+
+# Creating data subset without character variables
+data.only.numeric <- Ames[, !sapply(Ames, is.character)]
+
+only.numeric.noNA <- na.omit(data.only.numeric)
+
+
+
+correlation.matrix <- cor(only.numeric.noNA, method = "pearson")
+
+
+# Rounding off the digits in Table
+table2 <- round((correlation.matrix), digits = 2)
+
+
+# Present the table using kableExta Package
+knitr::kable(table2,
+    caption = "Table 2: Descriptive Statistics of MPG Data Set Using
+    Code psych::describe () ",
+    format = "html",
+    table.attr = "style=width: 40%",
+    font_size = 8
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.5. Produce a plot of the correlation matrix, and explain how to interpret it.**
+</FONT>
+
+<FONT SIZE = 4>
+
+According to Teeboom, Interpreting a correlation matrix is fairly simple, it shows the correlation coefficients between different variables in the form of a table.
+
+1. The diagonal elements of the matrix are always 1, as a variable is always perfectly correlated with itself.
+
+2. The correlation coefficient ranges from -1 to 1.
+
+- A coefficient of 1 indicates a perfect positive correlation, which means that as one variable increases, the other variable also increases.
+
+- A coefficient of -1 indicates a perfect negative correlation, which means that as one variable increases, the other variable decreases.
+
+- A coefficient of 0 indicates no correlation, which means that the variables are independent of each other.
+
+3. Values close to 1 or -1 indicate a strong correlation, while values close to 0 indicate a weak correlation.
+
+4. Identify the variables that have a correlation coefficient greater than a certain threshold, usually taken as 0.7 or 0.8, these are highly correlated variables and are potential candidates for multicollinearity.
+
+5. Identify the variables that have a correlation coefficient close to 0, these are variables that are not correlated with any other variable in the dataset, and are not useful in the model.
+
+6. Identify the variables that have a correlation coefficient close to 1 or -1, these are variables that are highly correlated with other variables and can be useful in the model.
+
+In summary, interpreting a correlation matrix is a useful tool to understand the relationships between different variables in a data set, it helps identifying the correlated variables and to avoid multicollinearity problem and also it can help in selecting the features for a predictive model.
+
+```{r warning=FALSE, message=FALSE}
+# 5. Produce a plot of the correlation matrix, and explain how to interpret it.
+###################################################################################
+corrplot::corrplot(cor(correlation.matrix), tl.cex = 0.5)
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.6. Make a scatter plot for the X continuous variable with the highest correlation with SalePrice.**
+</FONT>
+
+
+
+<FONT SIZE = 4>
+
+In this section, we are make scatter plot for the X continuous variable with the highest correlation with SalePrice. Do the same for the X variable that has the lowest correlation with SalePrice. Finally, make a scatter plot between X and SalePrice with the correlation closest to 0.5. Interpret the scatter plots and describe how the patterns differ.
+
+
+
+```{r warning=FALSE, message=FALSE}
+# 6. Make a scatter plot for the X continuous variable with the highest correlation with
+# SalePrice. Do the same for the X variable that has the lowest correlation with SalePrice.
+# Finally, make a scatter plot between X and SalePrice with the correlation closest to 0.5. Interpret the scatter plots and describe how the patterns differ.
+
+
+# Variable with highest correlation with SalePrice
+################################################
+
+# Creating Objects for Analysis
+YSalePrice <- c(Ames$SalePrice)
+XOverallQuality <- c(Ames$`Overall Qual`)
+
+
+# Using the linear Regression Formula
+linearReg2.6 <- lm(YSalePrice ~ XOverallQuality)
+
+# Creatinng an object to store the summary of the linear regression
+SumData2.6 <- summary(linearReg2.6)
+
+# Extracting Values and Creating Object to store the value of Intercept and Slope
+Intercept2.6 <- SumData2.6$coefficients[[1]]
+
+Slope2.6 <- SumData2.6$coefficients[[2]]
+
+# Plotting the Scatter Plot
+plot(
+    YSalePrice ~ XOverallQuality,
+    pch = 19,
+    col = "blue",
+    xlab = "Overall Quality",
+    ylab = "Sales Price",
+    main = "Plot 1: Linear Regression: Overall Quality and Sale Price "
+)
+
+
+# Adding Lines and Text in Scatter Plot
+abline(linearReg2.6, col = "#99004C", lty = 2, lwd = 2) # Adding the Regression Line
+
+abline(v = 0, lwd = 2)
+
+abline(h = 0, lwd = 2)
+
+
+
+# Variable with lowest correlation with SalePrice
+################################################
+
+# Creating Objects for Analysis
+YSalePrice <- c(Ames$SalePrice)
+XMiscVal <- c(Ames$`Misc Val`)
+
+
+# Using the linear Regression Formula
+linearReg2.7 <- lm(YSalePrice ~ XMiscVal)
+
+# Creatinng an object to store the summary of the linear regression
+SumData2.6 <- summary(linearReg2.7)
+
+# Extracting Values and Creating Object to store the value of Intercept and Slope
+Intercept2.6 <- SumData2.6$coefficients[[1]]
+
+Slope2.6 <- SumData2.6$coefficients[[2]]
+
+# Plotting the Scatter Plot
+plot(
+    YSalePrice ~ XMiscVal,
+    pch = 19,
+    col = "#ff6600",
+    xlab = "Miscellaneous feature",
+    ylab = "Sales Price",
+    main = "Plot 2: Linear Regression: Miscellaneous feature and Sale Price "
+)
+
+
+# Adding Lines and Text in Scatter Plot
+abline(linearReg2.7, col = "#99004C", lty = 2, lwd = 2) # Adding the Regression Line
+
+abline(v = 0, lwd = 2)
+
+abline(h = 0, lwd = 2)
+
+
+# 7. Variable with a correlation closest to 0.5
+###############################################
+
+
+# Creating Objects for Analysis
+YSalePrice <- c(Ames$SalePrice)
+XTotRmsAbvGrd <- c(Ames$`TotRms AbvGrd`)
+
+
+# Using the linear Regression Formula
+linearReg2.8 <- lm(YSalePrice ~ XTotRmsAbvGrd)
+
+# Creatinng an object to store the summary of the linear regression
+SumData2.6 <- summary(linearReg2.8)
+
+# Extracting Values and Creating Object to store the value of Intercept and Slope
+Intercept2.6 <- SumData2.6$coefficients[[1]]
+
+Slope2.6 <- SumData2.6$coefficients[[2]]
+
+# Plotting the Scatter Plot
+plot(
+    YSalePrice ~ XTotRmsAbvGrd,
+    pch = 19,
+    col = "#f6055d",
+    xlab = "Total rooms above grade",
+    ylab = "Sales Price",
+    main = "Plot 3: Linear Regression: Total rooms above grade and Sale Price "
+)
+
+
+# Adding Lines and Text in Scatter Plot
+abline(linearReg2.8, col = "#99004C", lty = 2, lwd = 2) # Adding the Regression Line
+
+abline(v = 0, lwd = 2)
+
+abline(h = 0, lwd = 2)
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+1. From Plot 1 and 3, it can be clearly seen that when the price increases both the total rooms above grade and the house quality also increase. The line shows a linear model of a relationship between the living area and the house price. It can also be seen that there are some unusual observations present in the dataset.
+
+2. From Plot 2, we can Miscellaneous feature and Sale Price have strong negative linear relationhip
+
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.7. Using at least 3 continuous variables, fit a regression model in R.**
+</FONT>
+
+
+
+```{r warning=FALSE, message=FALSE}
+# 7. Using at least 3 continuous variables, fit a regression model in R.
+
+# Creating regression model
+attach(only.numeric.noNA)
+Table_regression <- lm(SalePrice ~ `Garage Area` + `Gr Liv Area` + `Total Bsmt SF`)
+tab_model(Table_regression)
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.8. Report the model in equation form and interpret each coefficient of the model in the context of this problem. **
+</FONT>
+
+
+<FONT SIZE = 4>
+
+```{r warning=FALSE, message=FALSE}
+summary(Table_regression)
+```
+
+The equation representing my multiple linear regression is as follows:
+
+y = -41364.17 + 114.57 * Garage Area + 72.24 * Gr Liv Area + 56.50 * Total Bsmt SF
+
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.9. Use the "plot()" function to plot your regression model.**
+</FONT>
+
+
+<FONT SIZE = 4>
+
+```{r warning=FALSE, message=FALSE}
+# b. Plotting regression model
+par(mfrow = c(2, 2))
+plot(Table_regression)
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.10. Checking model for multicollinearity and report your findings. **
+</FONT>
+
+
+
+<FONT SIZE = 4>
+
+There are several ways to address multicollinearity if it exists in a multiple regression analysis:
+
+- Remove one or more of the correlated predictor variables. This can be done by examining the correlation matrix and removing the variable with the highest correlation with the other predictors.
+
+- Combine correlated predictor variables into a single composite variable. This can be done using factor analysis or principal component analysis.
+
+- Use ridge regression or lasso regression, which are types of regularization that can reduce the standard errors of the estimates and make the model more stable.
+
+- Use a different model altogether, such as decision trees or random forests, which are less sensitive to multicollinearity.
+
+It's important to note that in practice, a combination of these methods is often employed to tackle multicollinearity.
+
+```{r warning=FALSE, message=FALSE}
+# 10. Checking the model for multicollinearity
+######################################
+vif(Table_regression)
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- Our model has failed to meet the Homoscedasticity assumption as indicated by the non-random scattering of points in the Scale-Location plot. Additionally, the points in the Normal Q-Q plot deviate from the line, although the deviation is not extreme. 
+
+- Furthermore, there are a few outliers or atypical observations present in both the residuals vs fitted plot and the residuals vs leverage plot.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.11. Looking for unusual observations or outliers **
+</FONT>
+
+
+
+<FONT SIZE = 4>
+
+```{r warning=FALSE, message=FALSE}
+# 11. Looking for unusual observations or outliers
+#############################################
+outlierTest(model = Table_regression)
+
+hat.plot <- function(fit) {
+    p <- length(coefficients(Table_regression))
+    n <- length(fitted(Table_regression))
+    plot(hatvalues(Table_regression), main = "Index Plot of hat Values")
+    abline(h = c(2, 3) * p / n, col = "red", lty = 2)
+    identify(1:n, hatvalues(Table_regression), names(hatvalues(Table_regression)))
+  }
+
+ols_plot_cooksd_chart(Table_regression)
+
+par(mfrow = c(1, 1))
+
+hat.plot(Table_regression)
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The graph displays several outliers, which may need to be removed as they fall outside the red line.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.12 Removing unusual observations to improve model **
+</FONT>
+
+
+<FONT SIZE = 4>
+
+```{r warning=FALSE, message=FALSE}
+# 12. Eliminating unusual observations to improve model
+#############################################
+cooksd <- cooks.distance(Table_regression)
+sample_size <- nrow(data.only.numeric)
+influential <- as.numeric(names(cooksd)[(cooksd > (4 / sample_size))])
+only.numeric.no.outliers <- only.numeric.noNA[-influential, ]
+
+
+# a. Looking at model now
+attach(only.numeric.no.outliers)
+
+Table_regression2 <- lm(SalePrice ~ `Garage Area` + `Gr Liv Area` + `Total Bsmt SF`)
+
+
+par(mfrow = c(2, 2))
+plot(Table_regression2)
+
+
+summary(Table_regression2)
+
+
+# 12. Attempt to correct any issues that you have discovered in your model. Did your changes improve the model, why or why not?
+
+
+par(mfrow = c(1, 1))
+
+hist(data.only.numeric$SalePrice)
+
+
+hist(only.numeric.no.outliers$SalePrice)
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- Eliminating influential observations was necessary to improve the model, after which the model's performance was significantly improved, as shown on the graph.
+
+- The Q-Q plot is almost perfect and the points are dispersed on the Scale-Location graph. The main issues of the model were resolved by removing the outliers in the data.
+
+- The histogram of the SalePrice shows that the distribution of the data has changed from being skewed to the right to having a normal distribution.
+  
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.13 Use the all subsets regression method to identify the "best" model **
+</FONT>
+
+
+<FONT SIZE = 4>
+
+
+```{r warning=FALSE, message=FALSE}
+# 13. Use the all subsets regression method to identify the "best" model.
+########################################################################
+
+
+regfit_full <- regsubsets(SalePrice ~ ., data = only.numeric.noNA)
+
+# a. Looking at the model selected by subsets method
+model2 <- lm(SalePrice ~ `Overall Qual` + `BsmtFin SF 1` + `Gr Liv Area`)
+summary(model2)
+
+
+plot(model2)
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The programming language selected the best model that included the variables Overall.Qual, BsmtFin.SF.1, and Gr.Liv.Area. The model has a higher adjusted R2, indicating it is more suitable than the one created in this study. However, before reaching a conclusion, the regression model was plotted to evaluate if it meets the necessary assumptions. 
+- 
+- The model has fewer outliers/influential observations than the initial model graphed in this paper before eliminating outliers to improve the model.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.14 Compare the preferred model from step 13 with your model from step 12**
+</FONT>
+
+
+<FONT SIZE = 4>
+
+
+```{r warning=FALSE, message=FALSE}
+compare_performance(Table_regression2, model2, rank = TRUE)
+plot(compare_performance(Table_regression2, model2, rank = TRUE))
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The results indicate that the model that performs the best is the one selected by the subsets method. The results show that the subset method model performed better.
+
+- A plot was also created to visually compare the performance of the two models, further confirming that the subset method model, referred as model2, is the superior choice.
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+3. CONCLUSIONS
+</FONT>
+</BR></B>
+
+- This project showed us how regression analysis can be applied to check the associatiion for variables in Ames Housing Database, and to gain insight from it. Similarly, it can used in many industry like engineering, finance, meterology, etc.
+- The initial model was constructed using only continuous quantitative variables, specifically garage area, above grade living area, and total square footage of basement area. The second model, on the other hand, was generated using the subsets method, with the variables overall quality, above grade living area, and the rating of basement finished area (Type 1 finished square feet) selected as the top 3 predictors. The main difference between the two models is that the second one includes discrete variables, while the first one is limited to continuous variables. However, both models include the variable above grade living area.
+- When determining the most suitable model, it became evident that the second model was superior as it had a higher R2 value and an overall better score.
+- In conclusion, this analysis has shown that houses with better overall quality, above grade living area, and rating of basement finished area (Type 1 finished square feet) will have higher sales prices. This information can be extremely useful for potential buyers or real estate agents.
+
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+4. REFERENCES
+</FONT>
+</BR></B>
+
+- Darlington, R. B., & Hayes, A. F. (2016). Regression analysis and linear models: Concepts, applications, and implementation. Guilford Publications.
+- Teeboom, L. (2019, March 8). The Advantages of Regression Analysis & Forecasting. Small Business - Chron.com. https://smallbusiness.chron.com/advantages-regression-analysis-forecasting-61800.html
+- Gomes, M. M. (2018, June 14). Data Visualization: Best Practices and Foundations. Toptal Design Blog. https://www.toptal.com/designers/data-visualization/data-visualization-best-practices
+- Bluman, A. (2014). Elementary Statistics: A step by step approach 9e. McGraw Hill.
+
+
+
+
+
+

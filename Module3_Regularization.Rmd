@@ -1,0 +1,438 @@
+title="Final Project - ALY 6010"
+
+
+<P>
+
+<BR>
+
+<CENTER>
+
+<FONT size=5.5, color="blue">
+**Module 4 Assignment - Regularization**</FONT>
+
+<FONT size=5, color="#F9042F">
+
+<BR>**Intermediate Analytics** </FONT>
+
+
+<P>
+
+<FONT size=4, color="#F94104"> ALY 6015</FONT>
+
+
+
+<P>
+
+<BR>
+<FONT size=5, color="#0493F9"> 
+<BR>
+**Maheswar Raju Narasaiah**
+
+<FONT size=5, color="Black"> 
+Professor Eric Gero
+
+Date: `r format(Sys.time(), '%d %B, %Y')`
+
+</CENTER>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+1. INTRODUCTION 
+</FONT>
+</BR></B>
+
+<FONT SIZE = 4>
+
+In this assigment, we are going to conduct regularization method for models to describe relationships among variables and make useful predictions. 
+
+Regularizing models helps to establish a relationship between variables and make accurate predictions. This process involves implementing a regularization technique that helps control overfitting by limiting the complexity of the model. By doing so, the model becomes more stable and reliable in making predictions based on the relationships among variables. Regularization also helps to reduce the risk of overfitting, which occurs when a model is too complex and fits the training data too closely, causing it to perform poorly on new, unseen data. Regularizing the model helps to achieve a balance between accuracy and generalization, allowing for better predictions.
+
+**Objectives Of Assignment**
+
+In machine learning, having too many features in a model can cause overfitting due to the model trying to learn from all the variables including the noise. On the other hand, insufficient predictors can lead to underfitting. Thus, selecting the right features is crucial in fitting a regression model. There are different methods of feature selection, including stepwise selection, best subsets regression, and regularization.
+
+For this assignment, I applied two regularization methods, Ridge regression, and Lasso regression, with the aim of finding the optimal model by using the glmnet package. I then evaluated the predictive accuracy of the regression models by using RMSE. Understanding all the values such as lambda, deviance, mean-squared error, coefficients, and RMSE is important to interpret the results.
+
+I also compared the differences between stepwise feature selection and regularization, highlighting their pros and cons. The dataset used in this assignment was the College dataset from the ISLR package in R, with the goal of finding the best model to predict the Graduate rate among 777 schools.
+
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+2. ANALYSIS
+</FONT>
+</BR></B>
+
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+## Load the Library Used
+library(magrittr)
+library(knitr)
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(corrplot)
+library(summarytools)
+library(DT)
+library(kableExtra)
+library(DescTools)
+library(qcc)
+library(agricolae)
+library(car)
+library(RColorBrewer)
+library(corrplot)
+library(tibble)
+library(sjPlot)
+library(performance)
+library(see)
+library(ISLR)
+library(caret)
+library(pROC)
+library(caret)
+library(ISLR)
+library(dplyr)
+library(psych)
+library(glmnet)
+library(Metrics)
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.1. Split the data into a train and test set. **
+</FONT>
+
+<FONT SIZE = 4>
+
+To carry out the regularization method, I started by dividing the dataset into a training set and test set. I set a seed for reproducibility and split the data into 80% training and 20% test. To convert the data into a matrix format, I used the model.matrix() function. I then used the glmnet package to apply Ridge and Lasso regression to the data.
+
+Finding the optimal lambda (regularization rate) is a critical step in the regularization process. A lambda that is too high can result in underfitting, as the model does not learn enough from the training data, while a lambda that is too low can lead to overfitting, as the model tries to learn everything from the training data, including the noise. The optimal lambda value should be determined before conducting the regularization method.
+
+
+```{r}
+df <- College
+options(scipen = 999)
+
+# 1. Split the data
+set.seed(123)
+trainIndex <- sample(x = nrow(df), size = nrow(df) * 0.8)
+train <- df[trainIndex, ]
+test <- df[-trainIndex, ]
+train_x <- model.matrix(Grad.Rate ~ ., train)[, -19]
+test_x <- model.matrix(Grad.Rate ~ ., test)[, -19]
+train_y <- train$Grad.Rate
+test_y <- test$Grad.Rate
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.2. Use the cv.glmnet function to estimate the lambda.min and lambda.1se values. Compare and discuss the values. **
+</FONT>
+
+<FONT SIZE = 4>
+
+
+Two commonly used lambda values for Ridge and Lasso regression are lambda.min and lambda.1se. The first minimizes the out-of-sample loss, while the second is the largest lambda within 1 standard error of lambda min. In this assignment, I used the cross-validation method with the cv.glmnet() function to find these values through 10-fold cross-validation in Ridge regression.
+
+The Ridge regression method implements L2 regularization, which adds a penalty equal to
+the square of the magnitude of coefficients.
+
+```{r}
+#### RIDGE
+# 2. Find best values of lambda
+# lambda min: minimizes out of sample loss
+# lambda 1se: largest value of lambda within 1 standard error of lambda min
+# Find the best lambda using cross-validation
+set.seed(123)
+cv.ridge <- cv.glmnet(train_x, train_y, alpha = 0, nfolds = 10)
+# lambda min
+cv.ridge$lambda.min
+# lambda.1se
+cv.ridge$lambda.1se
+```
+
+
+The results of the ridge regression model indicate that there are two distinct lambda values. The first value, lambda.min, is used to minimize the out-of-sample loss, while the second value, lambda.1se, is the largest value of lambda within 1 standard error of lambda.min.
+
+It is not uncommon for the two lambda values to be different, as they represent different goals in the regularization process. Lambda.min is used to minimize the error between the predicted values and the actual values, while lambda.1se is used to balance the complexity of the model and its ability to fit the data.
+
+The difference between the two lambda values may suggest that there is a trade-off between accuracy and simplicity in the ridge regression model. A low lambda.min value may result in a more complex and accurate model, but also may increase the risk of overfitting. A high lambda.1se value may lead to a simpler and more robust model, but may result in underfitting.
+
+It is important to evaluate the results of the ridge regression model carefully and consider the trade-offs between accuracy and simplicity when choosing the optimal lambda value. Ultimately, the choice of lambda value will depend on the specific goals and constraints of the analysis, as well as the nature of the data being used.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.3. Plot the results from the cv.glmnet function provide an interpretation. **
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+# 3. Plot the results
+plot(cv.ridge, main = "Figure 2.1: Cross-validation result of Ridge regression", cex.main = 0.75)
+```
+
+
+In Figure 2.1, the x-axis displays the log of λ, while the y-axis shows the mean-squared error. The numbers along the top of the plot indicate the number of variables with non-zero coefficients that would be included in the model for each corresponding λ value. It can be observed that the number of variables stays constant, but the mean-squared error fluctuates across all the λ values. Two dashed lines in the plot represent two different λ values, with the one on the far left being lambda.min and the one on the right being lambda.1se. Since there is no reduction in the number of variables retained in the model, the lambda.min value should be chosen to minimize the cross-validated error in this scenario. The plot also showcases two Ridge regression models fitted using the training dataset and their coefficients, using lambda.min and lambda.1se.
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.4. Fit a Ridge regression model against the training set and report on the coefficients. **
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+# 4. Fit Ridge regression model against the training set
+model.ridge.min <- glmnet(train_x, train_y,
+    alpha = 0, lambda =
+        cv.ridge$lambda.min
+) # lambda min
+model.ridge.min
+coef(model.ridge.min) # ridge regression coefficients for lambda min
+
+model.ridge.1se <- glmnet(train_x, train_y,
+    alpha = 0, lambda =
+        cv.ridge$lambda.1se
+) # lambda 1se
+model.ridge.1se
+coef(model.ridge.1se) # ridge regression coefficients for lambda 1se
+```
+
+The results of the Ridge regression model reveal that it tried to reduce the coefficients towards 0 but did not completely eliminate any of them. The predictors such as Apps, Accept, Enroll, F.undergrad, P.undergrad, Outstate, Books, and Expend, can be seen as nearly 0. This is a clear indication that the Ridge regression model is trying to reduce the impact of unnecessary predictors on the model's performance. When trying to minimize the out-of-sample loss, it is best to choose the lambda.min value. In conclusion, the Ridge regression model is doing a good job at trying to simplify the model by reducing the impact of insignificant predictors.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.5. Determine the performance of the fit model against the training set by calculating the root mean square error (RMSE). **
+</FONT>
+
+<FONT SIZE = 4>
+
+After fitting the Ridge model, I determine the performance of the model by calculating the root mean squared error (RMSE) on both training set and test set, the less RMSE value is, the better the model performs. Below are the results:
+
+```{r}
+# 5. Train set prediction of RIDGE model by calculating RMSE
+# lamda min
+pred.ridge.min <- predict(model.ridge.min, newx = train_x)
+train.ridge.rmse.min <- rmse(train_y, pred.ridge.min)
+train.ridge.rmse.min
+# lambda 1se
+pred.ridge.1se <- predict(model.ridge.1se, newx = train_x)
+train.ridge.rmse.1se <- rmse(train_y, pred.ridge.1se)
+train.ridge.rmse.1se
+```
+
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.6. Determine the performance of the fit model against the test set by calculating the root mean square error (RMSE). **
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+# 6. Test set prediction of ridge model using RMSE
+# lambda min
+pred.ridge.min.test <- predict(model.ridge.min, newx = test_x)
+test.ridge.rmse.min <- rmse(test_y, pred.ridge.min.test)
+test.ridge.rmse.min
+# lambda 1se
+pred.ridge.1se.test <- predict(model.ridge.1se, newx = test_x)
+test.ridge.rmse.1se <- rmse(test_y, pred.ridge.1se.test)
+test.ridge.rmse.1se
+```
+
+The findings of the study indicate that the RMSE of the Ridge model with lambda.min is lower than the RMSE of the Ridge model with lambda.1se in both the train and test predictions. This means that the Ridge model with lambda.min has a higher level of predictive accuracy compared to the model with lambda.1se. Based on these results, I have decided to choose lambda.min to build my Ridge model. The close similarity between the RMSE values of the train set prediction and test set prediction also suggests that this is a robust model and is not suffering from overfitting. This implies that the model is accurately capturing the underlying patterns in the data and generalizing well to new, unseen data. Hence, the Ridge model with lambda.min is a good fit for my data and can be used for reliable predictions.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.7. Use the cv.glmnet function to estimate the lambda.min and lambda.1se values.  **
+</FONT>
+
+<FONT SIZE = 4>
+
+The process of determining the optimal lambda values for the Lasso regression model, fitting the model with each of these values, and evaluating the predictive accuracy is described below. This was done using the 10-fold cross-validation method, similar to the approach used for the Ridge regression model. The RMSE of each model was calculated to determine its predictive accuracy.
+
+```{r}
+#### LASSO
+# 7. Find best values of lambda
+cv.lasso <- cv.glmnet(train_x, train_y, nfolds = 10)
+# lambda min
+cv.lasso$lambda.min
+# lambda.1se
+cv.lasso$lambda.1se
+```
+
+
+An observation of the lambda values in the Lasso and Ridge models reveals a stark contrast. The difference between the lambda values in the Lasso model is significantly smaller compared to the difference between the lambda values in the Ridge model. This disparity has led to further exploration to gain a better understanding of the situation. To achieve this, I have utilized the cross-validation plot once again. The results of this analysis will shed light on the underlying reasons for the difference in lambda values between the two models. The cross-validation plot provides a visual representation of the accuracy of the model for different values of lambda, making it easier to understand the results and draw meaningful conclusions.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.8. Plot the results from the cv.glmnet function provide an interpretation.  **
+</FONT>
+
+<FONT SIZE = 4>
+```{r}
+# 8. Plot the results
+plot(cv.lasso, main = "Figure 2.8: Cross-validation result of Lasso regression", cex.main = 0.75)
+```
+
+Figure 2.8 demonstrates the difference in the number of predictors retained in the Lasso model. The model eliminates predictive variables and the fewer the number of predictors, the higher the mean-squared error. The cross-validation process has already found the two best lambda values to ensure that there is no underfitting model. The dashed line on the right side indicates that, with lambda.1se, the optimal number of predictors in the model is 9 variables. On the other hand, the optimal number of predictors using lambda.min is between 12 and 13 variables.
+
+This comparison highlights the significant advantage of the Lasso regression over Ridge regression in terms of simplicity and efficiency. The Lasso regression is capable of reducing the number of variables to create a simpler model while still remaining within 1 standard error of lambda.min. The two Lasso models fit by the training dataset using lambda.min and lambda.1se and their coefficients are presented below.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.9. Fit a LASSO regression model against the training set and report on the coefficients.  **
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+# 9. fit LASSO regression model against the training set
+# fit lasso regression model against the training set
+model.lasso.min <- glmnet(train_x, train_y,
+    alpha = 1, lambda =
+        cv.lasso$lambda.min
+) # lambda min
+model.lasso.min
+coef(model.lasso.min)
+model.lasso.1se <- glmnet(train_x, train_y,
+    alpha = 1, lambda =
+        cv.lasso$lambda.1se
+) # lambda 1se
+model.lasso.1se
+coef(model.lasso.1se) ## regression coefficients using lambda.1se
+```
+
+The above results indicate that when using lambda.min in the Lasso model, 5 variable coefficients are reduced to zero. These variables are Accept, Enroll, F.undergrad, Terminal, and S.F.Ratio. On the other hand, the Lasso model that employed lambda.1se eliminated 8 variables, including Accept, Enroll, F.undergrad, Books, PhD, Terminal, S.F.Ratio, and Expend. This highlights the ability of the Lasso model to eliminate variables that do not contribute significantly to the predictive accuracy of the model, leading to a simpler and more efficient model. The use of different lambda values results in different sets of variables being eliminated, demonstrating the flexibility of the Lasso model in terms of adjusting the complexity of the model to achieve the desired level of accuracy.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.10. Determine the performance of the fit model against the training set by calculating the root mean square error (RMSE).  **
+</FONT>
+
+<FONT SIZE = 4>
+
+Below is the model predictive accuracy evaluation by calculating RMSE for train set prediction and test set prediction using both lambda values:
+
+```{r}
+# 10. Train set prediction of LASSO model by calculating RMSE
+# lambda min
+pred.lasso.min <- predict(model.lasso.min, newx = train_x)
+train.lasso.rmse <- rmse(train_y, pred.lasso.min)
+train.lasso.rmse
+# lambda 1se
+pred.lasso.1se <- predict(model.lasso.1se, newx = train_x)
+train.lasso.rmse.1se <- rmse(train_y, pred.lasso.1se)
+train.lasso.rmse.1se
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.11. Determine the performance of the fit model against the test set by calculating the root mean square error (RMSE).  **
+</FONT>
+
+<FONT SIZE = 4>
+```{r}
+# 11. Test set prediction of lasso model using RMSE
+# lambda min
+pred.lasso.min.test <- predict(model.lasso.min, newx = test_x)
+test.lasso.rmse.min <- rmse(test_y, pred.lasso.min.test)
+test.lasso.rmse.min
+# lambda 1se
+pre.lasso.1se.test <- predict(model.lasso.1se, newx = test_x)
+test.lasso.rmse.1se <- rmse(test_y, pre.lasso.1se.test)
+test.lasso.rmse.1se
+```
+
+Similar to the results obtained from the Ridge regression, the RMSE values from the Lasso regression demonstrate the similarity between the training set prediction and test prediction, indicating that the goodness of the model is adequate and there is no overfitting present. Although the RMSE value using lambda.1se is slightly higher in both the training set and test prediction, it is due to the acceptable mean squared error that is illustrated in Figure 2.8. This indicates a trade-off between having a simpler regression model and the RMSE value. This trade-off appears to be a suitable balance for the Lasso regression model. The Lasso model is capable of eliminating variables that do not contribute significantly to the predictive accuracy of the model, leading to a simpler and more efficient model. This trade-off between complexity and accuracy is a common feature of regression models, and the Lasso model provides a flexible way to balance these two factors. The results from the Lasso regression demonstrate that the trade-off in this case appears to be good enough, providing an adequate level of accuracy while maintaining a relatively simple model.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.12. Which model performed better and why? Is that what you expected?.  **
+</FONT>
+
+<FONT SIZE = 4>
+
+After examining the predictive accuracy performance of both the Ridge and Lasso regression models using RMSE, it was found that there was no significant difference in RMSE between the two models. This suggests that the accuracy performance of both models is relatively similar. Nevertheless, when considering the number of predictors used for each model, it is apparent that the Lasso regression is the preferred model as it uses fewer variables while still demonstrating effectiveness. The Lasso model's ability to eliminate variables that do not contribute significantly to the predictive accuracy of the model leads to a simpler and more efficient model, making it a more desirable choice. The results of the predictive accuracy performance demonstrate the robustness of both the Ridge and Lasso regression models, with the Lasso model providing the added benefit of simplicity. This highlights the importance of considering both the accuracy performance and the number of predictors used in selecting an appropriate regression model.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.13. Did this model perform better or as well as Ridge regression or LASSO? Which method do you prefer and why?.  **
+</FONT>
+
+<FONT SIZE = 4>
+Refer to the stepwise selection, I performed the forward selection and backward selection by using step() function, then fit regression model using the results from stepwise selection and regularization and compare the accuracy from each of them by using AIC and BIC.
+
+The preferred models are shown by running the stepwise selection is shown as below
+
+```{r}
+# 13. Stepwise selection and regularization
+# forward selection
+step(lm(Grad.Rate ~ 1, data = train), direction = "forward", scope = ~
+    Private + Apps + Accept + Enroll + Top10perc + Top25perc + F.Undergrad + P.Undergrad
+        + Outstate + Room.Board + Books + Personal + PhD + Terminal + S.F.Ratio + perc.alumni
+        + Expend)
+# backward selection
+step(lm(Grad.Rate ~ ., data = train), direction = "backward")
+
+# comparring regression models
+fit1 <- lm(formula = Grad.Rate ~ Outstate + Top25perc + perc.alumni +
+    Room.Board + P.Undergrad + Apps + Expend +
+    as.factor(Private) + Personal +
+    Accept, data = train) # regression model using forward selection
+
+fit2 <- lm(formula = Grad.Rate ~ as.factor(Private) + Apps + Accept +
+    Top25perc +
+    P.Undergrad + Outstate + Room.Board + Personal + PhD +
+    Terminal +
+    perc.alumni + Expend, data = train) # regression model using backward selection
+
+fit3 <- lm(formula = Grad.Rate ~ Apps + Top10perc + Top25perc
+    + perc.alumni +
+    Room.Board + P.Undergrad + Outstate + as.factor(Private)
+    + Personal, data = train) # regression model using regularization
+
+AIC(fit1, fit2, fit3)
+BIC(fit1, fit2, fit3)
+```
+
+After evaluating the performance of three regression models through the use of AIC and BIC, it has become evident that fit1 is the preferred model while fit3, which utilizes regularization method, has the largest AIC value. Although the difference in AIC values is not substantial, all three models have demonstrated similar predictive accuracy performances. This leads to the conclusion that the choice of a feature selection method will depend on the specific characteristics of the dataset being analyzed. In this case, I selected the Lasso model as it provided me with the simplest model while still maintaining an acceptable level of error. This highlights the importance of considering both the model's accuracy and its simplicity when choosing a regression model for a specific dataset. It is also worth noting that different datasets may require different feature selection methods and that a comprehensive evaluation is necessary to determine the best approach for a given scenario.
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+3. CONCLUSIONS
+</FONT>
+</BR></B>
+
+- After conducting a thorough evaluation of different regression models, I have come to the conclusion that the selection of a feature selection method is contingent upon the characteristics of the dataset being analyzed. After comparing the performance of the Lasso and Ridge models, I have decided to go with the Lasso model as it provides me with the simplest model while still retaining an acceptable level of error.
+
+- This highlights the importance of considering both the accuracy of the model and its simplicity when making a decision on which regression model to use. Different datasets may require different feature selection methods, and it is crucial to conduct a comprehensive evaluation to determine the best approach for a given scenario. This conclusion is a testament to the versatility of regression models and the importance of considering different factors when choosing the most appropriate model for a given dataset.
+
+- In conclusion, while both Lasso and Ridge regression models performed well in this analysis, I have decided to go with the Lasso model due to its simplicity and effectiveness. Nevertheless, it is important to note that the choice of a feature selection method should be based on the specific characteristics of the dataset, and a comprehensive evaluation should be conducted to determine the best approach for each scenario.
+
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+4. REFERENCES
+</FONT>
+</BR></B>
+
+- Ahmed, Z. (2020, May 6). Comparing Linear Regression Models: Lasso vs
+Ridge. Medium.
+- Datascievo. (2021, March 3). LASSO Regression in R: An Efficient Way of
+Learning Regression. Data Science Evolution.
+- Loft, R. | S. (2020, June 16). Understanding Lasso and Ridge Regression: Rbloggers. R.
+- Singh, D. (2019, November 12). Deepika Singh. Pluralsight.
+- Zach. (2020, November 6). A Complete Guide to Stepwise Regression in R.
+Statology

@@ -1,0 +1,625 @@
+title="Final Project - ALY 6010"
+
+
+<P>
+
+<BR>
+
+<CENTER>
+
+<FONT size=5.5, color="blue">
+**Module 3 Assignment - GLM and Logistic Regression**</FONT>
+
+<FONT size=5, color="#F9042F">
+
+<BR>**Intermediate Analytics** </FONT>
+
+
+<P>
+
+<FONT size=4, color="#F94104"> ALY 6015</FONT>
+
+
+
+<P>
+
+<BR>
+<FONT size=5, color="#0493F9"> 
+<BR>
+**Maheswar Raju Narasaiah**
+
+<FONT size=5, color="Black"> 
+Professor Eric Gero
+
+Date: `r format(Sys.time(), '%d %B, %Y')`
+
+</CENTER>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+1. INTRODUCTION 
+</FONT>
+</BR></B>
+
+<FONT SIZE = 4>
+
+In this assigment, we are going perform Exploratory Data Analysis and glm() function in R to fit a Logistic Regression model to perform classification. 
+
+We are going to further construct and analyze two regression models, interpret their results, and utilize diagnostic methods to identify and resolve any problems with the models.
+
+**Objectives Of Assignment**
+
+1. Utilize "R" efficiently to handle, evaluate, and present data.
+   
+2. Enhance models to decipher data.
+   
+3. Employ specialized linear techniques to address both strategic and operational inquiries.
+   
+4. Organize intricate data sets for examination.
+   
+5. Apply multivariable and logistic regression techniques to enhance predictive results.omated techniques to determine the most appropriate model from a pool of multiple predictors."
+
+**About the College Dataset**
+
+The College dataset, sourced from the ISLR library, contains information on a large number of US colleges. 
+
+**Format:** A data frame with 777 observations on the following 18 variables.
+
+Private: A factor with levels No and Yes indicating private or public university
+
+Apps: Number of applications received
+
+Accept: Number of applications accepted
+
+Enroll: Number of new students enrolled
+
+Top10perc: Pct. new students from top 10% of H.S. class
+
+Top25perc: Pct. new students from top 25% of H.S. class
+
+F.Undergrad: Number of fulltime undergraduates
+
+P.Undergrad: Number of parttime undergraduates
+
+Outstate: Out-of-state tuition
+
+Room.Board: Room and board costs
+
+Books: Estimated book costs
+
+Personal: Estimated personal spending
+
+PhD: Pct. of faculty with Ph.D.'s
+
+Terminal: Pct. of faculty with terminal degree
+
+S.F.Ratio: Student/faculty ratio
+
+perc.alumni: Pct. alumni who donate
+
+Expend: Instructional expenditure per student
+
+Grad.Rate: Graduation rate
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+2. ANALYSIS
+</FONT>
+</BR></B>
+
+
+
+
+```{r warning=FALSE, message=FALSE, echo = FALSE}
+## Load the Library Used
+library(magrittr)
+library(knitr)
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(corrplot)
+library(summarytools)
+library(DT)
+library(kableExtra)
+library(DescTools)
+library(qcc)
+library(agricolae)
+library(car)
+library(tidyverse)
+library(RColorBrewer)
+library(corrplot)
+library(tibble)
+library(sjPlot)
+library(performance)
+library(see)
+library(ISLR)
+library(caret)
+library(pROC)
+
+
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.2. Perform Exploratory Data Analysis and use descriptive statistics to describe the data. **
+</FONT>
+
+<FONT SIZE = 4>
+
+Exploratory Data Analysis (EDA) is performed in order to better understand the underlying structure of the data, and to identify patterns, relationships, and outliers in the data set (Bluman, 2014). It is an initial step in the data analysis process that helps to inform the decisions that will be made later in the analysis, such as which statistical models to use and which features to include in the models. Additionally, EDA can help to identify any issues or problems with the data, such as missing values or outliers, so that they can be addressed before modeling begins.
+
+```{r}
+
+#### Outcome of summarytools::descr()
+###################################
+table2.1 <- College %>%
+    summarytools::descr()
+
+
+# Rounding off the digits in Table
+table1 <- round((table2.1), digits = 2)
+
+
+# Present the table using kableExta Package
+knitr::kable(table1,
+    caption = "Table 1: Descriptive Statistics of College Using
+    Code summarytools::descr() ",
+    format = "html",
+    table.attr = "style=width: 100%"
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = T,
+        html_font = "Times New Roman"
+    )
+
+
+
+#### Outocome of psych::describe ()
+###################################
+table2.2 <- College %>%
+    psych::describe() %>%
+    t()
+
+
+# Rounding off the digits in Table
+table2 <- round((table2.2), digits = 1)
+
+
+# Present the table using kableExta Package
+knitr::kable(table2,
+    caption = "Table 2: Descriptive Statistics of College Data Set Using
+    Code psych::describe () ",
+    format = "html",
+    table.attr = "style=width: 40%",
+    font_size = 8
+) %>%
+    kable_styling(bootstrap_options = c(
+        "striped", "hover",
+        "condensed", "responsive"
+    )) %>%
+    kable_classic(
+        full_width = F,
+        html_font = "Times New Roman"
+    )
+
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The dataset includes statistics such as the mean, median, and mode for the variables being analyzed. The data shows that there are more full-time undergraduate students (31643) than part-time undergraduate students (21836). The highest percentage of new students from the top 10% of high school classes is 96%, and the lowest is 1%. The highest instructional expenditure per student is 56233 and the lowest is 3186.
+
+- According to the descriptive analysis, the highest amount of applications received was 48094. Of those, 26330 were accepted and 6392 were enrolled. The average number of applications received was 3001. The lowest student-faculty ratio was 2.5, while the highest was 39.8. The maximum graduation rate was 118 and the minimum was 10. The average and median student-faculty ratio was 14.09 and 13.6 respectively, indicating a positive skew and positive kurtosis and skewness values.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.2. Boxplots of Outstate versus Private College**
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+
+#Use the plot() function to produce side-by-side boxplots of Outstate versus Private.
+
+plot(College$Private,College$Outstate, col = "blue", varwidth = T, xlab = "Private", ylab = "Outstate")
+
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The boxplot illustrates the range, median, and median of Out of State tuition for both Public and Private colleges. The median Out of State tuition for Private colleges is around 12,000 and for Public colleges is around 7,000. As a result, Out of State tuition is higher in Private colleges compared to Public universities.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.3. Boxplot for enrolments in Private and Public colleges**
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+ggplot(College,aes(Private, Enroll, fill =Private)) +
+geom_boxplot(color="red", fill= "red", alpha = 0.2) +
+ggtitle("Boxplot for enrollments in Private and Public College") +
+scale_fill_brewer(palette ="Blues") + theme_classic()
+
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The box plot on Enrollments shows that public colleges have a higher enrollment rate compared to private colleges. This indicates that most students enrolled in private universities are below 1000, with outliers. The 95th percentile for private universities is also significantly lower than the maximum enrollment numbers for public universities.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.4. Histogram for various variable in College Database**
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+# to devide the print window into four regions
+par(mfrow=c(3,2))
+# calling 4 hitograms
+hist(College$Top10perc, col = 2)
+hist(College$Top25perc, col =7)
+hist(College$Grad.Rate, col = 3)
+hist(College$PhD, col = 4)
+hist(College$Terminal, col=8)
+hist(College$perc.alumni, col=10)
+
+
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.5. Distribution of Private and Public Universities**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+```{r}
+
+# Calculate the counts of the "gear" variable
+counts <- table(College$Private)
+
+# Define the labels and colors for the pie chart
+# Calculate the percentage values
+percents <- counts / sum(counts)
+# Format the percentage values as strings
+labels <- paste0(round(percents * 100), "%")
+colors <- c("blue","red")
+
+# Create the pie chart
+pie(counts, labels = labels, col = colors)
+# Add a title to the pie chart
+title("Distribution of  Private and Publc Universities")
+# Add a legend to the pie chart
+leg <- c("Public", "Private")
+legend("topright", leg, fill = colors)
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The Pie Chart shows that private university are more prominenet than public university, Almost 73% of university in data set are private university.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.6. Scatter plot for Applications vs Accepted by Private and Public Colleges**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+```{r}
+ggplot(College,aes(x= Apps, y= Accept, col=Private)) +
+geom_point() +
+labs(title = "Application vs Accepted by Private and Public College",
+ x= "Applications", y= "Accepted") 
+
+
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Observations***
+
+</FONT>
+
+- The scatter plot depicted above offers valuable insights into the relationship between the number of applications and acceptance rates in both private and public universities (Gomes, 2018). 
+
+- Upon examination, it can be seen that the majority of the data points for both types of institutions fall within a range of 0 to 10000 applications. 
+
+- However, it is noteworthy that a larger proportion of colleges fall within this range for public institutions as compared to private ones. This indicates that public universities tend to receive a greater number of applications in comparison to private institutions. 
+
+- Additionally, it also implies that there may be a higher acceptance rate for public universities, as the data points for them are more spread out in comparison to private universities. Overall, the scatter plot provides a clear picture of the varying levels of applications and acceptance rates between public and private universities, and highlights the need for further research in this area.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.7. Split the data into a Train and Test set**
+</FONT>
+
+<FONT SIZE = 4>
+
+The next step in the analysis process involves dividing the data into two distinct sets: a training set and a test set. This is accomplished by utilizing the createDataPartition() function on a private variable. This function separates the data into two parts, with 70% of the data being designated for training and the remaining 30% being set aside for testing the model. The selection of records for each set is done randomly, ensuring that the data is evenly distributed and unbiased. This step is crucial for accurately evaluating the performance of the model and ensuring that it can accurately predict outcomes on new, unseen data. By splitting the data in this manner, we can ensure that the model is properly trained and can make accurate predictions on the test set.
+
+```{r}
+#Split che data into a train and test set
+#Initialize randonizer 
+set.seed(456)
+
+#Get 70% of random row numbers
+train_ind <- createDataPartition(College$Private, p=0.70, list= FALSE)
+
+# Get training data which includes 70% of rows
+train <- College [train_ind,]
+
+#Get test data which include the rest 30%(i,e. excludes 708 of rows)
+test= College[-train_ind,]
+
+```
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.8. Use the glm() function in the ‘stats’ package to fit a logistic regression model to the training set using at least two predictors.**
+</FONT>
+
+<FONT SIZE = 4>
+
+The Significant variables F Undergrad, Personal, PhD, perc.alumni, Outstate are the used for fitting the model.
+
+
+
+```{r}
+#Fitting model
+model1 = glm(as.factor(Private)~F.Undergrad+Outstate+PhD+perc.alumni, 
+data = train, family=binomial(link="logit"))
+
+summary(model1)
+```
+
+
+
+```{r}
+#Regression Cofficient (Log -odds)
+coef(model1)
+
+##Regression Cofficient (odds)
+exp(coef(model1))
+```
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.9. Create a confusion matrix and report the results of your model for the train set.**
+</FONT>
+
+<FONT SIZE = 4>
+To compute a confusion matrix, a set of predictions must be obtained and compared to the target values. These predictions can be used to evaluate various metrics, such as Precision, Recall, F1 score, Accuracy, Precision, Recall, and Specificity (Visa et. al., 2011).
+
+In this particular scenario, predictions were made on the training data set and a confusion matrix was generated as follows:
+
+```{r}
+#Creating A confusion Mtrix for Train Set
+prob.train = predict(model1, newdata = train, type ="response")
+
+pred.class.min.tr  <- as.factor(ifelse(prob.train >= 0.5, "Yes", "No"))
+
+#Model Accurcay
+confusionMatrix(pred.class.min.tr, as.factor(train$Private), positive ="Yes")
+
+```
+
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Interpretation of Confusion Matrix***
+
+</FONT>
+
+- The confusion matrix is a tool used to evaluate the performance of a classification model. In this case, the model was created using a train data set. The matrix displays the number of correctly and incorrectly classified instances for each class (LaValley, 2008).
+
+- The True Positives (TP) are 380, which means the model correctly identified 380 instances as the positive class. The True Negatives (TN) are 129, which means the model correctly identified 129 instances as the negative class.
+
+- On the other hand, the False Positives (FP) are 20, which means the model incorrectly identified 20 instances as the positive class when they were actually negative. The False Negatives (FN) are 16, which means the model incorrectly identified 16 instances as the negative class when they were actually positive.
+
+Overall, the model has a high accuracy rate with a large number of True Positives and True Negatives. However, it also has a relatively low number of False Positives and False Negatives, indicating that the model may be more prone to making errors when identifying instances of the negative class. To improve the performance of the model, further optimization and fine-tuning may be necessary.
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Which misclassifications are more damaging for the analysis, False Positives or False Negatives?***
+
+</FONT>
+
+It depends on the specific context and purpose of the analysis.
+
+- False positives, also known as Type I errors, occur when a model incorrectly classifies a negative sample as positive. In some cases, such as medical diagnoses or fraud detection, false positives can have serious consequences and be considered more damaging.
+
+- False negatives, also known as Type II errors, occur when a model incorrectly classifies a positive sample as negative. In some cases, such as disease screening or security threats, false negatives can also have serious consequences and be considered more damaging.
+
+It's important to consider the specific context and purpose of the analysis when determining which misclassifications are more damaging. For example, in a medical diagnosis, a false negative might be more damaging as it leads to delayed or missed treatment, whereas in a fraud detection system a false positive might be more damaging as it leads to wasted resources and potential loss of reputation.
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Report and interpret metrics for Accuracy, Precision, Recall, and Specificity***
+
+</FONT>
+
+- The confusion matrix is a tool used to evaluate the performance of a classification model. It helps to understand the number of true positive, false positive, true negative and false negative predictions made by the model. The accuracy of the model is 93.39%, which means that out of all the predictions made by the model, 93.39% of them are correct. This is considered to be a good accuracy rate.
+
+- The precision of the model is 95.00%, which means that out of all the positive predictions made by the model, 95.00% of them are correct. This is considered to be a high precision rate, which means that the model is not making many false positive predictions.
+
+- The recall of the model is 95.96%, which means that out of all the actual positive cases, the model is able to correctly identify 95.96% of them. This is considered to be a high recall rate, which means that the model is not missing many actual positive cases.
+
+- The specificity of the model is 86.58%, which means that out of all the actual negative cases, the model is able to correctly identify 86.58% of them. This is considered to be a good specificity rate, which means that the model is not making many false negative predictions.
+
+- The sensitivity of the model is 95.96%, which is the same as the recall rate. This means that the model is able to correctly identify 95.96% of the actual positive cases.
+
+In summary, based on the confusion matrix, it is observed that the model is predicting accurately, with good accuracy, precision, recall, specificity, and sensitivity rates. This suggests that the model is able to make accurate predictions and is not making many false positive or false negative predictions.
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.10. Create a confusion matrix and report the results of your model for the test set.**
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+#Creating A confusion Mtrix for test Set
+prob.test = predict(model1, newdata = test, type ="response")
+
+pred.class.min.tst  <- as.factor(ifelse(prob.test >= 0.5, "Yes", "No"))
+
+#Model Accurcay
+confusionMatrix(pred.class.min.tst, as.factor(test$Private), positive ="Yes")
+
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Report and interpret metrics for Accuracy, Precision, Recall, and Specificity***
+
+</FONT>
+
+- In this case, the confusion matrix shows that the model has an accuracy of 93.1%, which is considered good. This means that the model correctly predicted the outcome 93.1% of the time.
+
+- The precision of the model is 93.71%, which means that out of all the positive predictions made by the model, 93.71% of them were actually positive. This metric is important because it tells us how many of the predictions made by the model were correct.
+
+- The recall of the model is 95.95%, which means that out of all the actual positive cases, the model was able to correctly identify 95.95% of them. This metric is important because it tells us how many of the actual positive cases the model was able to identify.
+
+- The specificity of the model is 82.54%, which means that out of all the actual negative cases, the model was able to correctly identify 82.54% of them. This metric is important because it tells us how well the model is able to distinguish negative cases from positive cases.
+
+- The sensitivity of the model is 97.04%, which means that out of all the actual positive cases, the model was able to correctly identify 97.04% of them. This metric is important because it tells us how well the model is able to identify positive cases.
+
+- Overall, the results of the confusion matrix indicate that the model is performing well. The accuracy, precision, recall, specificity, and sensitivity are all high, which means that the model is able to accurately predict outcomes and distinguish between positive and negative cases. This suggests that the model is a reliable tool for making predictions in this specific application.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.11. Plot and interpret the ROC curve from the data standpoint**
+</FONT>
+
+<FONT SIZE = 4>
+
+```{r}
+roc_c  <- roc(test$Private, prob.test)
+
+plot(roc_c, col= "red", ylab = "Sensitivity - FP Rate",  xlab= "Specificity - FP Rate", main ="Receiver operator characterstic")
+```
+
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Report and interpret metrics for Accuracy, Precision, Recall, and Specificity***
+
+</FONT>
+
+- A confusion matrix is a table that is used to define the performance of a classification algorithm. It is typically used in the context of binary classification, where the predicted output is either positive or negative. The confusion matrix contains four main elements: true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN) (Park et. al., 2004).
+
+- In the above ROC plot, the peak of the curve is closer to 1, which indicates that the model has a high true positive rate (sensitivity) and a low false positive rate (1-specificity). This means that the model is able to correctly identify a large number of positive instances while minimizing the number of false positives. In other words, the model is able to accurately distinguish between positive and negative instances.
+
+- The true positive rate (sensitivity) measures the proportion of positive instances that are correctly identified by the model, while the false positive rate measures the proportion of negative instances that are incorrectly identified as positive. A high true positive rate and a low false positive rate indicate that the model is able to correctly identify a high proportion of positive instances while minimizing the number of false positives.
+
+In summary, the above ROC plot indicates that the model is a good one as it is able to accurately distinguish between positive and negative instances with a high true positive rate and a low false positive rate.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**2.12. Calculate and interpret the AUC from the Data Standpoint**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+
+```{r}
+auc_c <- auc(roc_c)
+
+auc_c
+```
+
+<BR>
+<FONT SIZE = 4, COLOR = "Red">
+
+***Report and interpret metrics for Accuracy, Precision, Recall, and Specificity***
+
+</FONT>
+
+- In this case, the confusion matrix for the model shows an AUC of 97.65%. This means that the model is able to correctly predict the outcome of the data with a high degree of accuracy.
+
+- The AUC value is calculated by comparing the true positive rate (TPR) and the false positive rate (FPR) of the model. The TPR represents the number of true positive predictions made by the model, while the FPR represents the number of false positive predictions made by the model. A high TPR and a low FPR indicate that the model is able to accurately predict the outcome of the data.
+
+- In this case, the model is able to predict 1s as 1s and 0s as 0s with a high degree of accuracy. This is evident from the high AUC value of 97.65%. This means that the model is able to correctly identify the positive and negative outcomes of the data with a high degree of accuracy. The high AUC value indicates that the model is a good model, and it can be used to make accurate predictions on new data.
+
+Overall, the confusion matrix in this case shows that the model is able to accurately predict the outcome of the data, and it is a good model for making predictions on new data. The high AUC value of 97.65% is a clear indication of the model's high accuracy and reliability.
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+3. CONCLUSIONS
+</FONT>
+</BR></B>
+
+- There are more private colleges than public colleges in the College dataset analyzed.
+- Public universities have higher enrollment numbers than private colleges.
+- Out of state tuition is higher in private colleges than in public universities.
+- Students from different states mostly prefer going to private colleges.
+- A model was fitted using train data and the accuracy of the model was 93.39% when making predictions from train data and 93.1% when making predictions from test data.
+- The area under the curve for the model is 97.65%, indicating that it is a good model.
+
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+4. REFERENCES
+</FONT>
+</BR></B>
+
+- Visa, S., Ramsay, B., Ralescu, A. L., & Van Der Knaap, E. (2011). Confusion matrix-based feature selection. Maics, 710(1), 120-127.
+- Gomes, M. M. (2018, June 14). Data Visualization: Best Practices and Foundations. Toptal Design Blog. https://www.toptal.com/designers/data-visualization/data-visualization-best-practices
+- Bluman, A. (2014). Elementary Statistics: A step by step approach 9e. McGraw Hill.
+- LaValley, M. P. (2008). Logistic regression. Circulation, 117(18), 2395-2399.
+- Park, S. H., Goo, J. M., & Jo, C. H. (2004). Receiver operating characteristic (ROC) curve: practical review for radiologists. Korean journal of radiology, 5(1), 11-18.
+
+
+
+

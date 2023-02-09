@@ -312,11 +312,11 @@ knitr::kable(table2,
 
 - As we can observe from Table 1, code descr() in summary tools package is used to generates descriptive statistics, i.e. some major measures of central tendency statistics and measures of dispersion or spread. It accepts single vectors as well as data frames in it's analysis; in the latter case, and all the variable with non-numerical values. This is specailly useful when there are lot of columns, this code can be used to filter out the columns with numerical values and their descriptive statistics.
 - When we look at table 2, we can observe that code psych::describe () can be used for data analysis to generate descriptive statistics, one difference we can notice that it includes all the columns irrespective of if it's values are numerical or character. It marks all the columns with non-numerical values with asterisk at the end of variable name. It has a useful function for descriptive statistics for numerical variables: describe(). The generic form is: describe(x, na.rm = TRUE, interp = FALSE, skew = TRUE, ranges = TRUE, trim = .1, type = 3, check = TRUE).
-x stands for the data frame or the variable to be analyzed (df$variable).
+x stands for the data  frame or the variable to be analyzed (df$variable).
 - We can see that there are no null values in data set by looking N.Valid Results. And the standard deviation for higway mileage is highest.
 - The variable with highest skewness and kurtosis is city mileage. 
 
-
+ 
 
 <FONT SIZE = 4.75, COLOR ="#8E348B">
 **2.2. Description Statistics Of Displacement Based on Cylinder Size**

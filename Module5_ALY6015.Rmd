@@ -1,0 +1,634 @@
+title="Final Project - ALY 6010"
+
+
+<P>
+
+<BR>
+
+<CENTER>
+
+<FONT size=5.5, color="blue">
+**Module 5 Assignment - Nonparametric Methods and Sampling**</FONT>
+
+<FONT size=5, color="#F9042F">
+
+<BR>**Intermediate Analytics** </FONT>
+
+
+<P>
+
+<FONT size=4, color="#F94104"> ALY 6015</FONT>
+
+
+<P>
+
+<BR>
+<FONT size=5, color="#0493F9"> 
+<BR>
+**Maheswar Raju Narasaiah**
+
+<FONT size=5, color="Black"> 
+Professor Eric Gero
+
+Date: `r format(Sys.time(), '%d %B, %Y')`
+
+</CENTER>
+
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+1. INTRODUCTION 
+</FONT>
+</BR></B>
+
+<FONT SIZE = 4>
+
+
+This report focuses on utilizing Non-parametric testing techniques to examine and compare data. In contrast to parametric analysis, where we make assumptions about the values in the dataset, Non-parametric tests are useful when these assumptions cannot be confirmed. R offers functions for carrying out Mann-Whitney U, Wilcoxon Signed Rank, Kruskal Wallis, and Friedman tests. These tests are valuable when the standard assumption of normality in analysis of variance cannot be met. Non-parametric methods also allow for testing the hypothesis of equal means or medians across groups, and include multiple comparison procedures to regulate the overall error rate for pairwise comparisons. 
+
+The study will apply Non-parametric tests, including the Sign test, Wilcoxon Rank Sum test, Kruskal Wallis Test, and other sampling methods, on a variety of small datasets.
+
+
+</FONT>
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+2. ANALYSIS
+</FONT>
+</BR></B>
+
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+## Load the Library Used
+library(magrittr)
+library(knitr)
+library(tidyverse)
+library(plyr)
+library(dplyr)
+library(readxl)
+library(gridExtra)
+library(RColorBrewer)
+library(lattice)
+library(ggplot2)
+library(corrplot)
+library(summarytools)
+library(DT)
+library(kableExtra)
+library(DescTools)
+library(qcc)
+library(agricolae)
+library(car)
+library(RColorBrewer)
+library(corrplot)
+library(tibble)
+library(sjPlot)
+library(performance)
+library(see)
+library(ISLR)
+library(caret)
+library(pROC)
+library(caret)
+library(ISLR)
+library(dplyr)
+library(psych)
+library(glmnet)
+library(Metrics)
+```
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.2:  a. Game Attendance. **
+</FONT>
+
+<FONT SIZE = 4>
+
+**1. State Hypotheses**
+
+H0: Median=3000 
+
+H1: Median!=3000
+
+**2. Find the critical value**
+
+```{r}
+# claims is that the median number for the paid attendance at 20 local football games is 3000
+Median <- 3000
+
+
+# Number of paid attendance at 20 local football games
+attendance <- c(6210, 3150, 2700, 3012, 4875, 3540, 6127, 2581, 2642, 2573, 1792, 2800, 2500, 3700, 6030, 5437, 2758, 3490, 2852, 2720)
+
+difference <- attendance - Median
+difference
+
+# determine the number of games the paid attendance above 3000
+pos <- length(difference[difference > 0])
+pos
+
+## Determine the number of games the paid attendance below 3000
+neg <- length(difference[difference < 0])
+neg
+
+critical_value1 <- pos + neg
+```
+
+**3. Run the Test**
+
+```{r}
+result <- binom.test(x = c(pos, neg), alternative = "two.sided")
+result
+```
+
+**4. Make the decision**
+```{r}
+ifelse(result$statistic < critical_value1, "fail to reject the null hypothesis", "Reject the null hypothesis")
+```
+
+**5. Summarize the Result**
+
+There is not enough evidence to reject the claim that the median is 3000. Yes, 3000 can be used as a guide.
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.2: b. Lottery Ticket Sales. **
+</FONT>
+
+<FONT SIZE = 4>
+
+**1. State Hypothesis **
+
+H0: Median =200 
+
+H1: Median<200
+
+**2. Find the critical value**
+
+```{r}
+alpha <- 0.05
+
+# Determine the number of days the tickets sold more than 200
+pos <- 25
+# Determine the number of days the tickets sold fewer than 200
+neg <- 15
+
+
+critical_value2 <- pos + neg
+```
+
+**3. Run the Test**
+
+```{r}
+# 3.Run the Test
+result <- binom.test(x = c(pos, neg), alternative = "less")
+result
+```
+
+**4. Make the decision**
+
+```{r}
+ifelse(result$statistic < critical_value2, "Fail to reject the null hypothesis", "Reject the null hypothesis")
+```
+
+**5. Summarize the Result **
+
+There is not enough evidence to support the claim that she sells less than 200 tickets per day.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.3.A Lengths of Prison Sentences **
+</FONT>
+
+<FONT SIZE = 4>
+
+**1. State Hypotheses:**
+
+H0: There is no difference in the sentence received by each gender.
+
+H1: There is a difference in the sentence received by each gender. 
+
+**2. Find the critical Value**
+
+```{r}
+critical_value3 <- qsignrank(0.05, 26, lower.tail = FALSE)
+critical_value3
+```
+
+**3. Run the Test**
+
+```{r}
+males <- c(8, 12, 6, 14, 22, 27, 32, 24, 26, 19, 15, 13)
+females <- c(7, 5, 2, 3, 21, 26, 30, 9, 4, 17, 23, 12, 11, 16)
+
+result <- wilcox.test(x = males, y = females, alternative = "two.sided", correct = FALSE)
+
+result
+
+result$statistic
+```
+
+**4. Make the decision**
+
+```{r}
+ifelse(result$statistic < critical_value3, "Fail to reject the Null Hypothesis", "Reject the null hypothesis")
+```
+
+
+**5. Summarize the Result **
+
+There is no enough evidence to reject the claim that there is no difference in the sentences received by each gender.
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.3.B. Winning Baseball Games **
+</FONT>
+
+<FONT SIZE = 4>
+
+
+
+**1. State Hypotheses**
+
+H0:There is no difference in the number of wins. 
+
+H1:There is a difference in the number of wins.
+
+**2. Set significance Level**
+
+
+```{r}
+alpha <- 0.05
+
+critical_value4 <- qsignrank(0.05, 23, lower.tail = FALSE)
+critical_value4
+```
+
+
+**3. Run the Test**
+
+```{r}
+NL <- c(89, 96, 88, 101, 90, 91, 92, 96, 108, 100, 95)
+AL <- c(108, 86, 91, 97, 100, 102, 95, 104, 95, 89, 88, 101)
+
+result1 <- wilcox.test(x = NL, y = AL, alternative = "two.sided", correct = FALSE)
+
+result1
+```
+
+**4. Make the decision**
+
+```{r}
+ifelse(result1$statistic < critical_value4, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+
+**5. Summarize the Result **
+
+There is not enough evidence to reject the claim that there is no difference in the number of wins.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.4. Use Table K to determine whether the null hypothesis should be rejected.**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+**5. ws=13,n=15,a=0.01,two-tailed**
+
+```{r}
+ws <- 13
+```
+
+As per the K-Table, z=16.
+
+```{r}
+z <- 16
+```
+
+
+If test value< k value, We reject the null hypothesis,Else, we cannot reject the Null hypothesis
+
+```{r}
+ifelse(ws > z, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+
+Since, 13<16. We are rejecting the null hypothesis.
+
+**6. ws=32,n=28,a=0.025,one-tailed**
+
+```{r}
+ws <- 32
+```
+
+As per the K-Table, z=117
+
+```{r}
+z <- 117
+```
+
+If test value< k value, We reject the null hypothesis,Else, we cannot reject the Null hypothesis
+
+```{r}
+ifelse(ws > z, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+Since, 32<117, We are rejecting the null hypothesis.
+
+**7.ws=65,n=20,a=0.05,one-tailed**
+
+```{r}
+ws <- 65
+```
+
+As per the K-Table, z=60
+
+```{r}
+z <- 60
+```
+
+If test value< k value, We reject the null hypothesis, Else, we cannot reject the Null hypothesis.
+
+```{r}
+ifelse(ws > z, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+
+Since,65>60, Fail to reject the null hypothesis
+
+**8.ws=22,n=14,a=0.10,two-tailed**
+
+```{r}
+ws <- 32
+```
+
+As per the K-Table, z=26
+
+```{r}
+z <- 26
+```
+
+If test value< k value, We reject the null hypothesis, Else, we cannot reject the Null hypothesis.
+
+```{r}
+ifelse(ws > z, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+
+Since, 22<26,Reject the null hypothesis
+
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.5: Mathematics Literacy Scores**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+
+**1.	State Hypotheses**
+
+H0:There is no difference in the mathematical literacy scores of the three groups 
+
+H1:There is a difference in the mathematical literacy scores of the three groups
+
+**2.	Set Significance Level**
+
+```{r}
+alpha <- 0.05
+```
+
+**3.	Run the Test**
+
+```{r}
+western_hemis <- data.frame(scores = c(527, 406, 474, 381, 411), group = rep("Western Hemisphere", 5))
+europe <- data.frame(scores = c(520, 510, 513, 548, 496), group = rep("Europe", 5))
+easternAsia <- data.frame(scores = c(523, 547, 547, 391, 548), group = rep("Eastern Asia", 5))
+
+data <- rbind(western_hemis, europe, easternAsia)
+data
+
+result2 <- kruskal.test(scores ~ group, data = data)
+result2
+```
+
+**4.	Make the decision**
+
+```{r}
+ifelse(result2$p.value > alpha, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+
+
+5, Summarize the Result
+
+There is not enough evidence to support the claim that there is a difference in the mathematical literacy scores.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 13.6: Subway and Commuter Rail Passengers**
+</FONT>
+
+<FONT SIZE = 4>
+
+**1.	State Hypotheses:**
+
+H0:There is no relationship between the variables 
+
+H1:There is a relationship between the variables
+
+**2.	Set significance level**
+
+```{r}
+alpa <- 0.05
+```
+
+**3.	Run the Test**
+
+```{r}
+city <- c(1, 2, 3, 4, 5, 6)
+subway <- c(845, 494, 425, 313, 108, 41)
+rail <- c(39, 291, 142, 103, 33, 38)
+
+
+data <- data.frame(city = city, subway = subway, rail = rail)
+
+result3 <- cor.test(data$subway, data$rail, method = "spearman")
+result3
+
+result3$p.value
+
+result3$estimate
+```
+
+**4. Make the estimate**
+
+```{r}
+ifelse(result3$p.value > alpha, "Fail to reject the Null Hypothesis", "Reject the Null Hypothesis")
+```
+
+**5. Summarize the Result**
+
+There is no evidence to reject the claim that there is no significant relationship between the subway and commuter rail trips.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 14.3 a.Prizes in Caramel Corn Boxes**
+</FONT>
+
+<FONT SIZE = 4>
+
+**1.Define an experiment function to get the number of boxes a person needs to buy to get all four prizes**
+
+
+```{r}
+experiment <- function() {
+    prize_1 <- FALSE
+    prize_2 <- FALSE
+    prize_3 <- FALSE
+    prize_4 <- FALSE
+    pick <- 0
+    while (!prize_1 | !prize_2 | !prize_3 | !prize_4) {
+        pick <- pick + 1
+        prize <- sample(1:4, 1)
+        if (prize == 1) {
+            prize_1 <- TRUE
+        }
+        if (prize == 2) {
+            prize_2 <- TRUE
+        }
+        if (prize == 3) {
+            prize_3 <- TRUE
+        }
+        if (prize == 4) {
+            prize_4 <- TRUE
+        }
+    }
+    return(pick)
+}
+
+experiment()
+```
+
+**2. Repeat the experiment 40 times.**
+
+```{r}
+num_of_experiment <- 1
+trials_result <- c()
+while (num_of_experiment <= 40) {
+    num_of_experiment <- num_of_experiment + 1
+    trial <- experiment()
+    trials_result <- append(trials_result, trial)
+}
+```
+
+**3. Result of all 40 experiment trials**
+
+```{r}
+trials_result
+```
+
+**4. Calculate the average number from 40 trials**
+
+```{r}
+mean(trials_result)
+```
+
+**5. Summarize the Result**
+
+The result showed that the average number of boxes a person needs to buy to get all 4 prizes is 8.However, since this experiment is done randomly, the results may vary everytime this experiment is run.
+
+
+<FONT SIZE = 4.75, COLOR ="#8E348B">
+**Section 14.3.b. Lottery Winner**
+</FONT>
+
+<FONT SIZE = 4>
+
+
+**1. Define an experiment function to get the number of tickets a person must buy to win the prize.**
+
+```{r}
+experiment_lottery <- function() {
+    b <- FALSE
+    i <- FALSE
+    g <- FALSE
+    pick <- 0
+    while (!b | !i | !g) {
+        pick <- pick + 1
+        letter <- sample(1:10, 1)
+        if (letter <= 6) {
+            b <- TRUE
+        }
+        if (letter >= 7 && letter <= 9) {
+            i <- TRUE
+        }
+        if (letter == 10) {
+            g <- TRUE
+        }
+    }
+    return(pick)
+}
+
+experiment_lottery()
+```
+
+**2. Repeat the experiment 30 times**
+
+```{r}
+num_of_lottery_experiment <- 1
+trials_lottery_result <- c()
+while (num_of_lottery_experiment <= 30) {
+    num_of_lottery_experiment <- num_of_lottery_experiment + 1
+    trial <- experiment_lottery()
+    trials_lottery_result <- append(trials_lottery_result, trial)
+}
+```
+
+**3. Result of all 30 experiment trials**
+
+```{r}
+trials_lottery_result
+```
+
+**4. Calculate the average number from 30 trials**
+
+```{r}
+mean(trials_lottery_result)
+```
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+3. CONCLUSIONS
+</FONT>
+</BR></B>
+
+- In this report, we delved into various statistical testing methods and techniques. The first two cases focused on the binomial test, also known as the sign test. This test is utilized when the assumption is that the two outcomes have equal probabilities.
+
+- The third and fourth cases focused on comparing two related samples or repeated measurements to determine if there is any difference in the mean ranks. We also learned how to use K-Table values to determine the test value.
+
+- Additionally, we studied the Spearman Rank Co-efficient Test, which allows us to identify the correlation between different variables, such as the number of passengers in a subway and the subway itself.
+
+- The final two cases involved simulation techniques to calculate the average number to be picked in a lottery or winning prize scenario. These techniques were both insightful and engaging, providing us with new ways to approach these types of problems.
+
+- Overall, this report provided a comprehensive overview of various statistical testing methods and techniques, including the binomial test, the comparison of related samples, the use of K-Table values, the Spearman Rank Co-efficient Test, and simulation techniques. Each scenario helped to deepen our understanding of these methods and provided practical applications for their use.
+
+
+<P>
+<BR> <B>
+<FONT SIZE = 4.75, COLOR ="#030E4F">
+4. REFERENCES
+</FONT>
+</BR></B>
+
+- Zar, J. H. (2014). Spearman rank correlation: overview. Wiley StatsRef: Statistics Reference Online.
+
+- Dray, S., Dufour, A. B., & Chessel, D. (2007). The ade4 package-II: Two-table and K-table methods. R news, 7(2), 47-52.
+
+- Jiang, Y., He, X., Lee, M. L. T., Rosner, B., & Yan, J. (2017). Wilcoxon rank-based tests for clustered data with R package clusrank. arXiv preprint arXiv:1706.03409.
+
+-  McKight, P. E., & Najab, J. (2010). Kruskal‐wallis test. The corsini encyclopedia of psychology, 1-1.

@@ -297,23 +297,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -400,31 +394,25 @@ library(kableExtra)</code></pre>
 <pre><code>## The following object is masked from &#39;package:plyr&#39;:
 ## 
 ##     mutate</code></pre>
-<pre class="r"><code>X &lt;- (65 - 19) / 65
-X</code></pre>
-<pre><code>## [1] 0.7076923</code></pre>
-<pre class="r"><code>SE &lt;- sqrt((X * (1 - X)) / 65)
-SE</code></pre>
-<pre><code>## [1] 0.05641384</code></pre>
-<pre class="r"><code>Y &lt;- (X - 0.66) / SE
-Y</code></pre>
-<pre><code>## [1] 0.8454008</code></pre>
-<pre class="r"><code>z &lt;- 8 - 2 * 0.54
-z</code></pre>
-<pre><code>## [1] 6.92</code></pre>
-<pre class="r"><code>A &lt;- c(19, 16, 14, 18, 19)
+<pre class="r"><code># create data
+drug_a &lt;- c(3, 4, 5, 4, 3, 6, 4, 3, 4)
+drug_b &lt;- c(5, 7, 4, 5, 4, 6, 5, 8, 6)
+drug_c &lt;- c(5, 6, 5, 5, 6, 4, 5, 4, 7)
 
-B &lt;- c(25, 18, 27, 11, 23)
+# combine data into a dataframe
+data &lt;- data.frame(
+    drug = rep(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), each = 9),
+    pain_score = c(drug_a, drug_b, drug_c)
+)
 
-C &lt;- mean(A)
-D &lt;- mean(B)
-
-C</code></pre>
-<pre><code>## [1] 17.2</code></pre>
-<pre class="r"><code>D</code></pre>
-<pre><code>## [1] 20.8</code></pre>
-<pre class="r"><code>pnorm(0.05, lower.tail = FALSE)</code></pre>
-<pre><code>## [1] 0.4800612</code></pre>
+# perform one-way ANOVA test
+model &lt;- aov(pain_score ~ drug, data = data)
+summary(model)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## drug         2  12.07   6.037   4.866 0.0168 *
+## Residuals   24  29.78   1.241                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
 
 

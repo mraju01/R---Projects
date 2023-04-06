@@ -17,36 +17,16 @@ library(ggpubr)
 ```
 
 ```{r}
-# create a data frame with the CD4 counts
-cd4 <- data.frame(
-    Baseline = c(2.12, 4.35, 3.39, 2.51, 4.04, 5.1, 3.77, 3.35, 4.1, 3.35, 4.15, 3.56, 3.39, 1.88, 2.56, 2.96, 2.49, 3.03, 2.66, 3.00),
-    OneYear = c(2.47, 4.61, 5.26, 3.02, 6.36, 5.93, 3.93, 4.09, 4.88, 3.81, 4.74, 3.29, 5.55, 2.82, 4.23, 3.23, 2.56, 4.31, 4.37, 2.40)
+# Create a data frame with the given data
+data <- data.frame(
+    SBP = c(109.6, 107.4, 140.3, 146.5, 98.2, 137.8, 124.1, 113.2, 127.8, 125.3, 108.5, 181.3, 137.4, 146.2, 142.4, 123.7, 129.6, 143.6, 160.7, 148.3),
+    Hrs_day = c(7, 8, 9, 12, 6, 9, 10, 8, 9, 8, 6, 13, 10, 10, 9, 8, 8, 9, 11, 9),
+    Area = c("east", "east", "east", "east", "east", "east", "east", "east", "east", "east", "west", "west", "west", "west", "west", "west", "west", "west", "west", "west")
 )
 
-# calculate the correlation
-cor(cd4$Baseline, cd4$OneYear)
+# Fit a linear regression model
+model <- lm(SBP ~ Hrs_day + Area, data = data)
 
-# fit a linear regression model
-model <- lm(OneYear ~ Baseline, data = cd4)
-
-# print the summary of the model
-summary(model)
-
-# Calculate the test statistic for testing the association of baseline and follow-up CD4 counts
-test_statistic <- summary(model)$coef[2, "t value"]
-
-# Output the test statistic
-test_statistic
-
-# Calculate the 95% confidence interval for the slope coefficient
-conf_int <- confint(model)[2, ]
-
-# Output the confidence interval
-conf_int
-
-
-
-# 95% confidence interval for the slope:
-coef(model)[2] + qt(0.025, df = 18) * summary(model)$coefficients[2, 2:1]
-coef(model)[2] + qt(0.975, df = 18) * summary(model)$coefficients[2, 2:1]
+# Print the regression equation
+summary(model)$coefficients
 ```

@@ -1,4 +1,9 @@
 ```{r}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> fa611856b585eb67dfe1fd0ecacafbc2585b929c
 # Library Used for M3 Project
 #####################################
 library(magrittr) ## Fetching magnittr
@@ -14,6 +19,7 @@ library(ggplot2)
 library(DT)
 library(kableExtra)
 library(ggpubr)
+<<<<<<< HEAD
 ```
 
 ```{r}
@@ -29,4 +35,41 @@ model <- lm(SBP ~ Hrs_day + Area, data = data)
 
 # Print the regression equation
 summary(model)$coefficients
+=======
+
+
+
+X <- (65 - 19) / 65
+X
+SE <- sqrt((X * (1 - X)) / 65)
+SE
+
+Y <- (X - 0.66) / SE
+Y
+
+z <- 8 - 2 * 0.54
+z
+```
+
+```{r}
+
+A <- c(19, 16, 14, 18, 19)
+
+B <- c(25, 18, 27, 11, 23)
+
+C <- mean(A)
+D <- mean(B)
+
+C
+D
+pnorm(0.05, lower.tail = FALSE)
+
+
+alpha <- 0.002
+cv1 <- qnorm(0.002 / 2)
+cv2 <- qnorm(1 - (0.002 / 2))
+
+cv1
+cv2
+>>>>>>> fa611856b585eb67dfe1fd0ecacafbc2585b929c
 ```
